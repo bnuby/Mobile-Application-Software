@@ -6,7 +6,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.gibson.carlife.MainActivity;
+import com.example.gibson.carlife.OLDMainActivity;
 
 /**
  * Created by gibson on 2018/4/25.
@@ -29,7 +29,7 @@ public class RequestManager {
       }
     });
 
-    MainActivity.volleyQueue.add(request);
+    OLDMainActivity.volleyQueue.add(request);
 
     return true;
   }
