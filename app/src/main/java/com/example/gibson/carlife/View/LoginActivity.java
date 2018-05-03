@@ -1,10 +1,11 @@
-package com.example.gibson.carlife;
+package com.example.gibson.carlife.View;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +13,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.gibson.carlife.R;
 import com.example.gibson.carlife.Services.RequestManager;
 
 /**
  * Created by gibson on 2018/4/25.
  */
 
-public class LoginActivity extends Fragment implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
   public static View view;
   Button loginBtn;
@@ -26,23 +28,22 @@ public class LoginActivity extends Fragment implements View.OnClickListener {
   EditText passwordET;
   Button signup;
 
-  @Nullable
   @Override
-  public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-    ViewGroup group = (ViewGroup) inflater.inflate(R.layout.activity_login, container, false);
+  protected void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_login);
+    init();
 
-    view = group.getRootView();
 
-    init(view);
-
-    return group;
   }
 
-  public void init(View view) {
-    usernameET = view.findViewById(R.id.usernameET);
-    passwordET = view.findViewById(R.id.passwordET);
-    loginBtn = view.findViewById(R.id.loginBtn);
-    signup=view.findViewById(R.id.signup);
+  public void init() {
+    usernameET = findViewById(R.id.usernameET);
+    passwordET = findViewById(R.id.passwordET);
+
+    loginBtn = findViewById(R.id.loginBtn);
+    signup = findViewById(R.id.signup);
+
     loginBtn.setOnClickListener(this);
     signup.setOnClickListener(this);
   }
@@ -56,8 +57,14 @@ public class LoginActivity extends Fragment implements View.OnClickListener {
         break;
       case R.id.signup:
         Intent intent=new Intent();
-        intent.setClass(getActivity().getApplicationContext(),Signup.class);
-        startActivity(intent);
+        intent.setClass(getApplicationContext(),SignupActivity.class);
+        startActivityForResult(intent, 200);
     }
+  }
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+    finish();
   }
 }
