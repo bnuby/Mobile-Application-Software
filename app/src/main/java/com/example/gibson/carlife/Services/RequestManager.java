@@ -9,6 +9,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.gibson.carlife.MainActivity;
+import com.example.gibson.carlife.View.LoginActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,6 +27,7 @@ public class RequestManager {
 
     public static void requestLogin(final String username, final String password) {
         final String url = "http://18.219.196.79/user/login/";
+        LoginActivity.showLoading("Sign");
 
         JSONObject jsonObject = new JSONObject();
         try {
@@ -35,23 +37,34 @@ public class RequestManager {
             e.printStackTrace();
         }
 
-        JsonObjectRequest request = new JsonObjectRequest(
+        StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,
-                jsonObject,
-                new Response.Listener<JSONObject>() {
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONObject response) {
+                    public void onResponse(String response) {
                         Log.v("login", response.toString());
+                        LoginActivity.dismissLoading();
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.v("login", error.getMessage());
+                        LoginActivity.dismissLoading();
                     }
                 }
-        );
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> post = new HashMap<>();
+
+                post.put("username", username);
+                post.put("password", password);
+
+                return post;
+            }
+        };
 
         MainActivity.volleyQueue.add(request);
     }

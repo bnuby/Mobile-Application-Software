@@ -2,6 +2,7 @@ package com.example.gibson.carlife.View;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.gibson.carlife.Abstract.CustomActivity;
+import com.example.gibson.carlife.MainActivity;
 import com.example.gibson.carlife.R;
 import com.example.gibson.carlife.Services.RequestManager;
 
@@ -20,7 +23,7 @@ import com.example.gibson.carlife.Services.RequestManager;
  * Created by gibson on 2018/4/25.
  */
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends CustomActivity implements View.OnClickListener {
 
   public static View view;
   Button loginBtn;
@@ -33,7 +36,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_login);
     init();
-
 
   }
 

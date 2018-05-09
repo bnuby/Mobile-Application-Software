@@ -7,10 +7,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.gibson.carlife.Abstract.CustomActivity;
 import com.example.gibson.carlife.R;
 import com.example.gibson.carlife.Services.RequestManager;
 
-public class SignupActivity extends AppCompatActivity {
+public class SignupActivity extends CustomActivity {
     EditText usernameET;
     EditText passwordET;
     EditText nameET;
