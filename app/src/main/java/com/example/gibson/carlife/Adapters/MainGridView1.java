@@ -1,0 +1,35 @@
+package com.example.gibson.carlife.Adapters;
+
+import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+
+import com.example.gibson.carlife.View.MainShopActivity;
+
+/**
+ * Created by user on 2018/5/13.
+ */
+
+public class MainGridView1 extends ArrayAdapter<Integer> {
+    private Context mCtx;
+
+    public MainGridView1(Context c, Integer[] imglist) {
+        super(c, 0, imglist);
+        mCtx = c;
+    }
+
+    @Override
+    public View getView(int position, View convertView,
+                        ViewGroup parent) {
+
+        ImageView iv = new ImageView(mCtx);
+        int resid = getItem(position);
+        iv.setImageResource(resid);
+        iv.setAdjustViewBounds(true);
+        return iv;
+    }
+}
