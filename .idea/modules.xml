@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Mobile-Application-Software.iml" filepath="$PROJECT_DIR$/Mobile-Application-Software.iml" />
+      <module fileurl="file://D:/Course/大二下/Mobile-Application-Software/Mobile-Application-Software.iml" filepath="D:/Course/大二下/Mobile-Application-Software/Mobile-Application-Software.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://D:/Course/大二下/Mobile-Application-Software/app/app.iml" filepath="D:/Course/大二下/Mobile-Application-Software/app/app.iml" />
     </modules>
   </component>
 </project>

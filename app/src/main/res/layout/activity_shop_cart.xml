@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:gravity="right"
             android:text="Price"
-            android:textSize="26Sp" />
+            android:textSize="26sp" />
 
         <LinearLayout
             android:layout_width="match_parent"

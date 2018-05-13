@@ -20,7 +20,6 @@
         </activity>
         <activity android:name=".View.SignupActivity" />
         <activity android:name=".View.LoginActivity" />
-        <activity android:name=".View.SearchResultActivity"></activity>
     </application>
 
 </manifest>

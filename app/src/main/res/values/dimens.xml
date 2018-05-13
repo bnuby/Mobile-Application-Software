@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="Image2">100dp</dimen>
+    <dimen name="mainShop_grid_type1_height">120sp</dimen>
+    <dimen name="mainShop_grid_type1_padding">5sp</dimen>
 </resources>
