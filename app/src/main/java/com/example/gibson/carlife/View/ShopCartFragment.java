@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import com.example.gibson.carlife.R;
 
-public class ShopCartActivity extends Fragment {
+public class ShopCartFragment extends Fragment {
 
     @Nullable
     @Override

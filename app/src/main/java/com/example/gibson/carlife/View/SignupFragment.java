@@ -1,6 +1,5 @@
 package com.example.gibson.carlife.View;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,7 +10,7 @@ import com.example.gibson.carlife.Abstract.CustomActivity;
 import com.example.gibson.carlife.R;
 import com.example.gibson.carlife.Services.RequestManager;
 
-public class SignupActivity extends CustomActivity {
+public class SignupFragment extends CustomActivity {
     EditText usernameET;
     EditText passwordET;
     EditText nameET;
@@ -40,9 +39,9 @@ public class SignupActivity extends CustomActivity {
                     if(username.isEmpty() || password.isEmpty() ||
                             confirm_password.isEmpty() || name.isEmpty() ||
                             email.isEmpty() || phone.isEmpty()) {
-                        Toast.makeText(SignupActivity.this, "All Must Not be Empty!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignupFragment.this, "All Must Not be Empty!", Toast.LENGTH_SHORT).show();
                     } else if (!password.equals(confirm_password)) {
-                        Toast.makeText(SignupActivity.this, "Password Not Same!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignupFragment.this, "Password Not Same!", Toast.LENGTH_SHORT).show();
                     } else {
                         RequestManager.requestRegister(username, password, email, name, phone);
                     }

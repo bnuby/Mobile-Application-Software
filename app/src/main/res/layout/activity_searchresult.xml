@@ -5,16 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".View.SearchResultActivity">
+    tools:context=".View.Fragment.SearchResultFragment">
 
-    <Switch
-        android:id="@+id/switch1"
+    <ToggleButton
+        android:id="@+id/toggleButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Switch" />
+        android:text="ToggleButton"
+        android:theme="@android:style/Widget.Button.Toggle" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/listsearchresult"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/listsearchresult"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
 </LinearLayout>
