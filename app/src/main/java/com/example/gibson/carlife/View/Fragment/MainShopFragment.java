@@ -25,7 +25,6 @@ public class MainShopFragment extends Fragment {
             ids[i] = (getResources().getIdentifier(strings[i], "drawable", getContext().getPackageName()));
         }
 
-
         GridView gv = (GridView) view.findViewById(R.id.gvType);
         gv.setNumColumns(3);
         gv.setAdapter(new ClassficationGridViewAdapter(getContext(), ids));

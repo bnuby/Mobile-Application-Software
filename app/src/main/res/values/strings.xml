@@ -6,5 +6,5 @@
     <string name="title_notifications">Notifications</string>
     <string name="get_the_deal">get the deal</string>
     <string name="keep_buying">Keep buying</string>
-    <dimen name="a" >20dp</dimen>
+    <dimen name="a">20dp</dimen>
 </resources>
