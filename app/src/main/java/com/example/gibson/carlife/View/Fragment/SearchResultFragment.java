@@ -58,7 +58,6 @@ public class SearchResultFragment extends Fragment {
             }
         });
 
-        aSwitch = view.findViewById(R.id.switch1);
         return view;
     }
 
