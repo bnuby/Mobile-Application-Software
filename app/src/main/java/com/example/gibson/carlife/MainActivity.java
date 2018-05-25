@@ -1,15 +1,11 @@
 package com.example.gibson.carlife;
 
-import android.app.AlertDialog;
-import android.content.Context;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 
 import com.android.volley.Cache;
 import com.android.volley.Network;
@@ -20,9 +16,10 @@ import com.android.volley.toolbox.HurlStack;
 import com.example.gibson.carlife.Abstract.CustomActivity;
 import com.example.gibson.carlife.View.AccountActivity;
 import com.example.gibson.carlife.View.LoginActivity;
-import com.example.gibson.carlife.View.MainShopActivity;
-import com.example.gibson.carlife.View.OrderActivity;
-import com.example.gibson.carlife.View.ShopCartActivity;
+import com.example.gibson.carlife.View.Fragment.MainShopFragment;
+import com.example.gibson.carlife.View.Fragment.SearchResultFragment;
+import com.example.gibson.carlife.View.MainFragment;
+import com.example.gibson.carlife.View.ShopCartFragment;
 
 
 public class MainActivity extends CustomActivity {
@@ -64,9 +61,9 @@ public class MainActivity extends CustomActivity {
 
   public class CustomAdapter extends FragmentStatePagerAdapter {
 
-    MainShopActivity mainShopActivity;
-    OrderActivity orderActivity;
-    ShopCartActivity shopCartActivity;
+    MainFragment mainShopFragment;
+    SearchResultFragment orderFragment;
+    ShopCartFragment shopCartFragment;
     LoginActivity loginActivity;
     AccountActivity accountActivity;
 
@@ -78,18 +75,18 @@ public class MainActivity extends CustomActivity {
     public Fragment getItem(int position) {
       switch(position) {
         case 0:
-          if(mainShopActivity == null)
-            mainShopActivity = new MainShopActivity();
+          if(mainShopFragment == null)
+            mainShopFragment = new MainFragment();
 
-          return mainShopActivity;
+          return mainShopFragment;
         case 1:
-          if(shopCartActivity == null)
-            shopCartActivity = new ShopCartActivity();
-          return shopCartActivity;
+          if(shopCartFragment == null)
+            shopCartFragment = new ShopCartFragment();
+          return shopCartFragment;
         case 2:
-          if(orderActivity == null)
-            orderActivity = new OrderActivity();
-          return orderActivity;
+          if(orderFragment == null)
+            orderFragment = new SearchResultFragment();
+          return orderFragment;
         case 3:
           if(accountActivity == null)
             accountActivity = new AccountActivity();

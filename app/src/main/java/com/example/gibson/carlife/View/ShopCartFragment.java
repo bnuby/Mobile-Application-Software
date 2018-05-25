@@ -6,17 +6,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.example.gibson.carlife.R;
 
-public class MainShopActivity extends Fragment {
+public class ShopCartFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_main_shop, container, false);
+        View view = inflater.inflate(R.layout.activity_shop_cart, container, false);
 
         return view;
     }

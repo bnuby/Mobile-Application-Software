@@ -2,12 +2,7 @@ package com.example.gibson.carlife.View;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -16,7 +11,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.gibson.carlife.Abstract.CustomActivity;
-import com.example.gibson.carlife.MainActivity;
 import com.example.gibson.carlife.R;
 import com.example.gibson.carlife.Services.RequestManager;
 
@@ -60,7 +54,7 @@ public class LoginActivity extends CustomActivity implements View.OnClickListene
         break;
       case R.id.signup:
         Intent intent=new Intent();
-        intent.setClass(getApplicationContext(),SignupActivity.class);
+        intent.setClass(getApplicationContext(),SignupFragment.class);
         startActivityForResult(intent, 200);
     }
   }
@@ -71,17 +65,17 @@ public class LoginActivity extends CustomActivity implements View.OnClickListene
     finish();
   }
 
-   int[5] a =  {0,1,2,3,4};
+   int[] a =  new int[]{0,1,2,3,4};
 
   class CustomAdapter extends BaseAdapter {
     @Override
     public int getCount() {
-      return a.size();
+      return a.length;
     }
 
     @Override
     public Object getItem(int i) {
-      return contact;
+      return a[i];
     }
 
     @Override

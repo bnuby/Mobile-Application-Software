@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="type">
+        <item>h01</item>
+        <item>h02</item>
+        <item>h03</item>
+        <item>h04</item>
+        <item>h05</item>
+        <item>h06</item>
+    </string-array>
+</resources>
