@@ -19,6 +19,7 @@ import com.example.gibson.carlife.View.LoginActivity;
 import com.example.gibson.carlife.View.Fragment.MainShopFragment;
 import com.example.gibson.carlife.View.Fragment.SearchResultFragment;
 import com.example.gibson.carlife.View.MainFragment;
+import com.example.gibson.carlife.View.OrderFragment;
 import com.example.gibson.carlife.View.ShopCartFragment;
 
 
@@ -62,7 +63,7 @@ public class MainActivity extends CustomActivity {
   public class CustomAdapter extends FragmentStatePagerAdapter {
 
     MainFragment mainShopFragment;
-    SearchResultFragment orderFragment;
+    OrderFragment orderFragment;
     ShopCartFragment shopCartFragment;
     LoginActivity loginActivity;
     AccountActivity accountActivity;
@@ -85,7 +86,7 @@ public class MainActivity extends CustomActivity {
           return shopCartFragment;
         case 2:
           if(orderFragment == null)
-            orderFragment = new SearchResultFragment();
+            orderFragment = new OrderFragment();
           return orderFragment;
         case 3:
           if(accountActivity == null)
