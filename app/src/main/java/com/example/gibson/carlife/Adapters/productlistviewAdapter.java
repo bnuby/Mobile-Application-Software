@@ -26,15 +26,14 @@ public class productlistviewAdapter extends ArrayAdapter<Product>{
             itemlayout = (LinearLayout) convertView;
         }
         Product item=(Product)getItem(position);
-        ImageView img1=(ImageView)itemlayout.findViewById(R.id.img);
-        ImageView img2=(ImageView)itemlayout.findViewById(R.id.img2);
-        TextView title1=(TextView)itemlayout.findViewById(R.id.titleTV);
-        TextView title2=(TextView)itemlayout.findViewById(R.id.titleTV2);
-        TextView intro1=(TextView)itemlayout.findViewById(R.id.introTV);
-        TextView intro2=(TextView)itemlayout.findViewById(R.id.introTV2);
-        TextView price1=(TextView)itemlayout.findViewById(R.id.priceTV);
-        TextView price2=(TextView)itemlayout.findViewById(R.id.priceTV2);
-
+        ImageView img=(ImageView)itemlayout.findViewById(R.id.img);
+        img.setImageResource(item.img);
+        TextView title=(TextView)itemlayout.findViewById(R.id.titleTV);
+        title.setText(item.name);
+        TextView intro=(TextView)itemlayout.findViewById(R.id.introTV);
+        intro.setText(item.description);
+        TextView price=(TextView)itemlayout.findViewById(R.id.priceTV);
+        price.setText(String.valueOf(item.price));
         return super.getView(position, convertView, parent);
     }
 
