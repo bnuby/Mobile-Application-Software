@@ -15,10 +15,7 @@
         android:layout_height="@dimen/mainShop_grid_type1_height"
         android:padding="@dimen/mainShop_grid_type1_padding" />
 
-    <GridView
-        android:id="@+id/gvItem"
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </GridView>
+        android:layout_height="match_parent" />
 </LinearLayout>
