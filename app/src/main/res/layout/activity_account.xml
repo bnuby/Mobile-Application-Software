@@ -47,6 +47,7 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="wrap_content">
 
             <LinearLayout
@@ -73,5 +74,14 @@
                     android:text="Logout" />
             </LinearLayout>
         </android.support.constraint.ConstraintLayout>
+=======
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+>>>>>>> 6e5508348763997709bbf665c35f5e18874e8e3f
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
