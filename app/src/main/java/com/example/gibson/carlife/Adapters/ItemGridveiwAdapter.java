@@ -23,7 +23,7 @@ public class ItemGridveiwAdapter extends ArrayAdapter<Product>{
 //    priceTV = (TextView) v.findViewById(R.id.price2TV);
 
     public ItemGridveiwAdapter(@NonNull Context context, ArrayList<Product> products) {
-        super(context, R.layout.gridview2);
+        super(context, R.layout.listview2);
         this.products = products;
     }
 
