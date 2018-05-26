@@ -25,7 +25,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
             titleTV = (TextView) v.findViewById(R.id.titleTV);
             introTV = (TextView) v.findViewById(R.id.introTV);
             priceTV = (TextView) v.findViewById(R.id.priceTV);
-            img =v.findViewById(R.id.searchIMG);
+            img =v.findViewById(R.id.img);
         }
     }
 

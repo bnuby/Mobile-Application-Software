@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/searchIMG"
+        android:id="@+id/img"
         android:layout_width="@dimen/Image2"
         android:layout_height="@dimen/Image2"
         android:layout_weight="0"

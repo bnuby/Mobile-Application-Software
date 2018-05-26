@@ -19,11 +19,12 @@ import java.util.ArrayList;
 public class productlistviewAdapter extends ArrayAdapter<Product>{
     @NonNull
     Context context;
+    int type;
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(context);
         LinearLayout itemlayout = null;
         if(convertView == null) {
-            itemlayout = (LinearLayout)inflater.inflate(R.layout.listview2, null);
+            itemlayout = (LinearLayout)inflater.inflate(type, null);
         } else {
             itemlayout = (LinearLayout) convertView;
         }
@@ -39,8 +40,9 @@ public class productlistviewAdapter extends ArrayAdapter<Product>{
         return itemlayout;
     }
 
-    public productlistviewAdapter(@NonNull Context context, ArrayList<Product> items) {
+    public productlistviewAdapter(@NonNull Context context, ArrayList<Product> items,int type) {
         super(context, 0, items);
+        this.type=type;
         this.context=context;
     }
 }
