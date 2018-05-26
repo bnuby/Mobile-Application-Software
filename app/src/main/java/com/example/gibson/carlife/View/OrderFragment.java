@@ -18,7 +18,6 @@ import java.util.ArrayList;
 
 public class OrderFragment extends Fragment {
 
-    private RecycleAdapter mAdapter;
     private ListView listView;
     @Nullable
     @Override
