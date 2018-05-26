@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.example.gibson.carlife.Model.Product;
 import com.example.gibson.carlife.R;
 
+import java.util.ArrayList;
+
 public class productlistviewAdapter extends ArrayAdapter<Product>{
     @NonNull
     Context context;
@@ -26,19 +28,19 @@ public class productlistviewAdapter extends ArrayAdapter<Product>{
             itemlayout = (LinearLayout) convertView;
         }
         Product item=(Product)getItem(position);
-        ImageView img=(ImageView)itemlayout.findViewById(R.id.img);
-        img.setImageResource(item.img);
         TextView title=(TextView)itemlayout.findViewById(R.id.titleTV);
         title.setText(item.name);
         TextView intro=(TextView)itemlayout.findViewById(R.id.introTV);
         intro.setText(item.description);
         TextView price=(TextView)itemlayout.findViewById(R.id.priceTV);
         price.setText(String.valueOf(item.price));
-        return super.getView(position, convertView, parent);
+        ImageView imageView=itemlayout.findViewById(R.id.img);
+        imageView.setImageBitmap(item.img);
+        return itemlayout;
     }
 
-    public productlistviewAdapter(@NonNull Context context, int resource) {
-        super(context, resource);
-
+    public productlistviewAdapter(@NonNull Context context, ArrayList<Product> items) {
+        super(context, 0, items);
+        this.context=context;
     }
 }

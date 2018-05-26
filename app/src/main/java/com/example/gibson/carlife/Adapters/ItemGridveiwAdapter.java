@@ -37,7 +37,7 @@ public class ItemGridveiwAdapter extends ArrayAdapter<Product>{
         introTV = convertView.findViewById(R.id.introTV);
         priceTV = convertView.findViewById(R.id.priceTV);
 
-        imageView.setImageResource(products.get(position).img);
+        imageView.setImageBitmap(products.get(position).img);
         titleTV.setText(products.get(position).name);
         introTV.setText(products.get(position).description);
         priceTV.setText(products.get(position).price + "");
