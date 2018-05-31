@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ public class AccountFragment extends Fragment {
 
     LinearLayout acc_info;
     Button clrCache_Btn, accMng_Btn, logOut_Btn;
+    //private static final int REQUEST_CODE = 8;
 
 
     @Nullable
@@ -36,9 +38,8 @@ public class AccountFragment extends Fragment {
                 getActivity().startActivityForResult(intent, 200);
             }
         });
+        //clear cache button onClickListener
         clrCache_Btn = view.findViewById(R.id.clrCache_Btn);
-        accMng_Btn = view.findViewById(R.id.accMng_Btn);
-        logOut_Btn = view.findViewById(R.id.logOut_Btn);
         clrCache_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,10 +48,10 @@ public class AccountFragment extends Fragment {
                 builder.setTitle("Clear Cache")
                         .setMessage("Are you sure you want to clear cache?")
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        // continue with clear cache action
-                    }
-                }).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // continue with clear cache action
+                            }
+                        }).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // cancel clear cache action
                     }
@@ -58,26 +59,51 @@ public class AccountFragment extends Fragment {
                         .show();
             }
         });
+
+        //account management onClickListener
+        accMng_Btn = view.findViewById(R.id.accMng_Btn);
         accMng_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), AccountDetail.class);
+            public void onClick(View v) {
+                //Toast.makeText(getContext(),"Manage Account button clicked!",Toast.LENGTH_SHORT).show();
+                //Intent intent = new Intent(getContext(), AccountDetail.class);
+                //getActivity().startActivityForResult(intent,8);
+                Intent intent = new Intent(getContext(),  AccountDetail.class);
+                getActivity().startActivityForResult(intent, 8);
+            }
+        });
 
+        //user Log Out onClickListener
+        logOut_Btn = view.findViewById(R.id.logOut_Btn);
+        logOut_Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(),"Log Out button clicked!",Toast.LENGTH_SHORT).show();
             }
         });
         return view;
     }
 
     @Override
-    public void startActivityForResult(Intent intent, int requestCode) {
-        switch (requestCode) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //super.onActivityResult(requestCode, resultCode, data);
+        switch(resultCode){
+            case 8:
+                Toast.makeText(getContext(), "8", Toast.LENGTH_SHORT).show();
+                break;
             case 200:
-                Toast.makeText(getContext(), intent.getStringExtra("name"), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "200", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
-
-    protected void onListItemClick (ListView l, View v, int position, long id) {
-
+/*
+    @Override
+    public void startActivityForResult(Intent intent, int requestCode) {
+        switch (requestCode) {
+            case 8:
+                Toast.makeText(getContext(), intent.getStringExtra("phone"), Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
+*/
     }
