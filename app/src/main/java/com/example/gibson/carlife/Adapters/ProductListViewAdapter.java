@@ -16,10 +16,18 @@ import com.example.gibson.carlife.R;
 
 import java.util.ArrayList;
 
-public class productlistviewAdapter extends ArrayAdapter<Product>{
+public class ProductListViewAdapter extends ArrayAdapter<Product>{
     @NonNull
     Context context;
     int type;
+
+    @Override
+    public int getCount() {
+        if(super.getCount() > 9)
+            return 9;
+        return super.getCount();
+    }
+
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(context);
         LinearLayout itemlayout = null;
@@ -40,7 +48,7 @@ public class productlistviewAdapter extends ArrayAdapter<Product>{
         return itemlayout;
     }
 
-    public productlistviewAdapter(@NonNull Context context, ArrayList<Product> items,int type) {
+    public ProductListViewAdapter(@NonNull Context context, ArrayList<Product> items, int type) {
         super(context, 0, items);
         this.type=type;
         this.context=context;

@@ -1,6 +1,5 @@
 package com.example.gibson.carlife.View.Fragment;
 
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,8 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.example.gibson.carlife.Adapters.RecycleAdapter;
-import com.example.gibson.carlife.Adapters.productlistviewAdapter;
+import com.example.gibson.carlife.Adapters.ProductListViewAdapter;
 import com.example.gibson.carlife.Model.Product;
 import com.example.gibson.carlife.R;
 
@@ -30,8 +28,8 @@ public class OrderFragment extends Fragment {
 //
 //        albumlist.add(p);
 //        Product p = new Product("二手破mac","啟聖女用機",1.0);
-        productlistviewAdapter adapter =
-                new productlistviewAdapter(getContext(), albumlist,R.layout.recyclelayout);
+        ProductListViewAdapter adapter =
+                new ProductListViewAdapter(getContext(), albumlist,R.layout.recyclelayout);
 
        listView = view.findViewById(R.id.orderlist);
        listView.setAdapter(adapter);
