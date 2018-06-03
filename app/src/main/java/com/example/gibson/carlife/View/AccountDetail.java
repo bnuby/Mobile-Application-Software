@@ -57,14 +57,14 @@ public class AccountDetail extends CustomActivity implements View.OnClickListene
         switch(view.getId()) {
             case R.id.confirm_BTN:
                 Toast.makeText(view.getContext(), "Confirm", Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(AccountDetail.this,AccountFragment.class);
+               // Intent intent=new Intent(AccountDetail.this,AccountFragment.class);
 
                 //  need to update the information of user in server
                 //  haven do
 
                 //  back to Account Fragment.java
-
-                startActivity(intent);
+                finish();
+                //startActivity(intent);
                 break;
             default:
                 Toast.makeText(this, "default run", Toast.LENGTH_SHORT).show();
