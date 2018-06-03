@@ -28,11 +28,11 @@ public class ShopCartFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_shop_cart, container, false);
 
         ArrayList<Product> albumlist = new ArrayList<Product>();
-        Product p = new Product("二手破mac","啟聖女用機",1.0);
-        p.setImg(BitmapFactory.decodeResource(getResources(), R.drawable.h01));
-
-        albumlist.add(p);
-        albumlist.add(new Product("班表小幫手","測試用",2.0));
+//        Product p = new Product("二手破mac","啟聖女用機",1.0);
+//        p.setImg(BitmapFactory.decodeResource(getResources(), R.drawable.h01));
+//
+//        albumlist.add(p);
+//        albumlist.add(new Product("班表小幫手","測試用",2.0));
 
         productlistviewAdapter adapter =
                 new productlistviewAdapter(getContext(), albumlist,R.layout.recyclelayout);

@@ -40,7 +40,7 @@ public class ItemGridveiwAdapter extends ArrayAdapter<Product>{
         imageView.setImageBitmap(products.get(position).img);
         titleTV.setText(products.get(position).name);
         introTV.setText(products.get(position).description);
-        priceTV.setText(products.get(position).price + "");
+        priceTV.setText(products.get(position).cost_price + "");
         return super.getView(position, convertView, parent);
     }
 }
