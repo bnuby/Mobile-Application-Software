@@ -80,7 +80,8 @@ public class MainActivity extends CustomActivity {
     // Clear preferences
     SharedPreferences.Editor preferencesEditor = mPreferences.edit();
     preferencesEditor.clear();
-    preferencesEditor.apply();
+    preferencesEditor.commit();
+//    preferencesEditor.apply();
   }
 
   public class CustomAdapter extends FragmentStatePagerAdapter {
