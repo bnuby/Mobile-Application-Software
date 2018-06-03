@@ -16,10 +16,9 @@ import com.android.volley.toolbox.HurlStack;
 import com.example.gibson.carlife.Abstract.CustomActivity;
 import com.example.gibson.carlife.View.Fragment.AccountFragment;
 import com.example.gibson.carlife.View.LoginActivity;
-import com.example.gibson.carlife.View.Fragment.SearchResultFragment;
-import com.example.gibson.carlife.View.MainFragment;
-import com.example.gibson.carlife.View.OrderFragment;
-import com.example.gibson.carlife.View.ShopCartFragment;
+import com.example.gibson.carlife.View.Fragment.MainFragment;
+import com.example.gibson.carlife.View.Fragment.OrderFragment;
+import com.example.gibson.carlife.View.Fragment.ShopCartFragment;
 
 
 public class MainActivity extends CustomActivity {

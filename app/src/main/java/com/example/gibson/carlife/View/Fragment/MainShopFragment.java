@@ -16,10 +16,19 @@ import com.example.gibson.carlife.Adapters.ClassficationGridViewAdapter;
 import com.example.gibson.carlife.Adapters.productlistviewAdapter;
 import com.example.gibson.carlife.Model.Product;
 import com.example.gibson.carlife.R;
+import com.example.gibson.carlife.Services.Product.ProductTypeManagement;
 
 import java.util.ArrayList;
 
 public class MainShopFragment extends Fragment {
+
+    public static ArrayList<Product> products;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        products = new ArrayList<>();
+    }
 
     @Nullable
     @Override
@@ -30,6 +39,8 @@ public class MainShopFragment extends Fragment {
         for(int i = 0; i < 6 ; i ++) {
             ids[i] = (getResources().getIdentifier(strings[i], "drawable", getContext().getPackageName()));
         }
+
+        ProductTypeManagement.requestProductType();
 
         GridView gv = (GridView) view.findViewById(R.id.gvType);
         gv.setNumColumns(3);

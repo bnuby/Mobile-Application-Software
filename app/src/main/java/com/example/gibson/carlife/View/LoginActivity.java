@@ -54,7 +54,7 @@ public class LoginActivity extends CustomActivity implements View.OnClickListene
         break;
       case R.id.signup:
         Intent intent=new Intent();
-        intent.setClass(getApplicationContext(),SignupFragment.class);
+        intent.setClass(getApplicationContext(),SignupActivity.class);
         startActivityForResult(intent, 200);
     }
   }

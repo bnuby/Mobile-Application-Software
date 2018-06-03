@@ -1,4 +1,4 @@
-package com.example.gibson.carlife.View;
+package com.example.gibson.carlife.View.Fragment;
 
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
