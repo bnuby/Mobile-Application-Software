@@ -82,6 +82,7 @@ public class AccountFragment extends Fragment {
                 MainActivity.logout();
                 Toast.makeText(getContext(),"Log Out button clicked!",Toast.LENGTH_SHORT).show();
                 Intent in = new Intent(getContext(),LoginActivity.class);
+                startActivity(in);
             }
         });
         return view;
