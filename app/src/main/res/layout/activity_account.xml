@@ -14,7 +14,7 @@
         android:orientation="horizontal"
         android:weightSum="1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -24,6 +24,7 @@
             android:layout_height="50dp"
             android:layout_marginStart="50dp"
             android:layout_weight="0"
+            android:contentDescription="user image"
             app:srcCompat="@android:drawable/ic_menu_week" />
 
         <TextView
@@ -41,17 +42,43 @@
         android:layout_height="395dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/acc_info">
+        app:layout_constraintTop_toBottomOf="@+id/acc_info"
+        app:layout_constraintVertical_bias="0.478">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ListView
+            <Button
+                android:id="@+id/clrCache_Btn"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content"
+                android:text="Clear Cache" />
+
+            <Button
+                android:id="@+id/accMng_Btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Account Management" />
+
+            <Button
+                android:id="@+id/logOut_Btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Logout" />
         </LinearLayout>
+
+        <!--=======-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="vertical">-->
+
+        <!--<ListView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" />-->
+        <!--</LinearLayout>-->
+        <!--&gt;>>>>>> 6e5508348763997709bbf665c35f5e18874e8e3f-->
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

@@ -34,6 +34,7 @@ public class MainShopFragment extends Fragment {
         GridView gv = (GridView) view.findViewById(R.id.gvType);
         gv.setNumColumns(3);
         gv.setAdapter(new ClassficationGridViewAdapter(getContext(), ids));
+
         ArrayList<Product> albumlist = new ArrayList<Product>();
         Product p = new Product("二手破mac","啟聖女用機",1.0);
         p.setImg(BitmapFactory.decodeResource(getResources(), R.drawable.h01));
@@ -42,7 +43,7 @@ public class MainShopFragment extends Fragment {
         albumlist.add(new Product("班表小幫手","測試用",2.0));
 
         productlistviewAdapter adapter =
-                new productlistviewAdapter(getContext(), albumlist);
+                new productlistviewAdapter(getContext(), albumlist,R.layout.listview2);
 
         GridView lv =(GridView)view.findViewById(R.id.gyType);
         lv.setAdapter(adapter);

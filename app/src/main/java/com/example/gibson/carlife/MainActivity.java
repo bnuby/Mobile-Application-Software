@@ -14,9 +14,8 @@ import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.example.gibson.carlife.Abstract.CustomActivity;
-import com.example.gibson.carlife.View.AccountActivity;
+import com.example.gibson.carlife.View.Fragment.AccountFragment;
 import com.example.gibson.carlife.View.LoginActivity;
-import com.example.gibson.carlife.View.Fragment.MainShopFragment;
 import com.example.gibson.carlife.View.Fragment.SearchResultFragment;
 import com.example.gibson.carlife.View.MainFragment;
 import com.example.gibson.carlife.View.OrderFragment;
@@ -66,7 +65,7 @@ public class MainActivity extends CustomActivity {
     OrderFragment orderFragment;
     ShopCartFragment shopCartFragment;
     LoginActivity loginActivity;
-    AccountActivity accountActivity;
+    AccountFragment accountFragment;
 
     public CustomAdapter(FragmentManager fm) {
       super(fm);
@@ -89,9 +88,9 @@ public class MainActivity extends CustomActivity {
             orderFragment = new OrderFragment();
           return orderFragment;
         case 3:
-          if(accountActivity == null)
-            accountActivity = new AccountActivity();
-          return accountActivity;
+          if(accountFragment == null)
+            accountFragment = new AccountFragment();
+          return accountFragment;
     }
       return null;
     }
