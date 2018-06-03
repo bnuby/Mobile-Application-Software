@@ -16,6 +16,10 @@ import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.example.gibson.carlife.Abstract.CustomActivity;
+import com.example.gibson.carlife.Model.Product;
+import com.example.gibson.carlife.Model.ProductBrand;
+import com.example.gibson.carlife.Model.ProductType;
+import com.example.gibson.carlife.Services.Product.ProductManagement;
 import com.example.gibson.carlife.Model.User;
 import com.example.gibson.carlife.Services.UserManagement;
 import com.example.gibson.carlife.View.Fragment.AccountFragment;
@@ -24,9 +28,14 @@ import com.example.gibson.carlife.View.Fragment.MainFragment;
 import com.example.gibson.carlife.View.Fragment.OrderFragment;
 import com.example.gibson.carlife.View.Fragment.ShopCartFragment;
 
+import java.util.ArrayList;
+
 
 public class MainActivity extends CustomActivity {
 
+  public static ArrayList<Product> products;
+  public static ArrayList<ProductBrand> productbrands;
+  public static ArrayList<ProductType> productTypes;
   public static RequestQueue volleyQueue;
 
 
@@ -61,7 +70,10 @@ public class MainActivity extends CustomActivity {
     pager.setAdapter(adapter);
     tabLayout.setupWithViewPager(pager);
     init_queue();
-
+    products = new ArrayList<>();
+    productbrands = new ArrayList<>();
+    productTypes = new ArrayList<>();
+    ProductManagement.requestProduct();
   }
 
   public void init_queue() {

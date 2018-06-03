@@ -1,33 +1,28 @@
 package com.example.gibson.carlife.View.Fragment;
 
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.GridView;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.gibson.carlife.Adapters.ClassficationGridViewAdapter;
-import com.example.gibson.carlife.Adapters.productlistviewAdapter;
-import com.example.gibson.carlife.Model.Product;
+import com.example.gibson.carlife.Adapters.ProductListViewAdapter;
+import com.example.gibson.carlife.MainActivity;
 import com.example.gibson.carlife.R;
-import com.example.gibson.carlife.Services.Product.ProductTypeManagement;
-
-import java.util.ArrayList;
 
 public class MainShopFragment extends Fragment {
 
-    public static ArrayList<Product> products;
+    public static GridView gridView;
+    public static GridView gridView2;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        products = new ArrayList<>();
+
     }
 
     @Nullable
@@ -40,25 +35,28 @@ public class MainShopFragment extends Fragment {
             ids[i] = (getResources().getIdentifier(strings[i], "drawable", getContext().getPackageName()));
         }
 
-        ProductTypeManagement.requestProductType();
+//        ProductTypeManagement.requestProductType();
+        gridView = (GridView) view.findViewById(R.id.gvType);
+        gridView.setNumColumns(3);
+        gridView.setAdapter(new ClassficationGridViewAdapter(getContext(), ids));
 
-        GridView gv = (GridView) view.findViewById(R.id.gvType);
-        gv.setNumColumns(3);
-        gv.setAdapter(new ClassficationGridViewAdapter(getContext(), ids));
 
-        ArrayList<Product> albumlist = new ArrayList<Product>();
-//        Product p = new Product("二手破mac","啟聖女用機",1.0);
-//        p.setImg(BitmapFactory.decodeResource(getResources(), R.drawable.h01));
-//
-//        albumlist.add(p);
-//        albumlist.add(new Product("班表小幫手","測試用",2.0));
+        ProductListViewAdapter adapter =
+        new ProductListViewAdapter(getContext(), MainActivity.products,R.layout.listview2);
 
-        productlistviewAdapter adapter =
-                new productlistviewAdapter(getContext(), albumlist,R.layout.listview2);
-
-        GridView lv =(GridView)view.findViewById(R.id.gyType);
-        lv.setAdapter(adapter);
+        gridView2 =(GridView)view.findViewById(R.id.gyType);
+        gridView2.setAdapter(adapter);
         return view;
+    }
+
+    public static void reloadGridView1() {
+        if(gridView != null)
+            gridView.invalidateViews();
+    }
+
+    public static void reloadGridView2() {
+        if(gridView2 != null)
+            gridView2.invalidateViews();
     }
 
 }

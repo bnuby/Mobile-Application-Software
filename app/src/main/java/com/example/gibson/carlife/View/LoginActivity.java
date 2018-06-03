@@ -50,7 +50,6 @@ public class LoginActivity extends CustomActivity implements View.OnClickListene
   public void onClick(View view) {
     switch(view.getId()) {
       case R.id.loginBtn:
-        Toast.makeText(view.getContext(), "Login", Toast.LENGTH_SHORT).show();
         UserManagement.requestLogin(usernameET.getText().toString(), passwordET.getText().toString());
         break;
       case R.id.signup:
