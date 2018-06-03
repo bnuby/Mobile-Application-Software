@@ -85,7 +85,7 @@ public class ProductManagement extends RequestManager{
                     public void onResponse(Bitmap response) {
                         MainActivity.products.get(i).setImg(response);
                         Log.i("onResponse", "imgok: ");
-                        MainShopFragment.reloadGridView1();
+                        MainShopFragment.reloadGridView2();
                     }
                 },
                 64,
