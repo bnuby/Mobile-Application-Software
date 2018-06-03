@@ -1,5 +1,7 @@
 package com.example.gibson.carlife;
 
+import android.content.SharedPreferences;
+import android.os.UserManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,12 +16,13 @@ import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.example.gibson.carlife.Abstract.CustomActivity;
+import com.example.gibson.carlife.Model.User;
+import com.example.gibson.carlife.Services.UserManagement;
 import com.example.gibson.carlife.View.Fragment.AccountFragment;
 import com.example.gibson.carlife.View.LoginActivity;
-import com.example.gibson.carlife.View.Fragment.SearchResultFragment;
-import com.example.gibson.carlife.View.MainFragment;
-import com.example.gibson.carlife.View.OrderFragment;
-import com.example.gibson.carlife.View.ShopCartFragment;
+import com.example.gibson.carlife.View.Fragment.MainFragment;
+import com.example.gibson.carlife.View.Fragment.OrderFragment;
+import com.example.gibson.carlife.View.Fragment.ShopCartFragment;
 
 
 public class MainActivity extends CustomActivity {
@@ -31,10 +34,24 @@ public class MainActivity extends CustomActivity {
   CustomAdapter adapter;
   TabLayout tabLayout;
 
+  private static SharedPreferences mPreferences;
+  private static final String mSharedPrefFile = "com.example.gibson.carlife";
+  public static User userObj = new User();
+
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+
+    mPreferences = getSharedPreferences(mSharedPrefFile, MODE_PRIVATE);
+    userObj.username = mPreferences.getString("username","");
+    userObj.password = mPreferences.getString("password","");
+
+    if(!MainActivity.userObj.username.equals("") && !MainActivity.userObj.password.equals("")){
+      UserManagement.requestLogin(userObj.username, userObj.password);
+    }
+
     pager = findViewById(R.id.viewPager);
     tabLayout = findViewById(R.id.tabLayout);
     adapter = new CustomAdapter(getSupportFragmentManager());
@@ -57,6 +74,13 @@ public class MainActivity extends CustomActivity {
     volleyQueue = new RequestQueue(cache, network);
     volleyQueue.start();
 
+  }
+
+  public static void logout() {
+    // Clear preferences
+    SharedPreferences.Editor preferencesEditor = mPreferences.edit();
+    preferencesEditor.clear();
+    preferencesEditor.apply();
   }
 
   public class CustomAdapter extends FragmentStatePagerAdapter {

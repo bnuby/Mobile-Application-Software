@@ -8,9 +8,9 @@ import android.widget.Toast;
 
 import com.example.gibson.carlife.Abstract.CustomActivity;
 import com.example.gibson.carlife.R;
-import com.example.gibson.carlife.Services.RequestManager;
+import com.example.gibson.carlife.Services.UserManagement;
 
-public class SignupFragment extends CustomActivity {
+public class SignupActivity extends CustomActivity {
     EditText usernameET;
     EditText passwordET;
     EditText nameET;
@@ -39,11 +39,11 @@ public class SignupFragment extends CustomActivity {
                     if(username.isEmpty() || password.isEmpty() ||
                             confirm_password.isEmpty() || name.isEmpty() ||
                             email.isEmpty() || phone.isEmpty()) {
-                        Toast.makeText(SignupFragment.this, "All Must Not be Empty!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignupActivity.this, "All Must Not be Empty!", Toast.LENGTH_SHORT).show();
                     } else if (!password.equals(confirm_password)) {
-                        Toast.makeText(SignupFragment.this, "Password Not Same!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignupActivity.this, "Password Not Same!", Toast.LENGTH_SHORT).show();
                     } else {
-                        RequestManager.requestRegister(username, password, email, name, phone);
+                        UserManagement.requestRegister(username, password, email, name, phone);
                     }
 
 

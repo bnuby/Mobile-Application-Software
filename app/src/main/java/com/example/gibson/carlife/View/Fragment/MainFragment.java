@@ -1,4 +1,4 @@
-package com.example.gibson.carlife.View;
+package com.example.gibson.carlife.View.Fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

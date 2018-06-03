@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.gibson.carlife.MainActivity;
 import com.example.gibson.carlife.R;
 import com.example.gibson.carlife.View.AccountDetail;
 import com.example.gibson.carlife.View.LoginActivity;
@@ -78,7 +79,9 @@ public class AccountFragment extends Fragment {
         logOut_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MainActivity.logout();
                 Toast.makeText(getContext(),"Log Out button clicked!",Toast.LENGTH_SHORT).show();
+                Intent in = new Intent(getContext(),LoginActivity.class);
             }
         });
         return view;

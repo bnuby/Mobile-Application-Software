@@ -11,8 +11,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.gibson.carlife.Abstract.CustomActivity;
+import com.example.gibson.carlife.MainActivity;
 import com.example.gibson.carlife.R;
-import com.example.gibson.carlife.Services.RequestManager;
+import com.example.gibson.carlife.Services.UserManagement;
 
 /**
  * Created by gibson on 2018/4/25.
@@ -50,11 +51,11 @@ public class LoginActivity extends CustomActivity implements View.OnClickListene
     switch(view.getId()) {
       case R.id.loginBtn:
         Toast.makeText(view.getContext(), "Login", Toast.LENGTH_SHORT).show();
-        RequestManager.requestLogin(usernameET.getText().toString(), passwordET.getText().toString());
+        UserManagement.requestLogin(usernameET.getText().toString(), passwordET.getText().toString());
         break;
       case R.id.signup:
         Intent intent=new Intent();
-        intent.setClass(getApplicationContext(),SignupFragment.class);
+        intent.setClass(getApplicationContext(),SignupActivity.class);
         startActivityForResult(intent, 200);
     }
   }
