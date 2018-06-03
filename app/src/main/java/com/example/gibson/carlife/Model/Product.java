@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.media.Image;
 
 public class Product {
-    public String id;
+    public int id;
     public String name;
     public Bitmap img;
     public int quanitity;
@@ -21,7 +21,7 @@ public class Product {
     public String product_type;
     public String description;
 
-    public Product(String id, String name, Bitmap img, int quanitity, int grade, float tax, float price, float sale_price, int product_brank_id, int product_type_id, String tag, String creat, String update, String product_brand, String product_type, String description) {
+    public Product(int id, String name, Bitmap img, int quanitity, int grade, float tax, float price, float sale_price, int product_brank_id, int product_type_id, String tag, String creat, String update, String product_brand, String product_type, String description) {
         this.id = id;
         this.name = name;
         this.img = img;
