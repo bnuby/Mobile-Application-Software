@@ -52,23 +52,23 @@ public class AccountDetail extends CustomActivity implements View.OnClickListene
     @Override
     public void onClick(View view) {
 
-                //update the information of user to server
-                //haven do
-
-                // back to AccountFragment.java
-
 
 
         switch(view.getId()) {
             case R.id.confirm_BTN:
-                //Toast.makeText(view.getContext(), "Confirm", Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(AccountDetail.this,AccountFragment.class);
-                intent.putExtra("email",email);
-                intent.putExtra("phone",phone);
-                intent.putExtra("address",address);
-                startActivityForResult(intent,8);
-                break;
+                Toast.makeText(view.getContext(), "Confirm", Toast.LENGTH_SHORT).show();
+               // Intent intent=new Intent(AccountDetail.this,AccountFragment.class);
 
+                //  need to update the information of user in server
+                //  haven do
+
+                //  back to Account Fragment.java
+                finish();
+                //startActivity(intent);
+                break;
+            default:
+                Toast.makeText(this, "default run", Toast.LENGTH_SHORT).show();
+                break;
             }
 
         }

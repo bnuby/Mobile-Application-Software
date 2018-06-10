@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.gibson.carlife.R;
 
@@ -36,6 +37,12 @@ public abstract class CustomActivity extends AppCompatActivity {
     dialog = builder.create();
     dialog.show();
 
+  }
+  public static void longTost(String toastSring){
+    Toast.makeText(mContext,toastSring,Toast.LENGTH_LONG).show();
+  }
+  public static void shortTost(String toastSring){
+    Toast.makeText(mContext,toastSring,Toast.LENGTH_SHORT).show();
   }
 
   public static void dismissLoading() {

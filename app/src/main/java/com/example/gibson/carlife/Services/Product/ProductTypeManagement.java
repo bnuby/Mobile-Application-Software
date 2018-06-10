@@ -10,6 +10,8 @@ import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.gibson.carlife.MainActivity;
 import com.example.gibson.carlife.Model.Product;
+import com.example.gibson.carlife.Model.ProductBrand;
+import com.example.gibson.carlife.Model.ProductType;
 import com.example.gibson.carlife.Services.RequestManager;
 import com.example.gibson.carlife.View.Fragment.MainShopFragment;
 
@@ -25,7 +27,7 @@ public class ProductTypeManagement extends RequestManager  {
     MainActivity.showLoading("Loading");
 
     StringRequest request = new StringRequest(
-            host,
+            url,
             new Response.Listener<String>() {
               @Override
               public void onResponse(String response) {
@@ -35,12 +37,12 @@ public class ProductTypeManagement extends RequestManager  {
                   for(int i = 0; i < array.length(); i ++) {
                     JSONObject object = array.getJSONObject(i);
 
-//                    MainShopFragment.products.add(new Product(
-//                            object.getInt("id"),
-//                            object.getString("name"),
-//
-//                    ))
-
+                    Log.i("GGGG", "onResponse: "+object.toString());
+                      MainActivity.productTypes.add(
+                              new ProductType(
+                                      object.getInt("id"),
+                                      object.getString("name")
+                              ));
                   }
 
 

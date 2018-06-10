@@ -1,6 +1,7 @@
 package com.example.gibson.carlife.Services;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -9,6 +10,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.gibson.carlife.MainActivity;
+import com.example.gibson.carlife.View.Fragment.MainShopFragment;
 import com.example.gibson.carlife.View.LoginActivity;
 
 import org.json.JSONException;
@@ -43,12 +45,29 @@ public class UserManagement extends RequestManager {
                     @Override
                     public void onResponse(String response) {
                         Log.v("login", response.toString());
+
+                        try {
+                            JSONObject res = new JSONObject(response);
+                            if (res.getString("status").equalsIgnoreCase("true")) {
+                                JSONObject user = res.getJSONObject("data");
+                                MainActivity.userObj.userId = user.getInt("id");
+                                MainActivity.userObj.username = user.getString("username");
+                                MainActivity.userObj.email = user.getString("email");
+                                MainActivity.userObj.phone = user.getString("phone");
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
                         LoginActivity.dismissLoading();
+
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        LoginActivity.longTost("Login Fail.");
                         Log.v("login", error.getMessage());
                         LoginActivity.dismissLoading();
                     }
