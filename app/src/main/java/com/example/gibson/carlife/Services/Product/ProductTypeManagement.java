@@ -35,12 +35,12 @@ public class ProductTypeManagement extends RequestManager  {
                   for(int i = 0; i < array.length(); i ++) {
                     JSONObject object = array.getJSONObject(i);
 
-                    
 //                    MainShopFragment.products.add(new Product(
 //                            object.getInt("id"),
 //                            object.getString("name"),
 //
 //                    ))
+
                   }
 
 
