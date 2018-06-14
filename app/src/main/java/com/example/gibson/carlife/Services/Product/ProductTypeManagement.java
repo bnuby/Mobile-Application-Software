@@ -36,6 +36,7 @@ public class ProductTypeManagement extends RequestManager  {
                   JSONArray array = new JSONArray(response);
                   for(int i = 0; i < array.length(); i ++) {
                     JSONObject object = array.getJSONObject(i);
+
                     Log.i("GGGG", "onResponse: "+object.toString());
                       MainActivity.productTypes.add(
                               new ProductType(
