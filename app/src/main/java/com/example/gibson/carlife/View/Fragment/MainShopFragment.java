@@ -1,17 +1,21 @@
 package com.example.gibson.carlife.View.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.example.gibson.carlife.Adapters.ClassficationGridViewAdapter;
 import com.example.gibson.carlife.Adapters.ProductListViewAdapter;
 import com.example.gibson.carlife.MainActivity;
 import com.example.gibson.carlife.R;
+import com.example.gibson.carlife.View.productDetail;
 
 public class MainShopFragment extends Fragment {
 
@@ -46,6 +50,13 @@ public class MainShopFragment extends Fragment {
 
         gridView2 =(GridView)view.findViewById(R.id.gyType);
         gridView2.setAdapter(adapter);
+        gridView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent =new Intent(getContext(),productDetail.class);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 
