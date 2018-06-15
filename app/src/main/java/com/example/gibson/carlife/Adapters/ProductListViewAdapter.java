@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.gibson.carlife.Model.Product;
 import com.example.gibson.carlife.R;
@@ -45,6 +46,12 @@ public class ProductListViewAdapter extends ArrayAdapter<Product>{
         price.setText(String.valueOf(item.cost_price));
         ImageView imageView=itemlayout.findViewById(R.id.img);
         imageView.setImageBitmap(item.img);
+        itemlayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context,"gggg",Toast.LENGTH_LONG).show();
+            }
+        });
         return itemlayout;
     }
 
