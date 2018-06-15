@@ -15,12 +15,9 @@ import android.widget.Toast;
 
 import com.example.gibson.carlife.MainActivity;
 import com.example.gibson.carlife.R;
-<<<<<<< HEAD
 import com.example.gibson.carlife.Services.UserManagement;
-import com.example.gibson.carlife.View.AccountDetail;
-=======
 import com.example.gibson.carlife.View.AccountDetailActivity;
->>>>>>> 9d8923998cd256cba4d750cbf6121aa966cf2a19
+import com.example.gibson.carlife.View.AccountDetailActivity;
 import com.example.gibson.carlife.View.LoginActivity;
 
 public class AccountFragment extends Fragment {

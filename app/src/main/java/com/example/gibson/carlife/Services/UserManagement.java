@@ -12,7 +12,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.gibson.carlife.MainActivity;
 import com.example.gibson.carlife.R;
-import com.example.gibson.carlife.View.AccountDetail;
+import com.example.gibson.carlife.View.AccountDetailActivity;
 import com.example.gibson.carlife.View.Fragment.AccountFragment;
 import com.example.gibson.carlife.View.Fragment.MainShopFragment;
 import com.example.gibson.carlife.View.LoginActivity;
