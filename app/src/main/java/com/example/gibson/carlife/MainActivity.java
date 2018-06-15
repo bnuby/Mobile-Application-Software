@@ -1,7 +1,6 @@
 package com.example.gibson.carlife;
 
 import android.content.SharedPreferences;
-import android.os.UserManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -75,6 +74,11 @@ public class MainActivity extends CustomActivity {
     productTypes = new ArrayList<>();
     ProductManagement.requestProduct();
   }
+//  public static void change(Product item){
+//    Intent intent =new Intent(this,ProductDetailActivity.class);
+//    intent.putExtra("data",);
+//    startActivity(intent);
+//  }
 
   public void init_queue() {
     // Instantiate the cache

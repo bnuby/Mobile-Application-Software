@@ -20,8 +20,9 @@
         </activity>
         <activity android:name=".View.SignupActivity" />
         <activity android:name=".View.LoginActivity" />
-        <activity android:name=".View.AccountDetail" />
-        <activity android:name=".View.productDetail"></activity>
+        <activity android:name=".View.AccountDetailActivity" />
+        <activity android:name=".View.ProductDetailActivity" />
+        <activity android:name=".View.OrderDetailActivity"></activity>
     </application>
 
 </manifest>

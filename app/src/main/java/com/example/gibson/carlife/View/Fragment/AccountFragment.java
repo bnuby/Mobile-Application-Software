@@ -6,18 +6,16 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.gibson.carlife.MainActivity;
 import com.example.gibson.carlife.R;
-import com.example.gibson.carlife.View.AccountDetail;
+import com.example.gibson.carlife.View.AccountDetailActivity;
 import com.example.gibson.carlife.View.LoginActivity;
 
 public class AccountFragment extends Fragment {
@@ -67,9 +65,9 @@ public class AccountFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(getContext(),"Manage Account button clicked!",Toast.LENGTH_SHORT).show();
-                //Intent intent = new Intent(getContext(), AccountDetail.class);
+                //Intent intent = new Intent(getContext(), AccountDetailActivity.class);
                 //getActivity().startActivityForResult(intent,8);
-                Intent intent = new Intent(getContext(),  AccountDetail.class);
+                Intent intent = new Intent(getContext(),  AccountDetailActivity.class);
                 getActivity().startActivityForResult(intent, 8);
             }
         });

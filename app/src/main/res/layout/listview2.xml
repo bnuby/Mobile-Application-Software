@@ -26,15 +26,6 @@
         android:textSize="23sp" />
 
     <TextView
-        android:id="@+id/introTV"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:maxLines="2"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textSize="23sp" />
-
-    <TextView
         android:id="@+id/priceTV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
