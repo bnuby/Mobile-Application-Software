@@ -1,6 +1,7 @@
 package com.example.gibson.carlife.Adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,12 +13,12 @@ import com.example.gibson.carlife.R;
 
 import java.util.List;
 
-public class ViewpagerAdapter extends PagerAdapter {
+public class ImagePagerAdapter extends PagerAdapter {
     private Context context;
-    private List<Integer> list;
+    private List<Bitmap> list;
     private LayoutInflater inflater;
 
-    public ViewpagerAdapter(Context context, List<Integer> list) {
+    public ImagePagerAdapter(Context context, List<Bitmap> list) {
         this.context = context;
         this.list = list;
     }
@@ -43,7 +44,7 @@ public class ViewpagerAdapter extends PagerAdapter {
 
         // 佈局元件內容
         ImageView imageView = (ImageView)itemView.findViewById(R.id.product_img);
-        imageView.setImageResource(list.get(position));
+        imageView.setImageBitmap(list.get(position));
 
         // 加載
         (container).addView(itemView);

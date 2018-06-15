@@ -14,7 +14,7 @@ import com.example.gibson.carlife.R;
 import com.example.gibson.carlife.Services.RequestManager;
 import com.example.gibson.carlife.View.Fragment.AccountFragment;
 
-public class AccountDetail extends CustomActivity implements View.OnClickListener{
+public class AccountDetailActivity extends CustomActivity implements View.OnClickListener{
 
     public View view;
     EditText username_ET, email_ET, phone_ET, address_ET;
@@ -57,7 +57,7 @@ public class AccountDetail extends CustomActivity implements View.OnClickListene
         switch(view.getId()) {
             case R.id.confirm_BTN:
                 Toast.makeText(view.getContext(), "Confirm", Toast.LENGTH_SHORT).show();
-               // Intent intent=new Intent(AccountDetail.this,AccountFragment.class);
+               // Intent intent=new Intent(AccountDetailActivity.this,AccountFragment.class);
 
                 //  need to update the information of user in server
                 //  haven do

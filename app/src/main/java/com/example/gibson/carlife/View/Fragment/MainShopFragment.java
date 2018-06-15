@@ -1,17 +1,20 @@
 package com.example.gibson.carlife.View.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.example.gibson.carlife.Adapters.ClassficationGridViewAdapter;
 import com.example.gibson.carlife.Adapters.ProductListViewAdapter;
 import com.example.gibson.carlife.MainActivity;
 import com.example.gibson.carlife.R;
+import com.example.gibson.carlife.View.ProductDetailActivity;
 
 public class MainShopFragment extends Fragment {
 
@@ -27,7 +30,7 @@ public class MainShopFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_main_shop, container, false);
         Integer[] ids = new Integer[6];
         String[] strings = getResources().getStringArray(R.array.type);
@@ -46,6 +49,14 @@ public class MainShopFragment extends Fragment {
 
         gridView2 =(GridView)view.findViewById(R.id.gyType);
         gridView2.setAdapter(adapter);
+        gridView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent= new Intent(getContext(),ProductDetailActivity.class);
+                intent.putExtra("position",i);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 
