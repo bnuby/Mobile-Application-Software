@@ -1,5 +1,6 @@
 package com.example.gibson.carlife.View;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -50,7 +51,7 @@ public class LoginActivity extends CustomActivity implements View.OnClickListene
   public void onClick(View view) {
     switch(view.getId()) {
       case R.id.loginBtn:
-        UserManagement.requestLogin(usernameET.getText().toString(), passwordET.getText().toString());
+        UserManagement.requestLogin(usernameET.getText().toString(), passwordET.getText().toString(), true);
         break;
       case R.id.signup:
         Intent intent=new Intent();
@@ -61,10 +62,14 @@ public class LoginActivity extends CustomActivity implements View.OnClickListene
 
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
     finish();
   }
 
+  public static void activityFinish() {
+    if(mContext == null)
+      return;
+    ((Activity)mContext).finish();
+  }
    int[] a =  new int[]{0,1,2,3,4};
 
   class CustomAdapter extends BaseAdapter {

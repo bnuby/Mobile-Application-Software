@@ -1,5 +1,6 @@
 package com.example.gibson.carlife;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.UserManager;
 import android.support.design.widget.TabLayout;
@@ -38,12 +39,15 @@ public class MainActivity extends CustomActivity {
   public static ArrayList<ProductType> productTypes;
   public static RequestQueue volleyQueue;
 
+  public static Context getContext() {
+    return mContext;
+  }
 
   ViewPager pager;
   CustomAdapter adapter;
   TabLayout tabLayout;
 
-  private static SharedPreferences mPreferences;
+  public static SharedPreferences mPreferences;
   private static final String mSharedPrefFile = "com.example.gibson.carlife";
   public static User userObj = new User();
 
@@ -52,24 +56,23 @@ public class MainActivity extends CustomActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    pager = findViewById(R.id.viewPager);
+    tabLayout = findViewById(R.id.tabLayout);
+    adapter = new CustomAdapter(getSupportFragmentManager());
+
+    pager.setAdapter(adapter);
+    tabLayout.setupWithViewPager(pager);
+    init_queue();
 
     mPreferences = getSharedPreferences(mSharedPrefFile, MODE_PRIVATE);
     userObj.username = mPreferences.getString("username","");
     userObj.password = mPreferences.getString("password","");
 
     if(!MainActivity.userObj.username.equals("") && !MainActivity.userObj.password.equals("")){
-      UserManagement.requestLogin(userObj.username, userObj.password);
+      UserManagement.requestLogin(userObj.username, userObj.password, false);
     }
 
-    pager = findViewById(R.id.viewPager);
-    tabLayout = findViewById(R.id.tabLayout);
-    adapter = new CustomAdapter(getSupportFragmentManager());
-
 //    pager.onInterceptTouchEvent();
-
-    pager.setAdapter(adapter);
-    tabLayout.setupWithViewPager(pager);
-    init_queue();
     products = new ArrayList<>();
     productbrands = new ArrayList<>();
     productTypes = new ArrayList<>();
@@ -96,6 +99,12 @@ public class MainActivity extends CustomActivity {
 //    preferencesEditor.apply();
   }
 
+  @Override
+  protected void onResume() {
+    super.onResume();
+    mContext = getContext();
+  }
+
   public class CustomAdapter extends FragmentStatePagerAdapter {
 
     MainFragment mainShopFragment;
@@ -107,6 +116,7 @@ public class MainActivity extends CustomActivity {
     public CustomAdapter(FragmentManager fm) {
       super(fm);
     }
+
 
     @Override
     public Fragment getItem(int position) {

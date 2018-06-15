@@ -15,7 +15,7 @@ import com.example.gibson.carlife.R;
 public abstract class CustomActivity extends AppCompatActivity {
 
 
-  static Context mContext;
+  protected static Context mContext;
   static AlertDialog dialog;
 
   @Override
@@ -25,8 +25,9 @@ public abstract class CustomActivity extends AppCompatActivity {
   }
 
   public static void showLoading(String message) {
+
     AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-//    View view
+    //    View view
     View view = ((Activity) mContext).getLayoutInflater().inflate(R.layout.dialog_loading, null);
 
     TextView textView = view.findViewById(R.id.messageTV);
@@ -36,7 +37,6 @@ public abstract class CustomActivity extends AppCompatActivity {
     builder.setCancelable(false);
     dialog = builder.create();
     dialog.show();
-
   }
   public static void longTost(String toastSring){
     Toast.makeText(mContext,toastSring,Toast.LENGTH_LONG).show();

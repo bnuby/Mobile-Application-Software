@@ -17,13 +17,15 @@ import android.widget.Toast;
 
 import com.example.gibson.carlife.MainActivity;
 import com.example.gibson.carlife.R;
+import com.example.gibson.carlife.Services.UserManagement;
 import com.example.gibson.carlife.View.AccountDetail;
 import com.example.gibson.carlife.View.LoginActivity;
 
 public class AccountFragment extends Fragment {
 
     LinearLayout acc_info;
-    Button clrCache_Btn, accMng_Btn, logOut_Btn;
+    Button clrCache_Btn, accMng_Btn;
+    static Button logOut_Btn;
     //private static final int REQUEST_CODE = 8;
 
 
@@ -37,6 +39,7 @@ public class AccountFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), LoginActivity.class);
                 getActivity().startActivityForResult(intent, 200);
+                Toast.makeText(getContext(), "asd", Toast.LENGTH_SHORT).show();
             }
         });
         //clear cache button onClickListener
@@ -74,17 +77,16 @@ public class AccountFragment extends Fragment {
             }
         });
 
-        //user Log Out onClickListener
+        //User Log Out onClickListener
         logOut_Btn = view.findViewById(R.id.logOut_Btn);
         logOut_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.logout();
-                Toast.makeText(getContext(),"Log Out button clicked!",Toast.LENGTH_SHORT).show();
-                Intent in = new Intent(getContext(),LoginActivity.class);
-                startActivity(in);
+                UserManagement.requestLogout();
             }
         });
+
+        toggleLogoutBtn();
         return view;
     }
 
@@ -99,6 +101,14 @@ public class AccountFragment extends Fragment {
                 Toast.makeText(getContext(), "200", Toast.LENGTH_SHORT).show();
                 break;
         }
+    }
+
+    public static void toggleLogoutBtn() {
+        if(logOut_Btn != null)
+            if(UserManagement.isLogin)
+                logOut_Btn.setVisibility(View.VISIBLE);
+            else
+                logOut_Btn.setVisibility(View.INVISIBLE);
     }
 /*
     @Override

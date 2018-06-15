@@ -9,37 +9,42 @@
     <LinearLayout
         android:id="@+id/acc_info"
         android:layout_width="0dp"
-        android:layout_height="80dp"
+        android:layout_height="150dp"
         android:gravity="center"
         android:orientation="horizontal"
+        android:paddingStart="50dp"
         android:weightSum="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
+        <!--android:layout_marginStart="50dp"-->
         <ImageButton
             android:id="@+id/imageButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="50dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+
             android:layout_weight="0"
             android:contentDescription="user image"
+            android:saveEnabled="true"
             app:srcCompat="@android:drawable/ic_menu_week" />
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="50dp"
             android:layout_marginStart="50dp"
+            android:layout_marginTop="30dp"
             android:layout_weight="0.8"
-            android:text="No Name" />
+            android:textAlignment="textStart"
+            android:textSize="20sp"
+            tools:text="Your Name" />
     </LinearLayout>
 
     <ScrollView
         android:layout_width="0dp"
-        android:layout_height="395dp"
+        android:layout_height="398dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -71,14 +76,5 @@
                 android:text="Logout" />
         </LinearLayout>
 
-        <!--=======-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:orientation="vertical">-->
-
-        <!--<ListView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent" />-->
-        <!--</LinearLayout>-->
-        <!--&gt;>>>>>> 6e5508348763997709bbf665c35f5e18874e8e3f-->
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
