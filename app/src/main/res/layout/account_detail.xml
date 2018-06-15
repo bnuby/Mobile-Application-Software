@@ -17,7 +17,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -30,7 +31,8 @@
                     android:id="@+id/username_TV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Username" />
+                    android:text="Username"
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/username_ET"
@@ -51,7 +53,8 @@
                     android:id="@+id/email_TV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Email" />
+                    android:text="Email"
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/email_ET"
@@ -73,7 +76,8 @@
                     android:id="@+id/phone_TV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Handphone" />
+                    android:text="Handphone"
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/phone_ET"
@@ -94,7 +98,8 @@
                     android:id="@+id/address_TV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Address" />
+                    android:text="Address"
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/address_ET"
