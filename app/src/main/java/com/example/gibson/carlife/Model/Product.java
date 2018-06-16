@@ -2,6 +2,9 @@ package com.example.gibson.carlife.Model;
 
 import android.graphics.Bitmap;
 
+
+
+
 public class Product {
     public int id;
     public String name;

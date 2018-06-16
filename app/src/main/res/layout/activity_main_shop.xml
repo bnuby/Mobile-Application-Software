@@ -16,8 +16,9 @@
         android:numColumns="3"
         android:padding="@dimen/mainShop_grid_type1_padding" />
 
+
     <GridView
-        android:id="@+id/gyType"
+        android:id="@+id/gvProduct"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:numColumns="2"

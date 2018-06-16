@@ -24,28 +24,26 @@ public class ProductTypeManagement extends RequestManager  {
   public static void requestProductType() {
     final String url = host + "/product_type";
 
-    MainActivity.showLoading("Loading");
+//    MainActivity.showLoading("Loading");
 
     StringRequest request = new StringRequest(
             url,
             new Response.Listener<String>() {
               @Override
               public void onResponse(String response) {
-                Log.v("response", response);
                 try {
                   JSONArray array = new JSONArray(response);
                   for(int i = 0; i < array.length(); i ++) {
                     JSONObject object = array.getJSONObject(i);
-
-                    Log.i("GGGG", "onResponse: "+object.toString());
+                      int currentId = object.getInt("id");
                       MainActivity.productTypes.add(
                               new ProductType(
-                                      object.getInt("id"),
+                                      currentId,
                                       object.getString("name")
                               ));
+                      getImage(i,currentId);
+
                   }
-
-
                 } catch (JSONException e) {
                   e.printStackTrace();
                 }
@@ -66,7 +64,7 @@ public class ProductTypeManagement extends RequestManager  {
   }
 
 
-  public static void getImage(int id) {
+  public static void getImage(final int position, int id) {
     final String url = host + "/product_type_img/" + id;
 
     ImageRequest request = new ImageRequest(
@@ -74,7 +72,9 @@ public class ProductTypeManagement extends RequestManager  {
             new Response.Listener<Bitmap>() {
               @Override
               public void onResponse(Bitmap response) {
-
+                  Log.i("TYPEIMG", "onResponse: suu");
+                  MainActivity.productTypes.get(position).setImg(response);
+                  MainShopFragment.reloadGridView1();
               }
             },
             64,

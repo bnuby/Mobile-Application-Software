@@ -71,6 +71,7 @@ public class ProductBrandManagement extends RequestManager {
                     @Override
                     public void onResponse(Bitmap response) {
                         MainActivity.productbrands.get(i).setImg(response);
+
                     }
                 },
                 64,

@@ -2,7 +2,6 @@ package com.example.gibson.carlife.Services;
 
 import android.content.SharedPreferences;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -35,7 +34,11 @@ public class UserManagement extends RequestManager {
         final String url = host + "/user/login/";
         if(show)
             LoginActivity.showLoading("Login");
-
+        if(username.equals("")||password.equals("")){
+            LoginActivity.longTost("Please input username and password.");
+            LoginActivity.dismissLoading();
+            return;
+        }
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("username", username);
@@ -70,7 +73,7 @@ public class UserManagement extends RequestManager {
                                     LoginActivity.activityFinish();
                             } else {
                                 if(show)
-                                    LoginActivity.longTost(response.toString());
+                                    LoginActivity.longTost(res.getString("msg").toString());
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

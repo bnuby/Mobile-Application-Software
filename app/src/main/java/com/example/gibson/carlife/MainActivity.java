@@ -21,6 +21,7 @@ import com.example.gibson.carlife.Model.ProductBrand;
 import com.example.gibson.carlife.Model.ProductType;
 import com.example.gibson.carlife.Services.Product.ProductManagement;
 import com.example.gibson.carlife.Model.User;
+import com.example.gibson.carlife.Services.Product.ProductTypeManagement;
 import com.example.gibson.carlife.Services.UserManagement;
 import com.example.gibson.carlife.View.Fragment.AccountFragment;
 import com.example.gibson.carlife.View.LoginActivity;
@@ -75,6 +76,7 @@ public class MainActivity extends CustomActivity {
     products = new ArrayList<>();
     productbrands = new ArrayList<>();
     productTypes = new ArrayList<>();
+    ProductTypeManagement.requestProductType();
     ProductManagement.requestProduct();
   }
 //  public static void change(Product item){

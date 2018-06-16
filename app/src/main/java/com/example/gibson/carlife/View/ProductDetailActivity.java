@@ -14,8 +14,9 @@ import com.example.gibson.carlife.Adapters.ImagePagerAdapter;
 import com.example.gibson.carlife.MainActivity;
 import com.example.gibson.carlife.Model.Product;
 import com.example.gibson.carlife.R;
-import com.example.gibson.carlife.Services.Product.ProductPictures;
+import com.example.gibson.carlife.Services.Product.ProductPicturesManagement;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,9 +34,10 @@ public class ProductDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
-        Intent intent = getIntent();
-        int position = intent.getIntExtra("position",-1);
+
+        int position =  getIntent().getIntExtra("position",-1);
         Product item = MainActivity.products.get(position);
+//        Product item = (Product) getIntent().getSerializableExtra("product");
         viewPager = (ViewPager) findViewById(R.id.productImgs_viewPager);
         TextView title =findViewById(R.id.titleTV);
         TextView intro = findViewById(R.id.introTV);
@@ -45,9 +47,9 @@ public class ProductDetailActivity extends AppCompatActivity {
         images = new ArrayList<>();
 
         title.setText(item.name);
-        price.setText(""+item.cost_price);
+        price.setText("NT:"+item.cost_price);
         intro.setText(item.description);
-        ProductPictures.requestProductImages(item.id);
+        ProductPicturesManagement.requestProductImages(item.id);
         buy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,9 +65,6 @@ public class ProductDetailActivity extends AppCompatActivity {
         });
 
         List<Integer> list = new ArrayList<Integer>();
-//        for(int i : images){
-//            list.add(i);
-//        }
         imagePagerAdapter = new ImagePagerAdapter(this, images);
         viewPager.setAdapter(imagePagerAdapter);
     }

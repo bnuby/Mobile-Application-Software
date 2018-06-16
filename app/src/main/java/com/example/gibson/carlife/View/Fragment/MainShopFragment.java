@@ -18,8 +18,9 @@ import com.example.gibson.carlife.View.ProductDetailActivity;
 
 public class MainShopFragment extends Fragment {
 
-    public static GridView gridView;
-    public static GridView gridView2;
+    public static GridView typeGridView;
+    public static GridView brandGridView;
+    public static GridView productGridView;
 
 
     @Override
@@ -32,6 +33,7 @@ public class MainShopFragment extends Fragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_main_shop, container, false);
+
         Integer[] ids = new Integer[6];
         String[] strings = getResources().getStringArray(R.array.type);
         for(int i = 0; i < 6 ; i ++) {
@@ -39,20 +41,22 @@ public class MainShopFragment extends Fragment {
         }
 
 //        ProductTypeManagement.requestProductType();
-        gridView = (GridView) view.findViewById(R.id.gvType);
-        gridView.setNumColumns(3);
-        gridView.setAdapter(new ClassficationGridViewAdapter(getContext(), ids));
+        typeGridView = (GridView) view.findViewById(R.id.gvType);
+        typeGridView.setNumColumns(3);
+//        typeGridView.setAdapter(new ClassficationGridViewAdapter(getContext(), ids));
+        typeGridView.setAdapter(new ClassficationGridViewAdapter(getContext(), MainActivity.productTypes));
 
 
         ProductListViewAdapter adapter =
         new ProductListViewAdapter(getContext(), MainActivity.products,R.layout.listview2);
 
-        gridView2 =(GridView)view.findViewById(R.id.gyType);
-        gridView2.setAdapter(adapter);
-        gridView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        productGridView =(GridView)view.findViewById(R.id.gvProduct);
+        productGridView.setAdapter(adapter);
+        productGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent= new Intent(getContext(),ProductDetailActivity.class);
+//                intent.putExtra("productGridView", (Serializable)MainActivity.products.get(i));
                 intent.putExtra("position",i);
                 startActivity(intent);
             }
@@ -61,13 +65,13 @@ public class MainShopFragment extends Fragment {
     }
 
     public static void reloadGridView1() {
-        if(gridView != null)
-            gridView.invalidateViews();
+        if(typeGridView != null)
+            typeGridView.invalidateViews();
     }
 
     public static void reloadGridView2() {
-        if(gridView2 != null)
-            gridView2.invalidateViews();
+        if(productGridView != null)
+            productGridView.invalidateViews();
     }
 
 }
