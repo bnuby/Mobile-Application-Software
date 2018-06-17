@@ -18,12 +18,6 @@ public abstract class CustomActivity extends AppCompatActivity {
   protected static Context mContext;
   static AlertDialog dialog;
 
-  @Override
-  protected void onCreate(@Nullable Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    mContext = this;
-  }
-
   public static void showLoading(String message) {
 
     AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
@@ -38,14 +32,22 @@ public abstract class CustomActivity extends AppCompatActivity {
     dialog = builder.create();
     dialog.show();
   }
-  public static void longTost(String toastSring){
-    Toast.makeText(mContext,toastSring,Toast.LENGTH_LONG).show();
+
+  public static void longTost(String toastSring) {
+    Toast.makeText(mContext, toastSring, Toast.LENGTH_LONG).show();
   }
-  public static void shortTost(String toastSring){
-    Toast.makeText(mContext,toastSring,Toast.LENGTH_SHORT).show();
+
+  public static void shortTost(String toastSring) {
+    Toast.makeText(mContext, toastSring, Toast.LENGTH_SHORT).show();
   }
 
   public static void dismissLoading() {
     dialog.dismiss();
+  }
+
+  @Override
+  protected void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    mContext = this;
   }
 }

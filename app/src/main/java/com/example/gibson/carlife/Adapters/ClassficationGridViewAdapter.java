@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 
 import com.example.gibson.carlife.MainActivity;
+import com.example.gibson.carlife.Model.DataManagement;
 import com.example.gibson.carlife.Model.Product.ProductType;
 
 import java.util.ArrayList;
@@ -18,25 +19,25 @@ import java.util.ArrayList;
  */
 
 public class ClassficationGridViewAdapter extends ArrayAdapter<ProductType> {
-    private Context mCtx;
+  private Context mCtx;
 
-    public ClassficationGridViewAdapter(@NonNull Context context, @NonNull ArrayList<ProductType> objects) {
-        super(context, 0, objects);
-        mCtx = context;
-    }
+  public ClassficationGridViewAdapter(@NonNull Context context, @NonNull ArrayList<ProductType> objects) {
+    super(context, 0, objects);
+    mCtx = context;
+  }
 
-    @Override
-    public View getView(int position, View convertView,
-                        ViewGroup parent) {
+  @Override
+  public View getView(int position, View convertView,
+                      ViewGroup parent) {
 
-        ImageView iv = new ImageView(mCtx);
-        iv.setMaxHeight(80 * TypedValue.COMPLEX_UNIT_SP);
-        iv.setMinimumHeight(80 * TypedValue.COMPLEX_UNIT_SP);
-        ProductType item = MainActivity.productTypes.get(position);
-        iv.setImageBitmap(item.image);
+    ImageView iv = new ImageView(mCtx);
+    iv.setMaxHeight(80 * TypedValue.COMPLEX_UNIT_SP);
+    iv.setMinimumHeight(80 * TypedValue.COMPLEX_UNIT_SP);
+    ProductType item = DataManagement.getProductTypes().get(position);
+    iv.setImageBitmap(item.image);
 //        int resid = getItem(position);
 //        iv.setImageResource(resid);
-        iv.setAdjustViewBounds(true);
-        return iv;
-    }
+    iv.setAdjustViewBounds(true);
+    return iv;
+  }
 }

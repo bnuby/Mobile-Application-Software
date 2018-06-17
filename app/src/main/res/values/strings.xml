@@ -9,6 +9,12 @@
     <string name="logout">Log Out</string>
     <string name="error">Please Check Your Network Connection.\nTry Again</string>
     <string name="total_price">Total Price : </string>
+
+
+    <!--Login Page-->
+    <string name="you_are_not_login">You Are Not Login!</string>
+
+    <!--Login Page-->
     <dimen name="a">20dp</dimen>
 
 </resources>

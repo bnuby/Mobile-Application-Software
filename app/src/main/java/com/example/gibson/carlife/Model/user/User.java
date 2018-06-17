@@ -7,23 +7,23 @@ import android.graphics.Bitmap;
  */
 
 public class User {
-    public Bitmap image;
-    public int userId;
-    public String username;
-    public String password;
-    public String phone;
-    public String email;
-    public String address;
+  public Bitmap image;
+  public int userId;
+  public String username;
+  public String password;
+  public String phone;
+  public String email;
+  public String address;
 
-    public User(){
+  public User() {
 
-    }
+  }
 
-    public User(int userId, String username, String phone, String email, String address){
-        this.userId = userId;
-        this.username = username;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-    }
+  public User(int userId, String username, String phone, String email, String address) {
+    this.userId = userId;
+    this.username = username;
+    this.phone = phone;
+    this.email = email;
+    this.address = address;
+  }
 }

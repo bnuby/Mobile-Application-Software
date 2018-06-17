@@ -9,6 +9,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.gibson.carlife.MainActivity;
+import com.example.gibson.carlife.Model.DataManagement;
 import com.example.gibson.carlife.Model.Product.ProductType;
 import com.example.gibson.carlife.Services.RequestManager;
 import com.example.gibson.carlife.View.Fragment.MainShopFragment;
@@ -17,7 +18,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class ProductTypeManagement extends RequestManager  {
+public class ProductTypeManagement extends RequestManager {
+
+  public static String TAG = "ProductTypeManagement";
 
   public static void requestProductType() {
     final String url = host + "/product_type";
@@ -29,31 +32,29 @@ public class ProductTypeManagement extends RequestManager  {
             new Response.Listener<String>() {
               @Override
               public void onResponse(String response) {
+                Log.i(TAG, response);
                 try {
                   JSONArray array = new JSONArray(response);
-                  for(int i = 0; i < array.length(); i ++) {
+                  for (int i = 0; i < array.length(); i++) {
                     JSONObject object = array.getJSONObject(i);
-                      int currentId = object.getInt("id");
-                      MainActivity.productTypes.add(
-                              new ProductType(
-                                      currentId,
-                                      object.getString("name")
-                              ));
-                      getImage(i,currentId);
+                    int currentId = object.getInt("id");
+                    DataManagement.getProductTypes().add(
+                            new ProductType(
+                                    currentId,
+                                    object.getString("name")
+                            ));
+                    getImage(i, currentId);
 
                   }
                 } catch (JSONException e) {
                   e.printStackTrace();
                 }
-
-                MainActivity.dismissLoading();
               }
             },
             new Response.ErrorListener() {
               @Override
               public void onErrorResponse(VolleyError error) {
 
-                MainActivity.dismissLoading();
               }
             }
     );
@@ -70,9 +71,9 @@ public class ProductTypeManagement extends RequestManager  {
             new Response.Listener<Bitmap>() {
               @Override
               public void onResponse(Bitmap response) {
-                  Log.i("TYPEIMG", "onResponse: suu");
-                  MainActivity.productTypes.get(position).setImg(response);
-                  MainShopFragment.reloadTypeGV();
+                Log.i(TAG, "get Img");
+                DataManagement.getProductTypes().get(position).setImg(response);
+                MainShopFragment.reloadTypeGV();
               }
             },
             0,

@@ -25,8 +25,8 @@ public class OrderCollection {
     this.cancels = new ArrayList<>();
   }
 
-  public void fillArrayList (JSONArray array) {
-    for(int i = 0; i < array.length(); i++) {
+  public void fillArrayList(JSONArray array) {
+    for (int i = 0; i < array.length(); i++) {
       try {
         Order item = jsonToOrderObject(array.getJSONObject(i));
         switch (item.status) {

@@ -16,23 +16,24 @@ import java.util.ArrayList;
 
 public class OrderFragment extends Fragment {
 
-    private ListView listView;
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_order, container, false);
+  private ListView listView;
 
-        ArrayList<Product> albumlist = new ArrayList<Product>();
+  @Nullable
+  @Override
+  public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    View view = inflater.inflate(R.layout.fragment_order, container, false);
+
+    ArrayList<Product> albumlist = new ArrayList<Product>();
 //        Product p = new Product("二手破mac","啟聖女用機",1.0);
 //        p.setImg(BitmapFactory.decodeResource(getResources(), R.drawable.h01));
 //
 //        albumlist.add(p);
 //        Product p = new Product("二手破mac","啟聖女用機",1.0);
-        ProductListViewAdapter adapter =
-                new ProductListViewAdapter(getContext(), albumlist,R.layout.recyclelayout);
+    ProductListViewAdapter adapter =
+            new ProductListViewAdapter(getContext(), albumlist, R.layout.recyclelayout);
 
-       listView = view.findViewById(R.id.orderlist);
-       listView.setAdapter(adapter);
+    listView = view.findViewById(R.id.orderlist);
+    listView.setAdapter(adapter);
 
 //        ArrayList<String> orderlist = new ArrayList<>();
 //        orderlist.add("5");
@@ -42,6 +43,6 @@ public class OrderFragment extends Fragment {
 //        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 //        buyRecyclerView.setLayoutManager(layoutManager);
 //        buyRecyclerView.setAdapter(mAdapter);
-        return view;
-    }
+    return view;
+  }
 }

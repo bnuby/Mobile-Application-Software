@@ -2,13 +2,12 @@ package com.example.gibson.carlife;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
-import android.util.Log;
 
 import com.android.volley.Cache;
 import com.android.volley.Network;
@@ -17,18 +16,16 @@ import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.example.gibson.carlife.Abstract.CustomActivity;
-import com.example.gibson.carlife.Model.Order.Order;
-import com.example.gibson.carlife.Model.Order.OrderStatus;
 import com.example.gibson.carlife.Model.Product.Product;
 import com.example.gibson.carlife.Model.Product.ProductBrand;
 import com.example.gibson.carlife.Model.Product.ProductType;
+import com.example.gibson.carlife.Model.user.User;
+import com.example.gibson.carlife.Services.Order.OrderManagement;
 import com.example.gibson.carlife.Services.Product.ProductBrandManagement;
 import com.example.gibson.carlife.Services.Product.ProductManagement;
-import com.example.gibson.carlife.Model.user.User;
 import com.example.gibson.carlife.Services.Product.ProductTypeManagement;
 import com.example.gibson.carlife.Services.UserManagement;
 import com.example.gibson.carlife.View.Fragment.AccountFragment;
-import com.example.gibson.carlife.View.LoginActivity;
 import com.example.gibson.carlife.View.Fragment.MainFragment;
 import com.example.gibson.carlife.View.Fragment.OrderFragment;
 import com.example.gibson.carlife.View.Fragment.ShopCartFragment;
@@ -38,25 +35,29 @@ import java.util.ArrayList;
 
 public class MainActivity extends CustomActivity {
 
-  public static ArrayList<Product> products;
-  public static  ArrayList<ProductBrand> productBrands;
-  public static ArrayList<ProductBrand> productbrands;
-  public static ArrayList<ProductType> productTypes;
+  private static final String mSharedPrefFile = "com.example.gibson.carlife";
   public static RequestQueue volleyQueue;
+  public static SharedPreferences mPreferences;
+  public static User userObj = new User();
+  public static Fragment[] fragments = {new MainFragment(), new ShopCartFragment(), new OrderFragment(), new AccountFragment()};
+  ViewPager pager;
+  CustomAdapter adapter;
+  TabLayout tabLayout;
+  private int[] IconResID = {R.drawable.home, R.drawable.shoppingcart, R.drawable.order, R.drawable.account};
 
   public static Context getContext() {
     return mContext;
   }
 
-  ViewPager pager;
-  CustomAdapter adapter;
-  TabLayout tabLayout;
+  public static void logout() {
+    // Clear preferences
+    SharedPreferences.Editor preferencesEditor = mPreferences.edit();
+    preferencesEditor.clear();
+    preferencesEditor.commit();
 
-  public static SharedPreferences mPreferences;
-  private static final String mSharedPrefFile = "com.example.gibson.carlife";
-  public static User userObj = new User();
-  private int[] IconResID = {R.drawable.home,R.drawable.shoppingcart,R.drawable.order,R.drawable.account};
-
+    UserManagement.isLogin = false;
+    AccountFragment.toggleLogoutBtn();
+  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -68,33 +69,24 @@ public class MainActivity extends CustomActivity {
 
     pager.setAdapter(adapter);
     tabLayout.setupWithViewPager(pager);
-    for(int i =0; i < IconResID.length;i++){
+    for (int i = 0; i < IconResID.length; i++) {
       tabLayout.getTabAt(i).setIcon(IconResID[i]);
     }
     init_queue();
 
     mPreferences = getSharedPreferences(mSharedPrefFile, MODE_PRIVATE);
-    userObj.username = mPreferences.getString("username","");
-    userObj.password = mPreferences.getString("password","");
+    userObj.username = mPreferences.getString("username", "");
+    userObj.password = mPreferences.getString("password", "");
 
-    if(!MainActivity.userObj.username.equals("") && !MainActivity.userObj.password.equals("")){
+    if (!MainActivity.userObj.username.equals("") && !MainActivity.userObj.password.equals("")) {
       UserManagement.requestLogin(userObj.username, userObj.password, false);
     }
-
-//    pager.onInterceptTouchEvent();
-    products = new ArrayList<>();
-    productBrands =new ArrayList<>();
-    productbrands = new ArrayList<>();
-    productTypes = new ArrayList<>();
     ProductTypeManagement.requestProductType();
     ProductManagement.requestProduct();
     ProductBrandManagement.requestProductBrand();
+
+    initializeDataManagement();
   }
-//  public static void change(Product item){
-//    Intent intent =new Intent(this,ProductDetailActivity.class);
-//    intent.putExtra("data",);
-//    startActivity(intent);
-//  }
 
   public void init_queue() {
     // Instantiate the cache
@@ -105,18 +97,13 @@ public class MainActivity extends CustomActivity {
 
     volleyQueue = new RequestQueue(cache, network);
     volleyQueue.start();
-
   }
 
-  public static void logout() {
-    // Clear preferences
-    SharedPreferences.Editor preferencesEditor = mPreferences.edit();
-    preferencesEditor.clear();
-    preferencesEditor.commit();
-
-    UserManagement.isLogin = false;
-    AccountFragment.toggleLogoutBtn();
-
+  public void initializeDataManagement() {
+    ProductTypeManagement.requestProductType();
+    ProductBrandManagement.requestProductBrand();
+    ProductManagement.requestProduct();
+    OrderManagement.requestOrder();
   }
 
   @Override
@@ -134,12 +121,6 @@ public class MainActivity extends CustomActivity {
 
   public class CustomAdapter extends FragmentStatePagerAdapter {
 
-    MainFragment mainShopFragment;
-    OrderFragment orderFragment;
-    ShopCartFragment shopCartFragment;
-    LoginActivity loginActivity;
-    AccountFragment accountFragment;
-
     public CustomAdapter(FragmentManager fm) {
       super(fm);
     }
@@ -147,26 +128,7 @@ public class MainActivity extends CustomActivity {
 
     @Override
     public Fragment getItem(int position) {
-      switch(position) {
-        case 0:
-          if(mainShopFragment == null)
-            mainShopFragment = new MainFragment();
-
-          return mainShopFragment;
-        case 1:
-          if(shopCartFragment == null)
-            shopCartFragment = new ShopCartFragment();
-          return shopCartFragment;
-        case 2:
-          if(orderFragment == null)
-            orderFragment = new OrderFragment();
-          return orderFragment;
-        case 3:
-          if(accountFragment == null)
-            accountFragment = new AccountFragment();
-          return accountFragment;
-    }
-      return null;
+      return fragments[position];
     }
 
     @Override
@@ -174,16 +136,6 @@ public class MainActivity extends CustomActivity {
       return 4;
     }
 
-//    @Override
-//    public CharSequence getPageTitle(int position) {
-//      String[] title = new String[] {
-//              "Shop",
-//              "Cart",
-//              "Order",
-//              "Account"
-//      };
-//      return title[position];
-//    }
   }
 
 }

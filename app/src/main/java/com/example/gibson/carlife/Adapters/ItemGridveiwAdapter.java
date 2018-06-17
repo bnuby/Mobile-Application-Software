@@ -14,33 +14,33 @@ import com.example.gibson.carlife.R;
 
 import java.util.ArrayList;
 
-public class ItemGridveiwAdapter extends ArrayAdapter<Product>{
+public class ItemGridveiwAdapter extends ArrayAdapter<Product> {
 
-    private ArrayList<Product> products;
-    private Context mContext;
+  private ArrayList<Product> products;
+  private Context mContext;
 //    titleTV = (TextView) v.findViewById(R.id.title2TV);
 //    introTV = (TextView) v.findViewById(R.id.intro2TV);
 //    priceTV = (TextView) v.findViewById(R.id.price2TV);
 
-    public ItemGridveiwAdapter(@NonNull Context context, ArrayList<Product> products) {
-        super(context, R.layout.listview2);
-        this.products = products;
-    }
+  public ItemGridveiwAdapter(@NonNull Context context, ArrayList<Product> products) {
+    super(context, R.layout.listview2);
+    this.products = products;
+  }
 
-    @NonNull
-    @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        ImageView imageView;
-        TextView titleTV, introTV, priceTV;
-        imageView = convertView.findViewById(R.id.img);
-        titleTV = convertView.findViewById(R.id.titleTV);
-        introTV = convertView.findViewById(R.id.introTV);
-        priceTV = convertView.findViewById(R.id.priceTV);
+  @NonNull
+  @Override
+  public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    ImageView imageView;
+    TextView titleTV, introTV, priceTV;
+    imageView = convertView.findViewById(R.id.img);
+    titleTV = convertView.findViewById(R.id.titleTV);
+    introTV = convertView.findViewById(R.id.introTV);
+    priceTV = convertView.findViewById(R.id.priceTV);
 
-        imageView.setImageBitmap(products.get(position).img);
-        titleTV.setText(products.get(position).name);
-        introTV.setText(products.get(position).description);
-        priceTV.setText(products.get(position).cost_price + "");
-        return super.getView(position, convertView, parent);
-    }
+    imageView.setImageBitmap(products.get(position).img);
+    titleTV.setText(products.get(position).name);
+    introTV.setText(products.get(position).description);
+    priceTV.setText(products.get(position).cost_price + "");
+    return super.getView(position, convertView, parent);
+  }
 }

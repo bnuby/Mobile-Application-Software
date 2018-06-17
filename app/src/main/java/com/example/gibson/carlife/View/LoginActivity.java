@@ -9,10 +9,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.gibson.carlife.Abstract.CustomActivity;
-import com.example.gibson.carlife.MainActivity;
 import com.example.gibson.carlife.R;
 import com.example.gibson.carlife.Services.UserManagement;
 
@@ -27,6 +25,14 @@ public class LoginActivity extends CustomActivity implements View.OnClickListene
   EditText usernameET;
   EditText passwordET;
   Button signup;
+  int[] a = new int[]{0, 1, 2, 3, 4};
+
+  public static void activityFinish() {
+    if (mContext == null)
+      return;
+    ((Activity) mContext).finish();
+
+  }
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,13 +55,13 @@ public class LoginActivity extends CustomActivity implements View.OnClickListene
 
   @Override
   public void onClick(View view) {
-    switch(view.getId()) {
+    switch (view.getId()) {
       case R.id.loginBtn:
         UserManagement.requestLogin(usernameET.getText().toString(), passwordET.getText().toString(), true);
         break;
       case R.id.signup:
-        Intent intent=new Intent();
-        intent.setClass(getApplicationContext(),SignupActivity.class);
+        Intent intent = new Intent();
+        intent.setClass(getApplicationContext(), SignupActivity.class);
         startActivityForResult(intent, 200);
         break;
     }
@@ -64,14 +70,6 @@ public class LoginActivity extends CustomActivity implements View.OnClickListene
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
   }
-
-  public static void activityFinish() {
-    if(mContext == null)
-      return;
-    ((Activity)mContext).finish();
-
-    }
-   int[] a =  new int[]{0,1,2,3,4};
 
   class CustomAdapter extends BaseAdapter {
     @Override
