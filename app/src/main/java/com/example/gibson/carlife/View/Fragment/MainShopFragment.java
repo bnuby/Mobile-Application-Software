@@ -23,6 +23,7 @@ import com.example.gibson.carlife.Model.Product.Product;
 import com.example.gibson.carlife.Model.Product.ProductBrand;
 import com.example.gibson.carlife.Model.Product.ProductType;
 import com.example.gibson.carlife.R;
+import com.example.gibson.carlife.View.CategoryActivity;
 import com.example.gibson.carlife.View.ProductDetailActivity;
 
 import java.util.ArrayList;
@@ -69,7 +70,7 @@ public class MainShopFragment extends Fragment {
 
     final ArrayList<ProductType> productTypes = DataManagement.getProductTypes();
 
-    TypeGridViewAdapter adapter = new TypeGridViewAdapter(getContext(), productTypes, 7);
+    final TypeGridViewAdapter adapter = new TypeGridViewAdapter(getContext(), productTypes, 7);
     typeGridView.setAdapter(adapter);
     typeGridView.setNumColumns(adapter.getTotalCount());
     params.width = (int) (dp * 100 * adapter.getTotalCount());
@@ -77,6 +78,11 @@ public class MainShopFragment extends Fragment {
       @Override
       public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         MainActivity.shortTost("To search : " + productTypes.get(i).name);
+        if(i == adapter.getCount() - 1) {
+          Intent intent = new Intent(getContext(), CategoryActivity.class);
+          intent.putExtra("type", "type");
+          startActivity(intent);
+        }
       }
     });
 
@@ -85,7 +91,7 @@ public class MainShopFragment extends Fragment {
     brandGridView = (GridView) view.findViewById(R.id.BrandGV);
     params = brandGridView.getLayoutParams();
 
-    BrandGridViewAdapter adapter2 = new BrandGridViewAdapter(getContext(), productBrands, 7);
+    final BrandGridViewAdapter adapter2 = new BrandGridViewAdapter(getContext(), productBrands, 7);
     params.width = (int)(dp * 100 * adapter2.getTotalCount());
     brandGridView.setNumColumns(adapter2.getTotalCount());
     brandGridView.setAdapter(adapter2);
@@ -93,6 +99,12 @@ public class MainShopFragment extends Fragment {
       @Override
       public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         MainActivity.shortTost("To search : " + productBrands.get(i).name);
+
+        if(i == adapter2.getCount()-1) {
+          Intent intent = new Intent(getContext(), CategoryActivity.class);
+          intent.putExtra("type", "brand");
+          startActivity(intent);
+        }
       }
     });
 

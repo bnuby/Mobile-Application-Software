@@ -8,51 +8,69 @@
     android:orientation="vertical"
     android:weightSum="1">
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1"
+        android:layout_height="50dp"
         android:orientation="horizontal"
         android:weightSum="1">
 
-        <android.support.v7.widget.SearchView
-            android:id="@+id/search_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.95">
-
-        </android.support.v7.widget.SearchView>
-
         <Button
-            android:id="@+id/searchBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.05"
-            android:text="Search" />
+            android:id="@+id/button3"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="1"
+            android:background="@drawable/clear_button"
+            android:text="X"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/autoCompleteTextView"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/search_bar"
+            android:hint="@string/searchbar_text"
+            android:paddingRight="50dp"
+            android:paddingStart="15dp"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </android.support.constraint.ConstraintLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1"
+        android:layout_height="80dp"
         android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
         android:weightSum="1">
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="0dp"
+            android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.25"
+            android:padding="10dp"
+            android:scaleType="centerInside"
             app:srcCompat="@drawable/logo" />
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.75"
+            android:layout_weight="0"
+            android:gravity="bottom|left"
             android:text="Carlife Accessories"
-            android:textAlignment="center"
+            android:textColor="#FFFFFF"
             android:textSize="30sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -60,8 +78,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.8"
+        android:layout_height="match_parent"
         android:background="#FFFFFF"
         android:orientation="vertical">
 

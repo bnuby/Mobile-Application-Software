@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:windowSoftInputMode="adjustNothing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,7 +23,12 @@
         <activity android:name=".View.LoginActivity" />
         <activity android:name=".View.AccountManageActivity" />
         <activity android:name=".View.ProductDetailActivity" />
-        <activity android:name=".View.OrderDetailActivity"></activity>
+        <activity android:name=".View.OrderDetailActivity"/>
+        <activity android:name=".View.CategoryActivity"/>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

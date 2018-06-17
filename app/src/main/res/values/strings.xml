@@ -15,6 +15,16 @@
     <string name="you_are_not_login">You Are Not Login!</string>
     <!--Login Page-->
 
+    <!--Search Bar-->
+    <string name="searchbar_text">Search Products</string>
+    <!--Search Bar-->
+
+    <!--Category Page-->
+    <string name="product_type">Product Type</string>
+    <string name="product_brand">Product Brand</string>
+    <!--Category Page-->
+
+
     <string name="more">more</string>
     <dimen name="a">20dp</dimen>
 

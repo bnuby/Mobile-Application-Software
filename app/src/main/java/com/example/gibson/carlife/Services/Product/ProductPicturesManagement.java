@@ -65,7 +65,7 @@ public class ProductPicturesManagement extends RequestManager {
               @Override
               public void onResponse(Bitmap response) {
                 ProductDetailActivity.addImage(response);
-                DataManagement.getProducts().get(id).addImgToImgs(response);
+                DataManagement.getProductsById(id).addImgToImgs(response);
               }
             },
             0,
@@ -108,7 +108,6 @@ public class ProductPicturesManagement extends RequestManager {
     );
     MainActivity.volleyQueue.add(request);
   }
-
 }
 
 

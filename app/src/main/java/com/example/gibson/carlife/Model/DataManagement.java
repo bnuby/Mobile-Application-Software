@@ -27,8 +27,14 @@ public class DataManagement {
   public static ArrayList<Product> getProducts(int numberOfItem) {
     if (products == null)
       products = new ArrayList<>();
-
     return (ArrayList<Product>) getNumberOfArrayList(products, numberOfItem);
+  }
+
+  public static Product getProductsById(int id) {
+    for(Product product: products)
+      if (product.id == id)
+        return product;
+    return null;
   }
 
   public static ArrayList<ProductBrand> getProductBrands() {

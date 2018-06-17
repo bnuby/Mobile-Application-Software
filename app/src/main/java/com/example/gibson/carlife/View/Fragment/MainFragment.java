@@ -13,7 +13,6 @@ import com.example.gibson.carlife.R;
 
 public class MainFragment extends Fragment {
 
-  Button searchBtn;
   MainShopFragment mainShopFragment;
   SearchResultFragment searchResultFragment;
   boolean isChange = false;
@@ -26,37 +25,37 @@ public class MainFragment extends Fragment {
     mainShopFragment = new MainShopFragment();
     getFragmentManager().beginTransaction().add(R.id.linearLayout, mainShopFragment).addToBackStack(null).commit();
 
-    searchBtn = v.findViewById(R.id.searchBtn);
-    searchBtn.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        Toast.makeText(getContext(), "asdas", Toast.LENGTH_LONG).show();
-//                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-//                transaction.add(R.id.mainshopLL, new SearchResultFragment());
-//                transaction.commit();
-
-        // Second run conditional
-        if (isChange) {
-
-          // Hide Search Result Fragment and Show main Shop Fragment
-//                    getFragmentManager().beginTransaction().hide(searchResultFragment);
-//                    getFragmentManager().beginTransaction().show(mainShopFragment);
-          getFragmentManager().beginTransaction().replace(R.id.linearLayout, mainShopFragment).commit();
-
-        } else {
-          // Hide main Shop Fragmen  and Show Search Result Fragment
-//                    getFragmentManager().beginTransaction().hide(mainShopFragment);
-          if (searchResultFragment == null)
-            searchResultFragment = new SearchResultFragment();
-//                        getFragmentManager().beginTransaction().add(R.id.linearLayout, searchResultFragment).addToBackStack(null).commit();
-//                    } else {
-//                        getFragmentManager().beginTransaction().show(searchResultFragment);
-//                    }
-          getFragmentManager().beginTransaction().replace(R.id.linearLayout, searchResultFragment).commit();
-        }
-        isChange = !isChange;
-      }
-    });
+//    searchBtn = v.findViewById(R.id.searchBtn);
+//    searchBtn.setOnClickListener(new View.OnClickListener() {
+//      @Override
+//      public void onClick(View view) {
+//        Toast.makeText(getContext(), "asdas", Toast.LENGTH_LONG).show();
+////                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+////                transaction.add(R.id.mainshopLL, new SearchResultFragment());
+////                transaction.commit();
+//
+//        // Second run conditional
+//        if (isChange) {
+//
+//          // Hide Search Result Fragment and Show main Shop Fragment
+////                    getFragmentManager().beginTransaction().hide(searchResultFragment);
+////                    getFragmentManager().beginTransaction().show(mainShopFragment);
+//          getFragmentManager().beginTransaction().replace(R.id.linearLayout, mainShopFragment).commit();
+//
+//        } else {
+//          // Hide main Shop Fragmen  and Show Search Result Fragment
+////                    getFragmentManager().beginTransaction().hide(mainShopFragment);
+//          if (searchResultFragment == null)
+//            searchResultFragment = new SearchResultFragment();
+////                        getFragmentManager().beginTransaction().add(R.id.linearLayout, searchResultFragment).addToBackStack(null).commit();
+////                    } else {
+////                        getFragmentManager().beginTransaction().show(searchResultFragment);
+////                    }
+//          getFragmentManager().beginTransaction().replace(R.id.linearLayout, searchResultFragment).commit();
+//        }
+//        isChange = !isChange;
+//      }
+//    });
     return v;
   }
 }
