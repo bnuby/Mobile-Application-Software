@@ -58,7 +58,7 @@ public class DataManagement {
 
   static ArrayList getNumberOfArrayList(ArrayList list, int number) {
     ArrayList arrayList = new ArrayList();
-    for (int i = 0; i < number; i++) {
+    for (int i = 0; i < list.size() &&  i < number; i++) {
       arrayList.add(list.get(i));
     }
     return arrayList;

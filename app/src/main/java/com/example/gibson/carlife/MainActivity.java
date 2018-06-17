@@ -73,7 +73,6 @@ public class MainActivity extends CustomActivity {
       tabLayout.getTabAt(i).setIcon(IconResID[i]);
     }
     init_queue();
-
     mPreferences = getSharedPreferences(mSharedPrefFile, MODE_PRIVATE);
     userObj.username = mPreferences.getString("username", "");
     userObj.password = mPreferences.getString("password", "");
