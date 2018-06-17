@@ -30,8 +30,7 @@ public class OrderFragment extends Fragment {
 //        albumlist.add(p);
 //        Product p = new Product("二手破mac","啟聖女用機",1.0);
     ProductListViewAdapter adapter =
-            new ProductListViewAdapter(getContext(), albumlist, R.layout.recyclelayout);
-
+            new ProductListViewAdapter(getContext(), albumlist, R.layout.listview1);
     listView = view.findViewById(R.id.orderlist);
     listView.setAdapter(adapter);
 

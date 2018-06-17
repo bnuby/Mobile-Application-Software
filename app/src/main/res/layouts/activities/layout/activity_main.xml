@@ -22,11 +22,12 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewPager">
+        app:layout_constraintTop_toBottomOf="@+id/viewPager"
+        android:background="#780F0F"
+        >
 
     </android.support.design.widget.TabLayout>
 
