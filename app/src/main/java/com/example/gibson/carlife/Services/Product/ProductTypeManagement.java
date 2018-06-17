@@ -9,9 +9,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.gibson.carlife.MainActivity;
-import com.example.gibson.carlife.Model.Product;
-import com.example.gibson.carlife.Model.ProductBrand;
-import com.example.gibson.carlife.Model.ProductType;
+import com.example.gibson.carlife.Model.Product.ProductType;
 import com.example.gibson.carlife.Services.RequestManager;
 import com.example.gibson.carlife.View.Fragment.MainShopFragment;
 
@@ -74,11 +72,11 @@ public class ProductTypeManagement extends RequestManager  {
               public void onResponse(Bitmap response) {
                   Log.i("TYPEIMG", "onResponse: suu");
                   MainActivity.productTypes.get(position).setImg(response);
-                  MainShopFragment.reloadGridView1();
+                  MainShopFragment.reloadTypeGV();
               }
             },
-            64,
-            64,
+            0,
+            0,
             ImageView.ScaleType.FIT_CENTER,
             Bitmap.Config.RGB_565,
             new Response.ErrorListener() {

@@ -12,11 +12,10 @@ import android.widget.Toast;
 
 import com.example.gibson.carlife.Adapters.ImagePagerAdapter;
 import com.example.gibson.carlife.MainActivity;
-import com.example.gibson.carlife.Model.Product;
+import com.example.gibson.carlife.Model.Product.Product;
 import com.example.gibson.carlife.R;
 import com.example.gibson.carlife.Services.Product.ProductPicturesManagement;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 

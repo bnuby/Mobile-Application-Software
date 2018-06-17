@@ -9,8 +9,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.gibson.carlife.MainActivity;
-import com.example.gibson.carlife.Model.ProductBrand;
+import com.example.gibson.carlife.Model.Product.ProductBrand;
 import com.example.gibson.carlife.Services.RequestManager;
+import com.example.gibson.carlife.View.Fragment.MainShopFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,7 +20,7 @@ import org.json.JSONObject;
 public class ProductBrandManagement extends RequestManager {
     public static void requestProductBrand() {
         final String url = host + "/product_brand";
-        MainActivity.showLoading("Loading");
+//        MainActivity.showLoading("Loading");
         StringRequest request = new StringRequest(
                 url,
                 new Response.Listener<String>() {
@@ -71,11 +72,11 @@ public class ProductBrandManagement extends RequestManager {
                     @Override
                     public void onResponse(Bitmap response) {
                         MainActivity.productbrands.get(i).setImg(response);
-
+                        MainShopFragment.reloadBrandGV();
                     }
                 },
-                64,
-                64,
+                0,
+                100,
                 ImageView.ScaleType.FIT_CENTER,
                 Bitmap.Config.RGB_565,
                 new Response.ErrorListener() {

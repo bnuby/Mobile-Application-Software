@@ -10,7 +10,7 @@ import android.widget.ListView;
 import android.widget.Switch;
 
 import com.example.gibson.carlife.Adapters.ProductListViewAdapter;
-import com.example.gibson.carlife.Model.Product;
+import com.example.gibson.carlife.Model.Product.Product;
 import com.example.gibson.carlife.R;
 
 import java.util.ArrayList;

@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.gibson.carlife.Model.Product;
+import com.example.gibson.carlife.Model.Product.Product;
 import com.example.gibson.carlife.R;
 
 import java.util.ArrayList;

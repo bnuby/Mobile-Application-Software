@@ -95,8 +95,8 @@ public class ProductPicturesManagement extends RequestManager {
                         ProductDetailActivity.addImage(response);
                     }
                 },
-                200,
-                250,
+                0,
+                0,
                 ImageView.ScaleType.FIT_CENTER,
                 Bitmap.Config.RGB_565,
                 new Response.ErrorListener() {

@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 
 import com.example.gibson.carlife.MainActivity;
-import com.example.gibson.carlife.Model.Product.ProductType;
+import com.example.gibson.carlife.Model.Product.ProductBrand;
 
 import java.util.ArrayList;
 
@@ -17,10 +17,10 @@ import java.util.ArrayList;
  * Created by user on 2018/5/13.
  */
 
-public class ClassficationGridViewAdapter extends ArrayAdapter<ProductType> {
+public class BrandGridViewAdapter extends ArrayAdapter<ProductBrand> {
     private Context mCtx;
 
-    public ClassficationGridViewAdapter(@NonNull Context context, @NonNull ArrayList<ProductType> objects) {
+    public BrandGridViewAdapter(@NonNull Context context, @NonNull ArrayList<ProductBrand> objects) {
         super(context, 0, objects);
         mCtx = context;
     }
@@ -32,7 +32,7 @@ public class ClassficationGridViewAdapter extends ArrayAdapter<ProductType> {
         ImageView iv = new ImageView(mCtx);
         iv.setMaxHeight(80 * TypedValue.COMPLEX_UNIT_SP);
         iv.setMinimumHeight(80 * TypedValue.COMPLEX_UNIT_SP);
-        ProductType item = MainActivity.productTypes.get(position);
+        ProductBrand item = MainActivity.productbrands.get(position);
         iv.setImageBitmap(item.image);
 //        int resid = getItem(position);
 //        iv.setImageResource(resid);

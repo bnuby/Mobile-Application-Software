@@ -16,9 +16,10 @@ import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.example.gibson.carlife.Abstract.CustomActivity;
-import com.example.gibson.carlife.Model.Product;
-import com.example.gibson.carlife.Model.ProductBrand;
-import com.example.gibson.carlife.Model.ProductType;
+import com.example.gibson.carlife.Model.Product.Product;
+import com.example.gibson.carlife.Model.Product.ProductBrand;
+import com.example.gibson.carlife.Model.Product.ProductType;
+import com.example.gibson.carlife.Services.Product.ProductBrandManagement;
 import com.example.gibson.carlife.Services.Product.ProductManagement;
 import com.example.gibson.carlife.Model.User;
 import com.example.gibson.carlife.Services.Product.ProductTypeManagement;
@@ -35,6 +36,7 @@ import java.util.ArrayList;
 public class MainActivity extends CustomActivity {
 
   public static ArrayList<Product> products;
+  public static  ArrayList<ProductBrand> productBrands;
   public static ArrayList<ProductBrand> productbrands;
   public static ArrayList<ProductType> productTypes;
   public static RequestQueue volleyQueue;
@@ -74,10 +76,12 @@ public class MainActivity extends CustomActivity {
 
 //    pager.onInterceptTouchEvent();
     products = new ArrayList<>();
+    productBrands =new ArrayList<>();
     productbrands = new ArrayList<>();
     productTypes = new ArrayList<>();
     ProductTypeManagement.requestProductType();
     ProductManagement.requestProduct();
+    ProductBrandManagement.requestProductBrand();
   }
 //  public static void change(Product item){
 //    Intent intent =new Intent(this,ProductDetailActivity.class);

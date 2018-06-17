@@ -10,9 +10,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import com.example.gibson.carlife.Adapters.BrandGridViewAdapter;
 import com.example.gibson.carlife.Adapters.ClassficationGridViewAdapter;
 import com.example.gibson.carlife.Adapters.ProductListViewAdapter;
 import com.example.gibson.carlife.MainActivity;
+import com.example.gibson.carlife.Model.Product.ProductType;
 import com.example.gibson.carlife.R;
 import com.example.gibson.carlife.View.ProductDetailActivity;
 
@@ -41,16 +43,30 @@ public class MainShopFragment extends Fragment {
         }
 
 //        ProductTypeManagement.requestProductType();
-        typeGridView = (GridView) view.findViewById(R.id.gvType);
+        typeGridView = (GridView) view.findViewById(R.id.TypeGV);
         typeGridView.setNumColumns(3);
 //        typeGridView.setAdapter(new ClassficationGridViewAdapter(getContext(), ids));
         typeGridView.setAdapter(new ClassficationGridViewAdapter(getContext(), MainActivity.productTypes));
+        typeGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                MainActivity.shortTost("To search : "+ MainActivity.productTypes.get(i).name);
+            }
+        });
 
+        brandGridView = (GridView) view.findViewById(R.id.BrandGV);
+        brandGridView.setNumColumns(5);
+        brandGridView.setAdapter(new BrandGridViewAdapter(getContext(), MainActivity.productbrands));
+        brandGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                MainActivity.shortTost("To search : "+ MainActivity.productbrands.get(i).name);
+            }
+        });
 
         ProductListViewAdapter adapter =
         new ProductListViewAdapter(getContext(), MainActivity.products,R.layout.listview2);
-
-        productGridView =(GridView)view.findViewById(R.id.gvProduct);
+        productGridView =(GridView)view.findViewById(R.id.gvProductGV);
         productGridView.setAdapter(adapter);
         productGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -64,12 +80,17 @@ public class MainShopFragment extends Fragment {
         return view;
     }
 
-    public static void reloadGridView1() {
+    public static void reloadTypeGV() {
         if(typeGridView != null)
             typeGridView.invalidateViews();
     }
 
-    public static void reloadGridView2() {
+    public static void reloadBrandGV() {
+        if(brandGridView != null)
+            brandGridView.invalidateViews();
+    }
+
+    public static void reloadProductGV() {
         if(productGridView != null)
             productGridView.invalidateViews();
     }

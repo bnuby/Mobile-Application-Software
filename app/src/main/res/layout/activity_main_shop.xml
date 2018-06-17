@@ -10,7 +10,7 @@
 
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/TypeTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#B40000"
@@ -20,7 +20,7 @@
         android:textSize="18sp" />
 
     <GridView
-        android:id="@+id/gvType"
+        android:id="@+id/TypeGV"
         android:layout_width="match_parent"
         android:layout_height="@dimen/mainShop_grid_type1_height"
         android:background="#5C5756"
@@ -29,7 +29,26 @@
     </GridView>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/BrandTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#B40000"
+        android:text="品牌"
+        android:textAlignment="viewStart"
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp" />
+
+    <GridView
+        android:id="@+id/BrandGV"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mainShop_grid_type1_height"
+        android:background="#5C5756"
+        android:numColumns="3">
+
+    </GridView>
+
+    <TextView
+        android:id="@+id/HotTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#B40000"
@@ -39,9 +58,10 @@
 
 
     <GridView
-        android:id="@+id/gvProduct"
+        android:id="@+id/gvProductGV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#5C5756"
         android:numColumns="2" />
+
 </LinearLayout>
