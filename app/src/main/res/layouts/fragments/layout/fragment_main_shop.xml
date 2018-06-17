@@ -1,133 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainshopLL"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-
-                        <TextView
-                            android:id="@+id/TypeTV"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/brightred"
-                            android:paddingLeft="5dp"
-                            android:text="商品類型"
-                            android:textAlignment="viewStart"
-                            android:textColor="@android:color/background_light"
-                            android:textSize="18sp" />
-
-                        <HorizontalScrollView
-                            android:layout_width="match_parent"
-                            android:layout_height="100dp"
-                            android:fillViewport="true">
-
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="100dp"
-                                    android:orientation="vertical">
-
-                                        <GridView
-                                            android:id="@+id/TypeGV"
-                                            android:layout_width="500dp"
-                                            android:layout_height="100dp"
-                                            android:background="#333333"
-                                            android:horizontalSpacing="20dp"
-                                            android:numColumns="0"
-                                            android:paddingBottom="10dp"
-                                            android:paddingLeft="10dp"
-                                            android:paddingRight="10dp"
-                                            android:paddingTop="10dp"
-                                            android:scrollIndicators="none"
-                                            android:scrollbars="none">
-
-                                        </GridView>
-                                </LinearLayout>
-                        </HorizontalScrollView>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="15dp"
-                            android:background="@color/gray"
-                            android:paddingLeft="5dp" />
-
-                        <TextView
-                            android:id="@+id/BrandTV"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/brightred"
-                            android:paddingLeft="5dp"
-                            android:text="品牌"
-                            android:textAlignment="viewStart"
-                            android:textColor="@android:color/background_light"
-                            android:textSize="18sp" />
-
-                        <HorizontalScrollView
-                            android:layout_width="match_parent"
-                            android:layout_height="100dp">
-
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="100dp"
-                                    android:orientation="vertical">
-
-                                        <GridView
-                                            android:id="@+id/BrandGV"
-                                            android:layout_width="700dp"
-                                            android:layout_height="100dp"
-                                            android:background="#333333"
-                                            android:horizontalSpacing="20dp"
-                                            android:numColumns="3"
-                                            android:paddingBottom="10dp"
-                                            android:paddingLeft="10dp"
-                                            android:paddingRight="10dp"
-                                            android:paddingTop="10dp"
-                                            android:scrollIndicators="none"
-                                            android:scrollbars="none">
-
-                                        </GridView>
-                                </LinearLayout>
-                        </HorizontalScrollView>
-
-                </LinearLayout>
-        </ScrollView>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:background="@color/gray"/>
-
-        <TextView
-            android:id="@+id/HotTV"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/brightred"
-            android:text="熱銷商品"
-            android:textAlignment="center"
-            android:textColor="@android:color/background_light"
-            android:textSize="18sp" />
+            android:orientation="vertical">
 
 
-        <GridView
-            android:id="@+id/gvProductGV"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/brightred"
-            android:horizontalSpacing="15dp"
-            android:numColumns="2"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:verticalSpacing="15dp" />
+            <TextView
+                android:id="@+id/TypeTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/brightred"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:text="@string/product_type"
+                android:textAlignment="viewStart"
+                android:textColor="@android:color/background_light"
+                android:textSize="14sp" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:fillViewport="true">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:background="@color/black"
+                    android:orientation="vertical">
+
+                    <GridView
+                        android:id="@+id/TypeGV"
+                        android:layout_width="500dp"
+                        android:layout_height="100dp"
+                        android:background="@color/black"
+                        android:horizontalSpacing="20dp"
+                        android:numColumns="0"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="10dp"
+                        android:scrollIndicators="none"
+                        android:scrollbars="none">
+
+                    </GridView>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:background="@color/gray"
+                android:paddingLeft="5dp" />
+
+            <TextView
+                android:id="@+id/BrandTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/brightred"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:text="@string/car_brand"
+                android:textAlignment="viewStart"
+                android:textColor="@android:color/background_light"
+                android:textSize="14sp" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:background="@color/black"
+                    android:orientation="vertical">
+
+                    <GridView
+                        android:id="@+id/BrandGV"
+                        android:layout_width="700dp"
+                        android:layout_height="100dp"
+                        android:background="@color/black"
+                        android:horizontalSpacing="20dp"
+                        android:numColumns="3"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="10dp"
+                        android:scrollIndicators="none"
+                        android:scrollbars="none">
+
+                    </GridView>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="@color/gray" />
+
+            <TextView
+                android:id="@+id/HotTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/brightred"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="@string/most_popular"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_light"
+                android:textSize="16sp" />
+
+
+            <GridView
+                android:id="@+id/gvProductGV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/brightred"
+                android:horizontalSpacing="15dp"
+                android:numColumns="2"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:verticalSpacing="15dp" />
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>

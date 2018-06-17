@@ -1,23 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/darkred"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/backBtn"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/source_sans_pro_bold"
+            android:text="Back"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/titleTV"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:fontFamily="@font/allerta"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/backBtn2"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/source_sans_pro_bold"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp">
+        android:layout_height="50dp"
+        android:background="@color/darkred">
 
-        <ToggleButton
-            android:id="@+id/toggleButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ToggleButton"
-            tools:layout_editor_absoluteX="285dp"
-            tools:layout_editor_absoluteY="1dp" />
+        <LinearLayout
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/gridViewBtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:background="@drawable/gridview_enable" />
+
+            <Button
+                android:id="@+id/listViewBtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:background="@drawable/listview_disable" />
+
+        </LinearLayout>
+
     </android.support.constraint.ConstraintLayout>
 
-    <ListView
+    <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_weight="0.5"
+        android:background="@color/gray"
+        tools:layout_editor_absoluteX="337dp"
+        tools:layout_editor_absoluteY="8dp">
+
+    </FrameLayout>
+
 </LinearLayout>

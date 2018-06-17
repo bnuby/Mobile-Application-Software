@@ -10,6 +10,10 @@
     <string name="error">Please Check Your Network Connection.\nTry Again</string>
     <string name="total_price">Total Price : </string>
 
+    <!--Main Page-->
+    <string name="car_brand">Car Brand</string>
+    <string name="most_popular">Most Popular</string>
+    <!--Main Page-->
 
     <!--Login Page-->
     <string name="you_are_not_login">You Are Not Login!</string>
@@ -24,8 +28,12 @@
     <string name="product_brand">Product Brand</string>
     <!--Category Page-->
 
-
     <string name="more">more</string>
     <dimen name="a">20dp</dimen>
+
+    <!--Unit Price-->
+    <string name="taiwan">NTD</string>
+    <!--Unit Price-->
+
 
 </resources>

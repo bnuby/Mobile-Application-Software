@@ -53,7 +53,7 @@ public class AccountManageActivity extends CustomActivity implements View.OnClic
     switch (view.getId()) {
       case R.id.confirm_BTN:
         Toast.makeText(view.getContext(), "Confirm", Toast.LENGTH_SHORT).show();
-        // Intent intent=new Intent(AccountManageActivity.this,AccountFragment.class);
+        //  Intent intent=new Intent(AccountManageActivity.this,AccountFragment.class);
         //  need to update the information of user in server
         //  haven do
         //  back to Account Fragment.java

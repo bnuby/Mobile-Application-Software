@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.widget.Button;
 
 import com.android.volley.Cache;
 import com.android.volley.Network;
@@ -81,9 +82,6 @@ public class MainActivity extends CustomActivity {
     if (!MainActivity.userObj.username.equals("") && !MainActivity.userObj.password.equals("")) {
       UserManagement.requestLogin(userObj.username, userObj.password, false);
     }
-//    ProductTypeManagement.requestProductType();
-//    ProductManagement.requestProduct();
-//    ProductBrandManagement.requestProductBrand();
 
     initializeDataManagement();
   }

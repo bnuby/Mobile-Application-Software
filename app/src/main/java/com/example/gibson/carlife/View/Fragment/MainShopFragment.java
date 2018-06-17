@@ -1,6 +1,5 @@
 package com.example.gibson.carlife.View.Fragment;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -11,7 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.GridLayout;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.GridView;
 
 import com.example.gibson.carlife.Adapters.BrandGridViewAdapter;
@@ -24,6 +24,7 @@ import com.example.gibson.carlife.Model.Product.ProductBrand;
 import com.example.gibson.carlife.Model.Product.ProductType;
 import com.example.gibson.carlife.R;
 import com.example.gibson.carlife.View.CategoryActivity;
+import com.example.gibson.carlife.View.ProductCategoryActivity;
 import com.example.gibson.carlife.View.ProductDetailActivity;
 
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class MainShopFragment extends Fragment {
   public static GridView typeGridView;
   public static GridView brandGridView;
   public static GridView productGridView;
+
 
   public static void reloadTypeGV() {
     if (typeGridView != null)
@@ -60,16 +62,12 @@ public class MainShopFragment extends Fragment {
   public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_main_shop, container, false);
 
-    Log.v("Create", "View");
-    typeGridView = (GridView) view.findViewById(R.id.TypeGV);
 
+    // Define type Grid View
+    typeGridView = view.findViewById(R.id.TypeGV);
     ViewGroup.LayoutParams params = typeGridView.getLayoutParams();
     float dp = Resources.getSystem().getDisplayMetrics().density;
-    typeGridView.setLayoutParams(params);
-//    typeGridView.setLayoutParams(new GridLayout.LayoutParams());
-
     final ArrayList<ProductType> productTypes = DataManagement.getProductTypes();
-
     final TypeGridViewAdapter adapter = new TypeGridViewAdapter(getContext(), productTypes, 7);
     typeGridView.setAdapter(adapter);
     typeGridView.setNumColumns(adapter.getTotalCount());
@@ -78,19 +76,21 @@ public class MainShopFragment extends Fragment {
       @Override
       public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         MainActivity.shortTost("To search : " + productTypes.get(i).name);
+        String type = "type";
         if(i == adapter.getCount() - 1) {
           Intent intent = new Intent(getContext(), CategoryActivity.class);
-          intent.putExtra("type", "type");
+          intent.putExtra("type", type);
           startActivity(intent);
+        } else {
+          ProductCategoryActivity.changeActivity(getContext(), type, productTypes.get(i).name);
         }
       }
     });
 
+    // Define brand Grid View
     final ArrayList<ProductBrand> productBrands = DataManagement.getProductBrands();
-
     brandGridView = (GridView) view.findViewById(R.id.BrandGV);
     params = brandGridView.getLayoutParams();
-
     final BrandGridViewAdapter adapter2 = new BrandGridViewAdapter(getContext(), productBrands, 7);
     params.width = (int)(dp * 100 * adapter2.getTotalCount());
     brandGridView.setNumColumns(adapter2.getTotalCount());
@@ -98,20 +98,21 @@ public class MainShopFragment extends Fragment {
     brandGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
       @Override
       public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        MainActivity.shortTost("To search : " + productBrands.get(i).name);
-
+        String type = "brand";
         if(i == adapter2.getCount()-1) {
           Intent intent = new Intent(getContext(), CategoryActivity.class);
-          intent.putExtra("type", "brand");
+          intent.putExtra("type", type);
           startActivity(intent);
+        } else {
+          ProductCategoryActivity.changeActivity(getContext(), type, productBrands.get(i).name);
         }
       }
     });
 
+    // Define Hottest Product Grid View
     final ArrayList<Product> products = DataManagement.getProducts();
-
     ProductListViewAdapter adapter3 =
-            new ProductListViewAdapter(getContext(), products, R.layout.listview2);
+            new ProductListViewAdapter(getContext(), products, R.layout.gridview_item);
     productGridView = (GridView) view.findViewById(R.id.gvProductGV);
     productGridView.setAdapter(adapter3);
     productGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -123,6 +124,8 @@ public class MainShopFragment extends Fragment {
         startActivity(intent);
       }
     });
+
+
     return view;
   }
 

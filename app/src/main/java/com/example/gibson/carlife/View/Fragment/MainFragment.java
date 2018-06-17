@@ -6,24 +6,34 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.gibson.carlife.R;
 
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment implements View.OnClickListener {
 
   MainShopFragment mainShopFragment;
   SearchResultFragment searchResultFragment;
   boolean isChange = false;
+  AutoCompleteTextView searchBar;
+  Button clearBtn;
 
   @Nullable
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    View v = inflater.inflate(R.layout.fragment_main, container, false);
+    View view = inflater.inflate(R.layout.fragment_main, container, false);
 
     mainShopFragment = new MainShopFragment();
     getFragmentManager().beginTransaction().add(R.id.linearLayout, mainShopFragment).addToBackStack(null).commit();
+
+
+    clearBtn = view.findViewById(R.id.clearBtn);
+    searchBar = view.findViewById(R.id.searchBar);
+
+    clearBtn.setOnClickListener(this);
+
 
 //    searchBtn = v.findViewById(R.id.searchBtn);
 //    searchBtn.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +66,15 @@ public class MainFragment extends Fragment {
 //        isChange = !isChange;
 //      }
 //    });
-    return v;
+    return view;
+  }
+
+  @Override
+  public void onClick(View v) {
+    switch (v.getId()) {
+      case R.id.clearBtn:
+        searchBar.getText().clear();
+        break;
+    }
   }
 }

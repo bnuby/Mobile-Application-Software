@@ -15,7 +15,7 @@
         android:weightSum="1">
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/clearBtn"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginEnd="16dp"
@@ -23,11 +23,11 @@
             android:background="@drawable/clear_button"
             android:text="X"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/autoCompleteTextView"
+            app:layout_constraintEnd_toEndOf="@+id/searchBar"
             app:layout_constraintTop_toTopOf="parent" />
 
         <AutoCompleteTextView
-            android:id="@+id/autoCompleteTextView"
+            android:id="@+id/searchBar"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="10dp"

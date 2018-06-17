@@ -1,6 +1,7 @@
 package com.example.gibson.carlife.View;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -25,13 +26,14 @@ public class CategoryActivity extends AppCompatActivity implements AdapterView.O
   ListView categoryLV;
   TextView titleTV;
   Button backBtn;
+  String type;
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_category);
 
-    String type = getIntent().getStringExtra("type");
+    type = getIntent().getStringExtra("type");
     CategoryAdapter adapter;
 
     categoryLV = findViewById(R.id.categoryLV);
@@ -60,10 +62,25 @@ public class CategoryActivity extends AppCompatActivity implements AdapterView.O
   @Override
   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
     String type = getIntent().getStringExtra("type");
-    if(type.equalsIgnoreCase("brand"))
+    String name;
+    Intent intent = new Intent(this, ProductCategoryActivity.class);
+    intent.putExtra("type", type);
+    if(type.equalsIgnoreCase("brand")) {
       Toast.makeText(this, ((ProductBrand)parent.getAdapter().getItem(position)).name, Toast.LENGTH_SHORT).show();
-    else
+      ProductBrand brand = (ProductBrand) parent.getAdapter().getItem(position);
+      name = brand.name;
+    }
+    else {
       Toast.makeText(this, ((ProductType)parent.getAdapter().getItem(position)).name, Toast.LENGTH_SHORT).show();
+      ProductType productType = (ProductType) parent.getAdapter().getItem(position);
+      name = productType.name;
+    }
+    ProductCategoryActivity.changeActivity(this, type, name);
+  }
 
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    finish();
+    super.onActivityResult(requestCode, resultCode, data);
   }
 }
