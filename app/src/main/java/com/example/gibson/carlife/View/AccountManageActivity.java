@@ -44,11 +44,7 @@ public class AccountManageActivity extends CustomActivity implements View.OnClic
       phone_ET.setText(MainActivity.userObj.phone);
       address_ET.setText(MainActivity.userObj.address);
     }
-    Log.i("confirm", email);
-    phone = phone_ET.getText().toString();
-    Log.i("confirm", phone);
-    address = address_ET.getText().toString();
-    Log.i("confirm", address);
+
 
     //confirm button definition
     confirm_BTN = findViewById(R.id.confirm_BTN);
@@ -59,13 +55,23 @@ public class AccountManageActivity extends CustomActivity implements View.OnClic
   public void onClick(View view) {
     switch (view.getId()) {
       case R.id.confirm_BTN:
-        Toast.makeText(view.getContext(), "Confirm", Toast.LENGTH_SHORT).show();
         // Intent intent=new Intent(AccountManageActivity.this,AccountFragment.class);
         //  need to update the information of user in server
         //  haven do
         //  back to Account Fragment.java
         finish();
         //startActivity(intent);
+        String newaddress =address_ET.getText().toString();
+        String oriAddress = MainActivity.userObj.address;
+        if(!oriAddress.equals(newaddress)){
+          if(!MainActivity.userObj.address.equals("")){
+            UserManagement.updateAddress(newaddress);
+          }
+          else {
+
+          }
+        }
+
         break;
       default:
         Toast.makeText(this, "default run", Toast.LENGTH_SHORT).show();
