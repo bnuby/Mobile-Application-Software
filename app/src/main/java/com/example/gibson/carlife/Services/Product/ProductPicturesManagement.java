@@ -93,7 +93,7 @@ public class ProductPicturesManagement extends RequestManager {
               @Override
               public void onResponse(Bitmap response) {
                 ProductDetailActivity.addImage(response);
-                DataManagement.getProducts().get(id).addImgToImgs(response);
+//                DataManagement.getProducts().get(id).addImgToImgs(response);
               }
             },
             0,

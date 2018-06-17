@@ -13,8 +13,9 @@
 
     <!--Login Page-->
     <string name="you_are_not_login">You Are Not Login!</string>
-
     <!--Login Page-->
+
+    <string name="more">more</string>
     <dimen name="a">20dp</dimen>
 
 </resources>

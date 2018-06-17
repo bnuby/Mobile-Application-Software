@@ -40,10 +40,11 @@ public class MainActivity extends CustomActivity {
   public static SharedPreferences mPreferences;
   public static User userObj = new User();
   public static Fragment[] fragments = {new MainFragment(), new ShopCartFragment(), new OrderFragment(), new AccountFragment()};
+  private int[] IconResID = {R.drawable.home, R.drawable.shoppingcart, R.drawable.order, R.drawable.account};
+
   ViewPager pager;
   CustomAdapter adapter;
   TabLayout tabLayout;
-  private int[] IconResID = {R.drawable.home, R.drawable.shoppingcart, R.drawable.order, R.drawable.account};
 
   public static Context getContext() {
     return mContext;
@@ -80,9 +81,9 @@ public class MainActivity extends CustomActivity {
     if (!MainActivity.userObj.username.equals("") && !MainActivity.userObj.password.equals("")) {
       UserManagement.requestLogin(userObj.username, userObj.password, false);
     }
-    ProductTypeManagement.requestProductType();
-    ProductManagement.requestProduct();
-    ProductBrandManagement.requestProductBrand();
+//    ProductTypeManagement.requestProductType();
+//    ProductManagement.requestProduct();
+//    ProductBrandManagement.requestProductBrand();
 
     initializeDataManagement();
   }
@@ -99,8 +100,8 @@ public class MainActivity extends CustomActivity {
   }
 
   public void initializeDataManagement() {
-    ProductTypeManagement.requestProductType();
-    ProductBrandManagement.requestProductBrand();
+    ProductTypeManagement.requestProductType(this);
+    ProductBrandManagement.requestProductBrand(this);
     ProductManagement.requestProduct();
     OrderManagement.requestOrder();
   }

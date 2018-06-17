@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -42,13 +43,19 @@ public class ProductDetailActivity extends AppCompatActivity {
     Product item = DataManagement.getProducts().get(position);
 //        Product item = (Product) getIntent().getSerializableExtra("product");
     viewPager = (ViewPager) findViewById(R.id.productImgs_viewPager);
+    TextView type = findViewById(R.id.typeTV);
+    TextView quanitlty  = findViewById(R.id.quanitltyTV);
     TextView title = findViewById(R.id.titleTV);
     TextView intro = findViewById(R.id.introTV);
     TextView price = findViewById(R.id.priceTV);
     Button buy = findViewById(R.id.buy);
     Button cart = findViewById(R.id.cart);
     images = new ArrayList<>();
-
+    if(item.product_type!=null)
+      type.setText(item.product_type);
+    else
+      type.setText("Null");
+    quanitlty.setText(""+item.quantity);
     title.setText(item.name);
     price.setText("NT:" + item.cost_price);
     intro.setText(item.description);

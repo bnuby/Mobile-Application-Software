@@ -6,4 +6,6 @@
     <color name="graybackground">#828282</color>
     <color name="background">#9C1016</color>
     <color name="brightred">#9C1016</color>
+    <color name="white">#FFFFFF</color>
+    <color name="dark_green">#14663a</color>
 </resources>
