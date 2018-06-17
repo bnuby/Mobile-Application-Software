@@ -40,10 +40,11 @@ public class MainActivity extends CustomActivity {
   public static SharedPreferences mPreferences;
   public static User userObj = new User();
   public static Fragment[] fragments = {new MainFragment(), new ShopCartFragment(), new OrderFragment(), new AccountFragment()};
+  private int[] IconResID = {R.drawable.home, R.drawable.shoppingcart, R.drawable.order, R.drawable.account};
+
   ViewPager pager;
   CustomAdapter adapter;
   TabLayout tabLayout;
-  private int[] IconResID = {R.drawable.home, R.drawable.shoppingcart, R.drawable.order, R.drawable.account};
 
   public static Context getContext() {
     return mContext;
