@@ -37,7 +37,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
     @Override
     public RecycleAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recyclelayout, parent, false);
+                .inflate(R.layout.listview1, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }

@@ -32,7 +32,7 @@ public class ShopCartFragment extends Fragment {
 //        albumlist.add(new Product("班表小幫手","測試用",2.0));
 
         ProductListViewAdapter adapter =
-                new ProductListViewAdapter(getContext(), albumlist,R.layout.recyclelayout);
+                new ProductListViewAdapter(getContext(), albumlist,R.layout.listview1);
 
         listView = view.findViewById(R.id.carlist);
         listView.setAdapter(adapter);
