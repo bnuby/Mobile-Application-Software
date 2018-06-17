@@ -1,6 +1,8 @@
 package com.example.gibson.carlife.Services.Product;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -11,6 +13,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.gibson.carlife.MainActivity;
 import com.example.gibson.carlife.Model.DataManagement;
 import com.example.gibson.carlife.Model.Product.ProductBrand;
+import com.example.gibson.carlife.R;
 import com.example.gibson.carlife.Services.RequestManager;
 import com.example.gibson.carlife.View.Fragment.MainShopFragment;
 
@@ -21,7 +24,7 @@ import org.json.JSONObject;
 public class ProductBrandManagement extends RequestManager {
   public static String TAG = "ProductbrandManagement";
 
-  public static void requestProductBrand() {
+  public static void requestProductBrand(final Context mCtx) {
     final String url = host + "/product_brand";
     StringRequest request = new StringRequest(
             url,
@@ -41,8 +44,10 @@ public class ProductBrandManagement extends RequestManager {
                                     object.getInt("grade"),
                                     object.getString("name"),
                                     object.getString("created_at"),
-                                    object.getString("updated_at")
+                                    object.getString("updated_at"),
+                                    BitmapFactory.decodeResource(mCtx.getResources() ,R.drawable.default_image)
                             ));
+                    MainShopFragment.reloadBrandGV();
                     getImage(id, i);
                   }
 

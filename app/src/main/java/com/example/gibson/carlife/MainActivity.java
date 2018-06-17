@@ -80,9 +80,9 @@ public class MainActivity extends CustomActivity {
     if (!MainActivity.userObj.username.equals("") && !MainActivity.userObj.password.equals("")) {
       UserManagement.requestLogin(userObj.username, userObj.password, false);
     }
-    ProductTypeManagement.requestProductType();
-    ProductManagement.requestProduct();
-    ProductBrandManagement.requestProductBrand();
+//    ProductTypeManagement.requestProductType();
+//    ProductManagement.requestProduct();
+//    ProductBrandManagement.requestProductBrand();
 
     initializeDataManagement();
   }
@@ -99,8 +99,8 @@ public class MainActivity extends CustomActivity {
   }
 
   public void initializeDataManagement() {
-    ProductTypeManagement.requestProductType();
-    ProductBrandManagement.requestProductBrand();
+    ProductTypeManagement.requestProductType(this);
+    ProductBrandManagement.requestProductBrand(this);
     ProductManagement.requestProduct();
     OrderManagement.requestOrder();
   }

@@ -5,4 +5,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="background">#910000</color>
     <color name="brightred">#B40000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="dark_green">#14663a</color>
 </resources>

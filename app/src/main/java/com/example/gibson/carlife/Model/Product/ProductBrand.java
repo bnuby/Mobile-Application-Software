@@ -18,6 +18,15 @@ public class ProductBrand {
     this.updated_at = updated_at;
   }
 
+  public ProductBrand(int id, int grade, String name, String created_at, String updated_at, Bitmap bitmap) {
+    this.id = id;
+    this.grade = grade;
+    this.name = name;
+    this.created_at = created_at;
+    this.updated_at = updated_at;
+    this.image = bitmap;
+  }
+
   public void setImg(Bitmap image) {
     this.image = image;
   }

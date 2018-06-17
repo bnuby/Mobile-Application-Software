@@ -1,6 +1,8 @@
 package com.example.gibson.carlife.Services.Product;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -11,6 +13,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.gibson.carlife.MainActivity;
 import com.example.gibson.carlife.Model.DataManagement;
 import com.example.gibson.carlife.Model.Product.ProductType;
+import com.example.gibson.carlife.R;
 import com.example.gibson.carlife.Services.RequestManager;
 import com.example.gibson.carlife.View.Fragment.MainShopFragment;
 
@@ -22,7 +25,7 @@ public class ProductTypeManagement extends RequestManager {
 
   public static String TAG = "ProductTypeManagement";
 
-  public static void requestProductType() {
+  public static void requestProductType(final Context mCtx) {
     final String url = host + "/product_type";
 
 //    MainActivity.showLoading("Loading");
@@ -41,10 +44,11 @@ public class ProductTypeManagement extends RequestManager {
                     DataManagement.getProductTypes().add(
                             new ProductType(
                                     currentId,
-                                    object.getString("name")
+                                    object.getString("name"),
+                                    BitmapFactory.decodeResource(mCtx.getResources(), R.drawable.default_image)
                             ));
+                    MainShopFragment.reloadTypeGV();
                     getImage(i, currentId);
-
                   }
                 } catch (JSONException e) {
                   e.printStackTrace();
