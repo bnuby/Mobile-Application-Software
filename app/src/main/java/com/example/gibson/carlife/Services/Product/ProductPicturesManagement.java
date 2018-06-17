@@ -37,7 +37,7 @@ public class ProductPicturesManagement extends RequestManager {
                   for (int i = 0; i < array.length(); i++) {
                     JSONObject object = array.getJSONObject(i);
                     int curr_id = object.getInt("id");
-                    requestImageAndAddPicture(curr_id);
+                    requestImageAndAddPicture(curr_id, id);
                   }
                 } catch (JSONException e) {
                   e.printStackTrace();
@@ -50,6 +50,32 @@ public class ProductPicturesManagement extends RequestManager {
               public void onErrorResponse(VolleyError error) {
 
 //                        MainActivity.dismissLoading();
+              }
+            }
+    );
+    MainActivity.volleyQueue.add(request);
+  }
+
+  public static void requestImageAndAddPicture(int image_id, final int id) {
+    final String url = host + "/product_images/" + image_id;
+
+    ImageRequest request = new ImageRequest(
+            url,
+            new Response.Listener<Bitmap>() {
+              @Override
+              public void onResponse(Bitmap response) {
+                ProductDetailActivity.addImage(response);
+                DataManagement.getProducts().get(id).addImgToImgs(response);
+              }
+            },
+            0,
+            0,
+            ImageView.ScaleType.FIT_CENTER,
+            Bitmap.Config.RGB_565,
+            new Response.ErrorListener() {
+              @Override
+              public void onErrorResponse(VolleyError error) {
+                Log.i("onErrorResponse: ", "Fail to get img");
               }
             }
     );
@@ -77,33 +103,6 @@ public class ProductPicturesManagement extends RequestManager {
             new Response.ErrorListener() {
               @Override
               public void onErrorResponse(VolleyError error) {
-              }
-            }
-    );
-    MainActivity.volleyQueue.add(request);
-  }
-
-
-  public static void requestImageAndAddPicture(final int id) {
-    final String url = host + "/product_images/" + id;
-
-    ImageRequest request = new ImageRequest(
-            url,
-            new Response.Listener<Bitmap>() {
-              @Override
-              public void onResponse(Bitmap response) {
-                ProductDetailActivity.addImage(response);
-                DataManagement.getProducts().get(id).addImgToImgs(response);
-              }
-            },
-            0,
-            0,
-            ImageView.ScaleType.FIT_CENTER,
-            Bitmap.Config.RGB_565,
-            new Response.ErrorListener() {
-              @Override
-              public void onErrorResponse(VolleyError error) {
-                Log.i("onErrorResponse: ", "Fail to get img");
               }
             }
     );
