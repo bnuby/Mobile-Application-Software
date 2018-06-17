@@ -10,7 +10,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.gibson.carlife.Abstract.CustomActivity;
+import com.example.gibson.carlife.MainActivity;
 import com.example.gibson.carlife.R;
+import com.example.gibson.carlife.Services.UserManagement;
 
 public class AccountManageActivity extends CustomActivity implements View.OnClickListener {
 
@@ -36,7 +38,12 @@ public class AccountManageActivity extends CustomActivity implements View.OnClic
     email_ET = findViewById(R.id.email_ET);
 
     //get user input
-    email = email_ET.getText().toString();
+    if(UserManagement.isLogin){
+      username_ET.setText(MainActivity.userObj.username);
+      email_ET.setText(MainActivity.userObj.email);
+      phone_ET.setText(MainActivity.userObj.phone);
+      address_ET.setText(MainActivity.userObj.address);
+    }
     Log.i("confirm", email);
     phone = phone_ET.getText().toString();
     Log.i("confirm", phone);

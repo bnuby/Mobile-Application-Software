@@ -49,9 +49,11 @@ public class AccountFragment extends Fragment {
     accountInfoLayout.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent intent = new Intent(getContext(), LoginActivity.class);
-        getActivity().startActivityForResult(intent, 200);
-        Toast.makeText(getContext(), "asd", Toast.LENGTH_SHORT).show();
+        if(!UserManagement.isLogin){
+          Intent intent = new Intent(getContext(), LoginActivity.class);
+          getActivity().startActivityForResult(intent, 200);
+          Toast.makeText(getContext(), "asd", Toast.LENGTH_SHORT).show();
+        }
       }
     });
     //clear cache button onClickListener
