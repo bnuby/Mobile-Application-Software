@@ -21,7 +21,7 @@ import com.example.gibson.carlife.Model.Product.ProductBrand;
 import com.example.gibson.carlife.Model.Product.ProductType;
 import com.example.gibson.carlife.Services.Product.ProductBrandManagement;
 import com.example.gibson.carlife.Services.Product.ProductManagement;
-import com.example.gibson.carlife.Model.User;
+import com.example.gibson.carlife.Model.user.User;
 import com.example.gibson.carlife.Services.Product.ProductTypeManagement;
 import com.example.gibson.carlife.Services.UserManagement;
 import com.example.gibson.carlife.View.Fragment.AccountFragment;
