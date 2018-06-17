@@ -6,16 +6,37 @@
     android:background="#910000"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/searchBtn"
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Search" />
+        android:text="Carlife Accessories"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
-    <android.support.v7.widget.SearchView
-        android:id="@+id/search_bar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <android.support.v7.widget.SearchView
+            android:id="@+id/search_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.95">
+
+        </android.support.v7.widget.SearchView>
+
+        <Button
+            android:id="@+id/searchBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.05"
+            android:text="Search" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout"
