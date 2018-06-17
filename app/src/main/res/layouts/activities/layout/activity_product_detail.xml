@@ -29,6 +29,52 @@
             android:textSize="23sp" />
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.9"
+                android:text="Quanitlty:" />
+
+            <TextView
+                android:id="@+id/quanitltyTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:textColor="#FFFFFF"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_weight="0"
+            android:background="@color/graybackground"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.1"
+                android:text="Type:" />
+
+            <TextView
+                android:id="@+id/typeTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+
         <TextView
             android:id="@+id/priceTV"
             android:layout_width="match_parent"
@@ -40,12 +86,26 @@
             android:textSize="20sp" />
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Description:"
+            android:textColor="#000000"
+            android:textSize="13sp" />
+
+        <TextView
             android:id="@+id/introTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:text="intro"
+            android:textColor="#BDBDBD"
             android:textSize="20sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_weight="0"
+            android:background="@color/graybackground"/>
 
     </LinearLayout>
 
