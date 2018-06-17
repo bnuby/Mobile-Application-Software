@@ -106,12 +106,22 @@ public class MainActivity extends CustomActivity {
     SharedPreferences.Editor preferencesEditor = mPreferences.edit();
     preferencesEditor.clear();
     preferencesEditor.commit();
-//    preferencesEditor.apply();
+
+    UserManagement.isLogin = false;
+    AccountFragment.toggleLogoutBtn();
+
   }
 
   @Override
   protected void onResume() {
     super.onResume();
+    mContext = getContext();
+  }
+
+
+  @Override
+  protected void onStart() {
+    super.onStart();
     mContext = getContext();
   }
 

@@ -11,9 +11,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.gibson.carlife.MainActivity;
 import com.example.gibson.carlife.R;
-import com.example.gibson.carlife.View.AccountDetailActivity;
 import com.example.gibson.carlife.View.Fragment.AccountFragment;
-import com.example.gibson.carlife.View.Fragment.MainShopFragment;
 import com.example.gibson.carlife.View.LoginActivity;
 
 import org.json.JSONException;
@@ -103,15 +101,15 @@ public class UserManagement extends RequestManager {
     }
 
     public static void requestLogout() {
-        final String url = host + "/logout";
-        MainActivity.showLoading(MainActivity.getContext().getResources().getString(R.string.logout));
+        final String url = host + "/logout/"+MainActivity.userObj.userId;
+        MainActivity.longTost(MainActivity.getContext().getResources().getString(R.string.logout));
         StringRequest request = new StringRequest(
                 Request.Method.GET,
                 url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.v("login", response.toString());
+                        Log.v("logout", response.toString());
                         try {
                             JSONObject res = new JSONObject(response);
                             if (res.getString("status").equalsIgnoreCase("true")) {
@@ -122,7 +120,7 @@ public class UserManagement extends RequestManager {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        LoginActivity.dismissLoading();
+//                        LoginActivity.dismissLoading();
                     }
                 },
                 new Response.ErrorListener() {
@@ -130,7 +128,7 @@ public class UserManagement extends RequestManager {
                     public void onErrorResponse(VolleyError error) {
                         LoginActivity.longTost(MainActivity.getContext().getResources().getString(R.string.error));
                         Log.v("logout", error.getMessage());
-                        LoginActivity.dismissLoading();
+//                        LoginActivity.dismissLoading();
                     }
                 }
         );
@@ -168,7 +166,6 @@ public class UserManagement extends RequestManager {
                     }
                 }
         );
-
         MainActivity.volleyQueue.add(request);
     }
 

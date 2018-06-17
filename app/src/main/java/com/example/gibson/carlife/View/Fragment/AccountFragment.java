@@ -13,11 +13,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.gibson.carlife.MainActivity;
 import com.example.gibson.carlife.R;
 import com.example.gibson.carlife.Services.UserManagement;
-import com.example.gibson.carlife.View.AccountDetailActivity;
-import com.example.gibson.carlife.View.AccountDetailActivity;
+import com.example.gibson.carlife.View.AccountManageActivity;
 import com.example.gibson.carlife.View.LoginActivity;
 
 public class AccountFragment extends Fragment {
@@ -31,7 +29,7 @@ public class AccountFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_account, container, false);
+        View view = inflater.inflate(R.layout.fragment_account, container, false);
         acc_info = view.findViewById(R.id.acc_info);
         acc_info.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,9 +67,9 @@ public class AccountFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(getContext(),"Manage Account button clicked!",Toast.LENGTH_SHORT).show();
-                //Intent intent = new Intent(getContext(), AccountDetailActivity.class);
+                //Intent intent = new Intent(getContext(), AccountManageActivity.class);
                 //getActivity().startActivityForResult(intent,8);
-                Intent intent = new Intent(getContext(),  AccountDetailActivity.class);
+                Intent intent = new Intent(getContext(),  AccountManageActivity.class);
                 getActivity().startActivityForResult(intent, 8);
             }
         });

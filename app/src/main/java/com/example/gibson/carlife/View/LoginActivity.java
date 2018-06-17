@@ -57,19 +57,20 @@ public class LoginActivity extends CustomActivity implements View.OnClickListene
         Intent intent=new Intent();
         intent.setClass(getApplicationContext(),SignupActivity.class);
         startActivityForResult(intent, 200);
+        break;
     }
   }
 
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    finish();
   }
 
   public static void activityFinish() {
     if(mContext == null)
       return;
     ((Activity)mContext).finish();
-  }
+
+    }
    int[] a =  new int[]{0,1,2,3,4};
 
   class CustomAdapter extends BaseAdapter {

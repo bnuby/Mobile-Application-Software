@@ -14,7 +14,6 @@ import com.example.gibson.carlife.Adapters.BrandGridViewAdapter;
 import com.example.gibson.carlife.Adapters.ClassficationGridViewAdapter;
 import com.example.gibson.carlife.Adapters.ProductListViewAdapter;
 import com.example.gibson.carlife.MainActivity;
-import com.example.gibson.carlife.Model.Product.ProductType;
 import com.example.gibson.carlife.R;
 import com.example.gibson.carlife.View.ProductDetailActivity;
 
@@ -34,7 +33,7 @@ public class MainShopFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_main_shop, container, false);
+        View view = inflater.inflate(R.layout.fragment_main_shop, container, false);
 
         Integer[] ids = new Integer[6];
         String[] strings = getResources().getStringArray(R.array.type);

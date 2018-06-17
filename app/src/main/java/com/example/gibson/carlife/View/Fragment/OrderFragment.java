@@ -20,7 +20,7 @@ public class OrderFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_order, container, false);
+        View view = inflater.inflate(R.layout.fragment_order, container, false);
 
         ArrayList<Product> albumlist = new ArrayList<Product>();
 //        Product p = new Product("二手破mac","啟聖女用機",1.0);
