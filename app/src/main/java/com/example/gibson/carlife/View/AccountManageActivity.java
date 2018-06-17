@@ -10,7 +10,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.gibson.carlife.Abstract.CustomActivity;
+import com.example.gibson.carlife.MainActivity;
 import com.example.gibson.carlife.R;
+import com.example.gibson.carlife.Services.UserManagement;
 
 public class AccountManageActivity extends CustomActivity implements View.OnClickListener {
 
@@ -36,12 +38,13 @@ public class AccountManageActivity extends CustomActivity implements View.OnClic
     email_ET = findViewById(R.id.email_ET);
 
     //get user input
-    email = email_ET.getText().toString();
-    Log.i("confirm", email);
-    phone = phone_ET.getText().toString();
-    Log.i("confirm", phone);
-    address = address_ET.getText().toString();
-    Log.i("confirm", address);
+    if(UserManagement.isLogin){
+      username_ET.setText(MainActivity.userObj.username);
+      email_ET.setText(MainActivity.userObj.email);
+      phone_ET.setText(MainActivity.userObj.phone);
+      address_ET.setText(MainActivity.userObj.address);
+    }
+
 
     //confirm button definition
     confirm_BTN = findViewById(R.id.confirm_BTN);
@@ -59,6 +62,17 @@ public class AccountManageActivity extends CustomActivity implements View.OnClic
         //  back to Account Fragment.java
         finish();
         //startActivity(intent);
+        String newaddress =address_ET.getText().toString();
+        String oriAddress = MainActivity.userObj.address;
+        if(!oriAddress.equals(newaddress)){
+          if(!MainActivity.userObj.address.equals("")){
+            UserManagement.updateAddress(newaddress);
+          }
+          else {
+
+          }
+        }
+
         break;
       default:
         Toast.makeText(this, "default run", Toast.LENGTH_SHORT).show();
