@@ -52,6 +52,7 @@ public class MainActivity extends CustomActivity {
   public static SharedPreferences mPreferences;
   private static final String mSharedPrefFile = "com.example.gibson.carlife";
   public static User userObj = new User();
+  private int[] IconResID = {R.drawable.home,R.drawable.shoppingcart,R.drawable.order,R.drawable.account};
 
 
   @Override
@@ -64,6 +65,9 @@ public class MainActivity extends CustomActivity {
 
     pager.setAdapter(adapter);
     tabLayout.setupWithViewPager(pager);
+    for(int i =0; i < IconResID.length;i++){
+      tabLayout.getTabAt(i).setIcon(IconResID[i]);
+    }
     init_queue();
 
     mPreferences = getSharedPreferences(mSharedPrefFile, MODE_PRIVATE);
@@ -167,16 +171,16 @@ public class MainActivity extends CustomActivity {
       return 4;
     }
 
-    @Override
-    public CharSequence getPageTitle(int position) {
-      String[] title = new String[] {
-              "Shop",
-              "Cart",
-              "Order",
-              "Account"
-      };
-      return title[position];
-    }
+//    @Override
+//    public CharSequence getPageTitle(int position) {
+//      String[] title = new String[] {
+//              "Shop",
+//              "Cart",
+//              "Order",
+//              "Account"
+//      };
+//      return title[position];
+//    }
   }
 
 }
