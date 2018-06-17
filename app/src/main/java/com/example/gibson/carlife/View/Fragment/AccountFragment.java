@@ -54,7 +54,7 @@ public class AccountFragment extends Fragment {
                             }
                         }).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        // cancel clear cache action
+                        // cancels clear cache action
                     }
                 }).setIcon(android.R.drawable.ic_dialog_alert)
                         .show();

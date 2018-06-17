@@ -2,13 +2,14 @@ package com.example.gibson.carlife.Model.Product;
 
 import android.graphics.Bitmap;
 
-
+import java.util.ArrayList;
 
 
 public class Product {
     public int id;
     public String name;
     public Bitmap img;
+    public ArrayList<Bitmap> imgs;
     public int quantity;
     public int grade;
     public double tax_rate;
@@ -40,9 +41,14 @@ public class Product {
         this.description = description;
         this.product_brand = product_brand;
         this.product_type = product_type;
+        this.imgs = new ArrayList<>();
     }
 
     public void setImg(Bitmap img) {
         this.img = img;
+    }
+
+    public void addImgToImgs(Bitmap img) {
+        this.imgs.add(img);
     }
 }

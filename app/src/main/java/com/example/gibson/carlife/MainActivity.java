@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.android.volley.Cache;
 import com.android.volley.Network;
@@ -16,6 +17,8 @@ import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.example.gibson.carlife.Abstract.CustomActivity;
+import com.example.gibson.carlife.Model.Order.Order;
+import com.example.gibson.carlife.Model.Order.OrderStatus;
 import com.example.gibson.carlife.Model.Product.Product;
 import com.example.gibson.carlife.Model.Product.ProductBrand;
 import com.example.gibson.carlife.Model.Product.ProductType;

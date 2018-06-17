@@ -1,14 +1,14 @@
 package com.example.gibson.carlife.Model.Order;
 
+import com.example.gibson.carlife.Model.Product.Product;
+
 public class Order {
-//    public int id;
-//    public int;
-//    public String;
-//    public
-//    id": 1,
-//            "user_id": 1,
-//            "status": "unpay",
-//            "created_at": "2018-05-29 03:38:10",
-//            "updated_at": "2018-05-29 03:38:10",
-//            "address": ""
+  public int id;
+  public int order_id;
+  public int product_id;
+  public int user_id;
+  public Product product;
+  public int quantity;
+  public OrderStatus status;
+
 }
