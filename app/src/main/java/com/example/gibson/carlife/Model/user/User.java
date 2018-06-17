@@ -1,4 +1,4 @@
-package com.example.gibson.carlife.Model;
+package com.example.gibson.carlife.Model.user;
 
 import android.graphics.Bitmap;
 
