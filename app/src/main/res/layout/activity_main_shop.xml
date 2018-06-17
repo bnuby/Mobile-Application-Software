@@ -9,18 +9,39 @@
     android:orientation="vertical">
 
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#B40000"
+        android:text="商品類型"
+        android:textAlignment="viewStart"
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp" />
+
     <GridView
         android:id="@+id/gvType"
         android:layout_width="match_parent"
         android:layout_height="@dimen/mainShop_grid_type1_height"
-        android:numColumns="3"
-        android:padding="@dimen/mainShop_grid_type1_padding" />
+        android:background="#5C5756"
+        android:numColumns="3">
+
+    </GridView>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#B40000"
+        android:text="熱銷商品"
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp" />
 
 
     <GridView
         android:id="@+id/gvProduct"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:numColumns="2"
-        android:padding="5dp" />
+        android:background="#5C5756"
+        android:numColumns="2" />
 </LinearLayout>
