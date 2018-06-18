@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.gibson.carlife.MainActivity;
 import com.example.gibson.carlife.R;
+import com.example.gibson.carlife.Services.Order.DataCleanManager;
 import com.example.gibson.carlife.Services.UserManagement;
 import com.example.gibson.carlife.View.AccountManageActivity;
 import com.example.gibson.carlife.View.FavoriteyActivity;
@@ -29,6 +30,7 @@ public class AccountFragment extends Fragment {
   static TextView usernameTV;
   Button clrCache_Btn, accMng_Btn;
   ImageView favorite;
+  String cacheSize;
   //private static final int REQUEST_CODE = 8;
 
   public static void toggleLogoutBtn() {
@@ -60,6 +62,11 @@ public class AccountFragment extends Fragment {
       }
     });
     //clear cache button onClickListener
+    try {
+      cacheSize = DataCleanManager.getTotalCacheSize(getContext());
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
     clrCache_Btn = view.findViewById(R.id.clrCache_Btn);
     clrCache_Btn.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -67,10 +74,11 @@ public class AccountFragment extends Fragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), android.R.style.Theme_Material_Dialog_Alert);
         builder.setTitle("Clear Cache")
-                .setMessage("Are you sure you want to clear cache?")
+                .setMessage("Are you sure you want to clear cache("+cacheSize+")?")
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                   public void onClick(DialogInterface dialog, int which) {
-                    // continue with clear cache action
+                    DataCleanManager.clearAllCache(getContext());
+                    MainActivity.longTost("Cache Cleared.");
                   }
                 }).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
           public void onClick(DialogInterface dialog, int which) {
