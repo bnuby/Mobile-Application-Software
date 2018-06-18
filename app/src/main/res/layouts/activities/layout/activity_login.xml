@@ -5,6 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="102dp"
+        android:text="Carlife"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:id="@+id/Name"
         android:layout_width="0dp"
@@ -83,8 +95,8 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="3dp"
         android:background="@drawable/buttonlight"
-        android:textColor="#fd7b02"
         android:text="Login"
+        android:textColor="#fd7b02"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -100,8 +112,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="44dp"
         android:background="@drawable/buttondark"
-        android:textColor="#83ba37"
         android:text="Signup"
+        android:textColor="#83ba37"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
