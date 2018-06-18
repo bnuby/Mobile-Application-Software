@@ -11,6 +11,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.gibson.carlife.MainActivity;
 import com.example.gibson.carlife.R;
+import com.example.gibson.carlife.Services.Order.OrderManagement;
 import com.example.gibson.carlife.View.AccountManageActivity;
 import com.example.gibson.carlife.View.Fragment.AccountFragment;
 import com.example.gibson.carlife.View.LoginActivity;
@@ -19,7 +20,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.security.PublicKey;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,6 +63,8 @@ public class UserManagement extends RequestManager {
                     MainActivity.userObj.email = user.getString("email");
                     MainActivity.userObj.phone = user.getString("phone");
                     requestAddress();
+                    OrderManagement.requestOrderItem(MainActivity.userObj.userId);
+                    OrderManagement.requestOrder(MainActivity.userObj.userId);
 
                     // save user to preferences
                     SharedPreferences.Editor editor = MainActivity.mPreferences.edit();
@@ -173,20 +175,6 @@ public class UserManagement extends RequestManager {
     MainActivity.volleyQueue.add(request);
   }
 
-
-  public static void requestToken(Response.Listener listener) {
-//    String url = "http://18.219.196.79/get_token";
-//    StringRequest request = new StringRequest(Request.Method.GET,
-//            url,
-//            listener,
-//            new Response.ErrorListener() {
-//              @Override
-//              public void onErrorResponse(VolleyError error) {
-//               Log.e("requestToken", error.getMessage());
-//              }
-//            });
-//    MainActivity.volleyQueue.add(request);
-  }
   public static void requestAddress() {
     final String url = host + "/address/user/"+MainActivity.userObj.userId;
     StringRequest request = new StringRequest(
@@ -200,13 +188,17 @@ public class UserManagement extends RequestManager {
                   JSONObject res = new JSONObject(response);
                   JSONArray array = new JSONArray(res.getString("msg"));
                   String address;
+                  int addressId;
                   try {
                     address = array.getJSONObject(0).getString("address");
+                    addressId=array.getJSONObject(0).getInt("id");
                   }
                   catch (Exception e){
                     address ="";
+                    addressId=0;
                   }
                   MainActivity.userObj.address = address;
+                  MainActivity.userObj.addressId=addressId;
                 } catch (JSONException e) {
                   e.printStackTrace();
                 }
@@ -230,7 +222,7 @@ public class UserManagement extends RequestManager {
     }catch (JSONException e){
 
     }
-    final String url = host + "/address/"+MainActivity.userObj.userId;
+    final String url = host + "/address/"+MainActivity.userObj.addressId;
     StringRequest request = new StringRequest(
             Request.Method.PUT,
             url,
@@ -252,6 +244,52 @@ public class UserManagement extends RequestManager {
      );
     MainActivity.volleyQueue.add(request);
     requestAddress();
+  }
+
+  public static void addAddress(final String newAddress){
+//    final JSONObject object = new JSONObject();
+//    try{
+//      object.put("address",newAddress);
+//      object.put("user_id",MainActivity.userObj.userId);
+//      object.put("zipcode","test");
+//      object.put("country","1");
+//    }catch (JSONException e){
+//
+//    }
+    final String url = host + "/address";
+    StringRequest request = new StringRequest(
+            Request.Method.POST,
+            url,
+            new Response.Listener<String>() {
+              @Override
+              public void onResponse(String response) {
+                try {
+                  JSONObject object1 = new JSONObject(response);
+                  AccountManageActivity.longTost(object1.getString("msg"));
+                }catch (JSONException e){
+                }
+              }
+            },
+            new Response.ErrorListener() {
+              @Override
+              public void onErrorResponse(VolleyError error) {
+              }
+            }
+    ) {
+      @Override
+      public Map<String, String>  getParams() throws AuthFailureError {
+        String userId=""+MainActivity.userObj.userId;
+        HashMap<String, String> object = new HashMap<>();
+        object.put("address",newAddress);
+        object.put("user_id",userId);
+        object.put("zipcode","test");
+        object.put("country","1");
+        return object;
+      }
+    };
+    MainActivity.volleyQueue.add(request);
+    UserManagement.requestAddress();
+
   }
 
 }

@@ -95,7 +95,8 @@ public class MainActivity extends CustomActivity {
     ProductTypeManagement.requestProductType(this);
     ProductBrandManagement.requestProductBrand(this);
     ProductManagement.requestProduct();
-    OrderManagement.requestOrder();
+//    if(MainActivity.userObj)
+//    OrderManagement.requestOrderItem();
   }
 
   @Override

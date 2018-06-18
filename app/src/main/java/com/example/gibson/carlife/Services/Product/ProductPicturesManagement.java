@@ -42,14 +42,12 @@ public class ProductPicturesManagement extends RequestManager {
                 } catch (JSONException e) {
                   e.printStackTrace();
                 }
-//                        MainActivity.dismissLoading();
               }
             },
             new Response.ErrorListener() {
               @Override
               public void onErrorResponse(VolleyError error) {
-
-//                        MainActivity.dismissLoading();
+                Log.e(TAG, error.getMessage());
               }
             }
     );
@@ -68,8 +66,8 @@ public class ProductPicturesManagement extends RequestManager {
                 DataManagement.getProductsById(id).addImgToImgs(response);
               }
             },
-            0,
-            0,
+            64,
+            64,
             ImageView.ScaleType.FIT_CENTER,
             Bitmap.Config.RGB_565,
             new Response.ErrorListener() {

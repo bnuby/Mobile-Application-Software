@@ -127,7 +127,7 @@
             <GridView
                 android:id="@+id/gvProductGV"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@color/brightred"
                 android:horizontalSpacing="15dp"
                 android:numColumns="2"

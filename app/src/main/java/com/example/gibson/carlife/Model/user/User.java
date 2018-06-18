@@ -14,16 +14,18 @@ public class User {
   public String phone;
   public String email;
   public String address;
+  public int addressId;
 
   public User() {
 
   }
 
-  public User(int userId, String username, String phone, String email, String address) {
+  public User(int userId, String username, String phone, String email, String address,int addressId) {
     this.userId = userId;
     this.username = username;
     this.phone = phone;
     this.email = email;
     this.address = address;
+    this.addressId=addressId;
   }
 }

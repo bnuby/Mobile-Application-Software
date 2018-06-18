@@ -1,15 +1,16 @@
 package com.example.gibson.carlife.Model.Order;
 
-import com.example.gibson.carlife.Model.Product.Product;
-
 public class Order {
   public int id;
-  public int order_id;
-  public int product_id;
   public int user_id;
-  public String refund_message;
-  public Product product;
-  public int quantity;
   public OrderStatus status;
+  public String address;
+  public String refund_message;
 
+  public Order(int id, int user_id, String status, String address) {
+    this.id = id;
+    this.user_id = user_id;
+    this.status = OrderStatus.valueOf(status);
+    this.address = address;
+  }
 }

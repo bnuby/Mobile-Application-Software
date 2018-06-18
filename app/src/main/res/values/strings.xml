@@ -11,6 +11,10 @@
     <string name="total_price">Total: </string>
     <string name="pay">Pay</string>
     <string name="items">items</string>
+    <string name="your_address">Your Address</string>
+
+    <string name="done">Done</string>
+    <string name="cancel">Cancel</string>
 
     <!--Main Page-->
     <string name="car_brand">Car Brand</string>
@@ -32,6 +36,7 @@
 
     <!--Cart Page-->
     <string name="cart_title">Cart</string>
+    <string name="address">Address</string>
     <!--Cart Page-->
 
     <string name="more">more</string>

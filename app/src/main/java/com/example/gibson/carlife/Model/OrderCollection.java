@@ -1,7 +1,9 @@
 package com.example.gibson.carlife.Model;
 
 import com.example.gibson.carlife.Model.Order.Order;
+import com.example.gibson.carlife.Model.Order.OrderItem;
 import com.example.gibson.carlife.Model.Order.OrderStatus;
+import com.example.gibson.carlife.View.Fragment.CartFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -11,13 +13,15 @@ import java.util.ArrayList;
 
 public class OrderCollection {
 
-  public ArrayList<Order> carts;
-  public ArrayList<Order> paids;
-  public ArrayList<Order> unpays;
-  public ArrayList<Order> pending_refunds;
-  public ArrayList<Order> cancels;
+  public ArrayList<Order> orders;
+  public ArrayList<OrderItem> carts;
+  public ArrayList<OrderItem> paids;
+  public ArrayList<OrderItem> unpays;
+  public ArrayList<OrderItem> pending_refunds;
+  public ArrayList<OrderItem> cancels;
 
   public OrderCollection() {
+    this.orders = new ArrayList<>();
     this.carts = new ArrayList<>();
     this.paids = new ArrayList<>();
     this.unpays = new ArrayList<>();
@@ -25,13 +29,31 @@ public class OrderCollection {
     this.cancels = new ArrayList<>();
   }
 
+  public void jsonToOrderObject(JSONArray array) {
+    for(int i = 0; i < array.length(); i ++) {
+      try {
+        JSONObject object = array.getJSONObject(i);
+        orders.add(new Order(
+                object.getInt("id"),
+                object.getInt("user_id"),
+                object.getString("status"),
+                object.getString("address")
+        ));
+      } catch (JSONException e) {
+        e.printStackTrace();
+      }
+    }
+
+  }
+
   public void fillArrayList(JSONArray array) {
     for (int i = 0; i < array.length(); i++) {
       try {
-        Order item = jsonToOrderObject(array.getJSONObject(i));
+        OrderItem item = jsonToOrderItemObject(array.getJSONObject(i));
         switch (item.status) {
           case cart:
             carts.add(item);
+            CartFragment.reloadListView();
             break;
           case paid:
             paids.add(item);
@@ -52,26 +74,28 @@ public class OrderCollection {
     }
   }
 
-  Order jsonToOrderObject(JSONObject object) {
-    Order order = new Order();
+  OrderItem jsonToOrderItemObject(JSONObject object) {
+    OrderItem orderItem = new OrderItem();
     try {
-      order.id = object.getInt("id");
-      order.order_id = object.getInt("id");
-      order.product_id = object.getInt("id");
-      order.user_id = object.getInt("id");
-      order.quantity = object.getInt("id");
-      order.status = OrderStatus.valueOf(object.getString("status"));
+      orderItem.id = object.getInt("id");
+      orderItem.status = OrderStatus.valueOf(object.getString("status"));
+      if(orderItem.status != OrderStatus.cart)
+        orderItem.order_id = object.getInt("order_id");
+      orderItem.product_id = object.getInt("product_id");
+      orderItem.user_id = object.getInt("user_id");
+      orderItem.quantity = object.getInt("quantity");
+
     } catch (JSONException e) {
       e.printStackTrace();
       return null;
     }
-    return order;
+    return orderItem;
   }
 
-  public Order findCartByID(int id) {
-    for(Order order: carts) {
-      if(order.id == id)
-        return order;
+  public OrderItem findCartByID(int id) {
+    for(OrderItem orderItem : carts) {
+      if(orderItem.id == id)
+        return orderItem;
     }
     return null;
   }

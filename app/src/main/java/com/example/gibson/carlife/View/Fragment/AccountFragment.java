@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +19,7 @@ import com.example.gibson.carlife.MainActivity;
 import com.example.gibson.carlife.R;
 import com.example.gibson.carlife.Services.UserManagement;
 import com.example.gibson.carlife.View.AccountManageActivity;
+import com.example.gibson.carlife.View.FavoriteyActivity;
 import com.example.gibson.carlife.View.LoginActivity;
 
 public class AccountFragment extends Fragment {
@@ -26,6 +28,7 @@ public class AccountFragment extends Fragment {
   LinearLayout accountInfoLayout;
   static TextView usernameTV;
   Button clrCache_Btn, accMng_Btn;
+  ImageView favorite;
   //private static final int REQUEST_CODE = 8;
 
   public static void toggleLogoutBtn() {
@@ -75,6 +78,14 @@ public class AccountFragment extends Fragment {
           }
         }).setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
+      }
+    });
+    favorite= view.findViewById(R.id.favoriteIMG);
+    favorite.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        Intent intent =new Intent(getContext(), FavoriteyActivity.class);
+        startActivity(intent);
       }
     });
 
