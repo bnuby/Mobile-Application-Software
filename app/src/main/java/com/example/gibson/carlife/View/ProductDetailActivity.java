@@ -87,12 +87,13 @@ public class ProductDetailActivity extends CustomActivity {
     heart.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        ProductDetailActivity.longTost("Test");
         if(isFavorite){
-            heart.setImageResource(R.drawable.white_heart_fill);
+          heart.setImageResource(R.drawable.white_heart);
+          isFavorite=false;
         }
         else {
-            heart.setImageResource(R.drawable.white_heart);
+          heart.setImageResource(R.drawable.white_heart_fill);
+          isFavorite=true;
         }
 
       }
