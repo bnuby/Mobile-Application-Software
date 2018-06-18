@@ -13,8 +13,17 @@
     <string name="items">items</string>
     <string name="your_address">Your Address</string>
 
+    <!--Product Detail-->
+    <string name="type">Type: </string>
+    <string name="quantity">Quantity: </string>
+    <string name="description">Description: </string>
     <string name="done">Done</string>
     <string name="cancel">Cancel</string>
+    <!--Product Detail-->
+
+    <!--Account Detail-->
+    <string name="you_are_not_login">You Are Not Login!</string>
+    <!--Account Detail-->
 
     <!--Main Page-->
     <string name="car_brand">Car Brand</string>
@@ -22,7 +31,10 @@
     <!--Main Page-->
 
     <!--Login Page-->
-    <string name="you_are_not_login">You Are Not Login!</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="not_member_yet">Not member yet?</string>
+    <string name="sign_up">Press Here!</string>
     <!--Login Page-->
 
     <!--Search Bar-->
@@ -38,6 +50,10 @@
     <string name="cart_title">Cart</string>
     <string name="address">Address</string>
     <!--Cart Page-->
+
+    <!--Order Page-->
+    <string name="order_title">Order</string>
+    <!--Order Page-->
 
     <string name="more">more</string>
     <dimen name="a">20dp</dimen>

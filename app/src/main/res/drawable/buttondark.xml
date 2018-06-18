@@ -17,9 +17,9 @@
     <!-- 預設時 -->
     <item android:color="@android:color/black">
         <shape android:shape="rectangle"  >
-            <corners android:radius="15dip" />
-            <stroke android:width="1dip" android:color="#83ba37" />
-            <gradient android:angle="-90" android:startColor="#FFC2F27F" android:endColor="#FFC2F27F"  />
+            <corners android:radius="30dip" />
+            <stroke android:width="1dip" android:color="#14663A" />
+            <gradient android:angle="-90" android:startColor="#14663A" android:endColor="#14663A"  />
         </shape>
     </item>
 

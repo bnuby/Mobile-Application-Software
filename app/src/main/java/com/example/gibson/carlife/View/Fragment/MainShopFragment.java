@@ -63,7 +63,7 @@ public class MainShopFragment extends Fragment {
     View view = inflater.inflate(R.layout.fragment_main_shop, container, false);
 
 
-    // Define type Grid View
+    // Define typeTV Grid View
     typeGridView = view.findViewById(R.id.TypeGV);
     ViewGroup.LayoutParams params = typeGridView.getLayoutParams();
     float dp = Resources.getSystem().getDisplayMetrics().density;
@@ -76,10 +76,10 @@ public class MainShopFragment extends Fragment {
       @Override
       public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         MainActivity.shortTost("To search : " + productTypes.get(i).name);
-        String type = "type";
+        String type = "typeTV";
         if(i == adapter.getCount() - 1) {
           Intent intent = new Intent(getContext(), CategoryActivity.class);
-          intent.putExtra("type", type);
+          intent.putExtra("typeTV", type);
           startActivity(intent);
         } else {
           ProductCategoryActivity.changeActivity(getContext(), type, productTypes.get(i).name);
@@ -101,7 +101,7 @@ public class MainShopFragment extends Fragment {
         String type = "brand";
         if(i == adapter2.getCount()-1) {
           Intent intent = new Intent(getContext(), CategoryActivity.class);
-          intent.putExtra("type", type);
+          intent.putExtra("typeTV", type);
           startActivity(intent);
         } else {
           ProductCategoryActivity.changeActivity(getContext(), type, productBrands.get(i).name);

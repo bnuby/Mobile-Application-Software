@@ -72,6 +72,28 @@ public class OrderCollection {
         e.printStackTrace();
       }
     }
+
+    fillOrderListOrderItem();
+  }
+
+  public void fillOrderListOrderItem() {
+    ArrayList<OrderItem> unpays = DataManagement.getOrderCollection().unpays;
+    ArrayList<OrderItem> paids = DataManagement.getOrderCollection().paids;
+    ArrayList<OrderItem> pending_refunds = DataManagement.getOrderCollection().pending_refunds;
+    ArrayList<OrderItem> cancels = DataManagement.getOrderCollection().cancels;
+
+    putOrderItemIntoOrder(unpays);
+    putOrderItemIntoOrder(paids);
+    putOrderItemIntoOrder(pending_refunds);
+    putOrderItemIntoOrder(cancels);
+
+  }
+
+  void putOrderItemIntoOrder(ArrayList<OrderItem> orderItems) {
+    for (OrderItem orderItem : orderItems) {
+      Order order = findOrderByID(orderItem.order_id);
+      order.orderItems.add(orderItem);
+    }
   }
 
   OrderItem jsonToOrderItemObject(JSONObject object) {
@@ -90,6 +112,14 @@ public class OrderCollection {
       return null;
     }
     return orderItem;
+  }
+
+  public Order findOrderByID(int id) {
+    for(Order order : orders) {
+      if(order.id == id)
+        return order;
+    }
+    return null;
   }
 
   public OrderItem findCartByID(int id) {

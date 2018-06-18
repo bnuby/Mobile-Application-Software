@@ -105,7 +105,7 @@ public class ProductCategoryActivity extends AppCompatActivity implements View.O
 
   public static void changeActivity(Context context, String type, String name) {
     Intent intent = new Intent(context, ProductCategoryActivity.class);
-    intent.putExtra("type", type);
+    intent.putExtra("typeTV", type);
     intent.putExtra("name", name);
     ((Activity)context).startActivityForResult(intent, 0);
   }

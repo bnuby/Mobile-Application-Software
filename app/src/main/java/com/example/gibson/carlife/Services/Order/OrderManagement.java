@@ -18,15 +18,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
 public class OrderManagement extends RequestManager {
   public static String TAG = "OrderManagement";
 
-  public static void requestOrder(int id) {
-    final String url = host + "/order/" + id + "/user";
-    Log.i(TAG, "" + id);
+  public static void requestOrder(final int user_id) {
+    final String url = host + "/order/" + user_id + "/user";
+    Log.i(TAG, "" + user_id);
     StringRequest request = new StringRequest(
             url,
             new Response.Listener<String>() {
@@ -36,6 +37,7 @@ public class OrderManagement extends RequestManager {
                   Log.i(TAG, response);
                   JSONArray array = new JSONArray(response);
                   DataManagement.getOrderCollection().jsonToOrderObject(array);
+                  OrderManagement.requestOrderItem(user_id);
                 } catch (JSONException e) {
                   e.printStackTrace();
                 }
@@ -98,9 +100,42 @@ public class OrderManagement extends RequestManager {
     MainActivity.volleyQueue.add(request);
   }
 
+  public static void addProductToCart(final int product_id, final int quantity) {
+    final String url = host + "/orderitems";
+
+    StringRequest request = new StringRequest(
+            Request.Method.POST,
+            url,
+            new Response.Listener<String>() {
+              @Override
+              public void onResponse(String response) {
+
+                Log.i(TAG, response);
+              }
+            },
+            new Response.ErrorListener() {
+              @Override
+              public void onErrorResponse(VolleyError error) {
+                Log.i(TAG, error.getMessage());
+              }
+            }
+    ) {
+      @Override
+      protected Map<String, String> getParams() throws AuthFailureError {
+        Map<String, String> hashMap = new HashMap<>();
+        hashMap.put("product_id", String.valueOf(product_id));
+        hashMap.put("quantity", String.valueOf(quantity));
+        hashMap.put("status", "cartBtn");
+        hashMap.put("user_id", String.valueOf(MainActivity.userObj.userId));
+        return hashMap;
+      }
+    };
+
+    MainActivity.volleyQueue.add(request);
+  }
+
   public static void addOrder(final int user_id, final String address, final String status, final ArrayList<OrderItem> orderItems) {
     final String url = host + "/order";
-
     StringRequest request = new StringRequest(
             Request.Method.POST,
             url,

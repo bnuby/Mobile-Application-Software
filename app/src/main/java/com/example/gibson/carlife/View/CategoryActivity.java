@@ -33,7 +33,7 @@ public class CategoryActivity extends AppCompatActivity implements AdapterView.O
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_category);
 
-    type = getIntent().getStringExtra("type");
+    type = getIntent().getStringExtra("typeTV");
     CategoryAdapter adapter;
 
     categoryLV = findViewById(R.id.categoryLV);
@@ -61,10 +61,10 @@ public class CategoryActivity extends AppCompatActivity implements AdapterView.O
 
   @Override
   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-    String type = getIntent().getStringExtra("type");
+    String type = getIntent().getStringExtra("typeTV");
     String name;
     Intent intent = new Intent(this, ProductCategoryActivity.class);
-    intent.putExtra("type", type);
+    intent.putExtra("typeTV", type);
     if(type.equalsIgnoreCase("brand")) {
       Toast.makeText(this, ((ProductBrand)parent.getAdapter().getItem(position)).name, Toast.LENGTH_SHORT).show();
       ProductBrand brand = (ProductBrand) parent.getAdapter().getItem(position);

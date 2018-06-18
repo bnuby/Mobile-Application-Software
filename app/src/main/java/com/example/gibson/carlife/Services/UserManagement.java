@@ -63,7 +63,6 @@ public class UserManagement extends RequestManager {
                     MainActivity.userObj.email = user.getString("email");
                     MainActivity.userObj.phone = user.getString("phone");
                     requestAddress();
-                    OrderManagement.requestOrderItem(MainActivity.userObj.userId);
                     OrderManagement.requestOrder(MainActivity.userObj.userId);
 
                     // save user to preferences

@@ -39,8 +39,8 @@ public class ProductListViewAdapter extends ArrayAdapter<Product> {
     Product item = getItem(position);
     TextView title = convertView.findViewById(R.id.titleTV);
     title.setText(item.name);
-//        TextView intro=(TextView)itemlayout.findViewById(R.id.introTV);
-//        intro.setText(item.description);
+//        TextView introTV=(TextView)itemlayout.findViewById(R.id.introTV);
+//        introTV.setText(item.description);
     TextView price = (TextView) convertView.findViewById(R.id.priceTV);
     price.setText(String.valueOf(item.cost_price));
     final ImageView imageView = convertView.findViewById(R.id.img);
