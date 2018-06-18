@@ -104,21 +104,6 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/signup"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginBottom="15dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginTop="15dp"
-            android:layout_weight="0.1"
-            android:background="@drawable/buttondark"
-            android:text="Signup"
-            android:textColor="#83ba37"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="66dp" />
-
-        <Button
             android:id="@+id/loginBtn"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -127,12 +112,27 @@
             android:layout_marginRight="50dp"
             android:layout_marginTop="15dp"
             android:layout_weight="0.1"
-            android:background="@drawable/buttonlight"
+            android:background="@drawable/buttondark"
             android:text="Login"
-            android:textColor="#fd7b02"
+            android:textColor="#FFFFFF"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="67dp"
             tools:layout_editor_absoluteY="282dp" />
+
+        <Button
+            android:id="@+id/signup"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="15dp"
+            android:layout_weight="0.1"
+            android:background="#00000000"
+            android:text="Click here to sign up"
+            android:textColor="#FF0000"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="66dp" />
 
     </LinearLayout>
 
