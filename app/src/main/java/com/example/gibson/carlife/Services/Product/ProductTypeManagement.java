@@ -80,8 +80,8 @@ public class ProductTypeManagement extends RequestManager {
                 MainShopFragment.reloadTypeGV();
               }
             },
-            64,
-            64,
+            0,
+            0,
             ImageView.ScaleType.FIT_CENTER,
             Bitmap.Config.RGB_565,
             new Response.ErrorListener() {

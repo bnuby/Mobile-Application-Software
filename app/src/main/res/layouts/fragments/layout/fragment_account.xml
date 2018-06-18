@@ -8,7 +8,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:background="#9c1016"
+        android:background="#780F0F"
         android:id="@+id/acc_info"
         android:layout_width="0dp"
         android:layout_height="150dp"

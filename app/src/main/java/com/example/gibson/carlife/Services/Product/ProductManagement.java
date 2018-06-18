@@ -88,8 +88,8 @@ public class ProductManagement extends RequestManager {
                 CartFragment.reloadListView();
               }
             },
-            64,
-            64,
+            0,
+            0,
             ImageView.ScaleType.FIT_CENTER,
             Bitmap.Config.RGB_565,
             new Response.ErrorListener() {

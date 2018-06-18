@@ -1,11 +1,17 @@
 package com.example.gibson.carlife.Services;
 
+import android.util.Log;
+import android.widget.Toast;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.gibson.carlife.MainActivity;
+import com.example.gibson.carlife.Model.DataManagement;
+import com.example.gibson.carlife.Model.Favorite;
+import com.example.gibson.carlife.Services.Order.DataCleanManager;
 import com.example.gibson.carlife.View.Fragment.AccountFragment;
 
 import org.json.JSONArray;
@@ -17,7 +23,6 @@ import java.util.Map;
 
 public class FavoriteManagerment extends RequestManager {
     public static void getFavorites() {
-        if(UserManagement.isLogin){
             final String url = host + "/favorite/user/"+MainActivity.userObj.userId;
             StringRequest request = new StringRequest(
                     Request.Method.GET,
@@ -28,21 +33,25 @@ public class FavoriteManagerment extends RequestManager {
                             try {
                                 JSONObject res = new JSONObject(response);
                                 if (res.getBoolean("status")){
-                                    JSONArray favoriteObjects =new JSONArray(res.getJSONObject("msg"));
+                                    Log.i("ggggggg", "onResponse: "+true);
+                                    JSONArray favoriteObjects = res.getJSONArray("msg");
                                     for (int i=0;i<favoriteObjects.length();i++){
-//                                        MainActivity.favorites.add(
-//                                                favoriteObjects.getJSONObject(i).get("id"),
-//                                                favoriteObjects.getJSONObject(i).get("user_id"),
-//                                                favoriteObjects.getJSONObject(i).get("product_id"),
-//                                                favoriteObjects.getJSONObject(i).get("created_at"),
-//                                                favoriteObjects.getJSONObject(i).get("updated_at"));
+                                        Log.i("ggggggg", "onResponse: "+ favoriteObjects.getJSONObject(i).getInt("user_id"));
+                                        DataManagement.getFavorite().add(
+                                                new Favorite(favoriteObjects.getJSONObject(i).getInt("id"),
+                                                        favoriteObjects.getJSONObject(i).getInt("user_id"),
+                                                        favoriteObjects.getJSONObject(i).getInt("product_id"),
+                                                        favoriteObjects.getJSONObject(i).getString("created_at"),
+                                                        favoriteObjects.getJSONObject(i).getString("updated_at")));
                                     }
                                 }
                                 else{
+                                    Log.i("ggggggg", "onResponse: "+false);
                                     MainActivity.longTost("No Favorite product.");
                                 }
 
                             } catch (JSONException e) {
+                                Log.i("ggggggg", "onResponse: ");
                                 e.printStackTrace();
                             }
                         }
@@ -50,13 +59,13 @@ public class FavoriteManagerment extends RequestManager {
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-
+                            Log.i("ggggggg", "onErrorResponse: ");
                         }
 
                     }
             );
             MainActivity.volleyQueue.add(request);
-        }
+
     }
     public static void addFavorite(final int productId){
         final String url = host + "/favorite";

@@ -92,8 +92,13 @@ public class AccountFragment extends Fragment {
     favorite.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Intent intent =new Intent(getContext(), FavoriteyActivity.class);
-        startActivity(intent);
+        if(UserManagement.isLogin){
+          Intent intent =new Intent(getContext(), FavoriteyActivity.class);
+          startActivity(intent);
+        }
+        else {
+          AccountManageActivity.longTost("Please Login.");
+        }
       }
     });
 
