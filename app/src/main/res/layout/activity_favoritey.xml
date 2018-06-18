@@ -8,6 +8,7 @@
     tools:context=".View.FavoriteyActivity">
 
     <ListView
+        android:id="@+id/favoriteListview"
         android:layout_width="368dp"
         android:layout_height="551dp"
         tools:layout_editor_absoluteX="8dp"
