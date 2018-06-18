@@ -7,6 +7,7 @@ public class Order {
   public int order_id;
   public int product_id;
   public int user_id;
+  public String refund_message;
   public Product product;
   public int quantity;
   public OrderStatus status;

@@ -12,12 +12,17 @@
     <style name="CarLife" parent="Theme.AppCompat.NoActionBar" >
         <item name="colorPrimaryDark">@color/brightred</item>
         <item name="android:colorBackground">@color/gray</item>
+        <item name="android:checkboxStyle">@style/checkbox_style</item>
         <item name="colorPrimary">@color/darkred</item>
         <item name="android:statusBarColor">@color/brightred</item>
         <item name="android:textColorSecondary">@color/white</item>
         <item name="colorAccent">@color/brightred</item>
         <item name="android:navigationBarColor">@color/light_red</item>
         <item name="android:colorForeground">@color/black</item>
+    </style>
+
+    <style name="checkbox_style" parent="Base.Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:buttonTint">@drawable/checkbox_style</item>
     </style>
 
 </resources>

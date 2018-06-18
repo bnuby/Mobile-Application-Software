@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.widget.Button;
 
 import com.android.volley.Cache;
 import com.android.volley.Network;
@@ -17,9 +16,6 @@ import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.example.gibson.carlife.Abstract.CustomActivity;
-import com.example.gibson.carlife.Model.Product.Product;
-import com.example.gibson.carlife.Model.Product.ProductBrand;
-import com.example.gibson.carlife.Model.Product.ProductType;
 import com.example.gibson.carlife.Model.user.User;
 import com.example.gibson.carlife.Services.Order.OrderManagement;
 import com.example.gibson.carlife.Services.Product.ProductBrandManagement;
@@ -29,9 +25,7 @@ import com.example.gibson.carlife.Services.UserManagement;
 import com.example.gibson.carlife.View.Fragment.AccountFragment;
 import com.example.gibson.carlife.View.Fragment.MainFragment;
 import com.example.gibson.carlife.View.Fragment.OrderFragment;
-import com.example.gibson.carlife.View.Fragment.ShopCartFragment;
-
-import java.util.ArrayList;
+import com.example.gibson.carlife.View.Fragment.CartFragment;
 
 
 public class MainActivity extends CustomActivity {
@@ -40,7 +34,7 @@ public class MainActivity extends CustomActivity {
   public static RequestQueue volleyQueue;
   public static SharedPreferences mPreferences;
   public static User userObj = new User();
-  public static Fragment[] fragments = {new MainFragment(), new ShopCartFragment(), new OrderFragment(), new AccountFragment()};
+  public static Fragment[] fragments = {new MainFragment(), new CartFragment(), new OrderFragment(), new AccountFragment()};
   private int[] IconResID = {R.drawable.home, R.drawable.shoppingcart, R.drawable.order, R.drawable.account};
 
   ViewPager pager;

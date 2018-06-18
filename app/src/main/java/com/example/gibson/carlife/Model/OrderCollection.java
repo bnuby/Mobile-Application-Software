@@ -67,4 +67,16 @@ public class OrderCollection {
     }
     return order;
   }
+
+  public Order findCartByID(int id) {
+    for(Order order: carts) {
+      if(order.id == id)
+        return order;
+    }
+    return null;
+  }
+
+  public void deleteCartByID(int id) {
+    carts.remove(findCartByID(id));
+  }
 }

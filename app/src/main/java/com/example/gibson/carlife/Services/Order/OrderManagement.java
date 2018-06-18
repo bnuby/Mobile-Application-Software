@@ -13,7 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 public class OrderManagement extends RequestManager {
-  public static String Tag = "OrderManagement";
+  public static String TAG = "OrderManagement";
 
   public static void requestOrder() {
     final String url = host + "/order/" + "1" + "/user";
@@ -23,7 +23,7 @@ public class OrderManagement extends RequestManager {
               @Override
               public void onResponse(String response) {
                 try {
-                  Log.i(Tag, response);
+                  Log.i(TAG, response);
                   JSONArray array = new JSONArray(response);
                   DataManagement.getOrderCollection().fillArrayList(array);
                 } catch (JSONException e) {
@@ -34,11 +34,54 @@ public class OrderManagement extends RequestManager {
             new Response.ErrorListener() {
               @Override
               public void onErrorResponse(VolleyError error) {
-
               }
             }
     );
     MainActivity.volleyQueue.add(request);
+  }
+
+  public static void updateCartQty(int id,int qty) {
+    final String url = host + "/orderitems?quantity=" + qty +"&id=" + id;
+
+    StringRequest request = new StringRequest(
+            url,
+            new Response.Listener<String>() {
+              @Override
+              public void onResponse(String response) {
+                Log.i(TAG,response);
+              }
+            },
+            new Response.ErrorListener() {
+              @Override
+              public void onErrorResponse(VolleyError error) {
+                Log.i(TAG,error.getMessage());
+              }
+            }
+    );
+    MainActivity.volleyQueue.add(request);
+  }
+
+  public static void deleteOrder(int id) {
+    final String url = host + "/orderitems/" + id;
+
+    StringRequest request = new StringRequest(
+            url,
+            new Response.Listener<String>() {
+              @Override
+              public void onResponse(String response) {
+                Log.v(TAG, response);
+              }
+            },
+            new Response.ErrorListener() {
+              @Override
+              public void onErrorResponse(VolleyError error) {
+                Log.v(TAG, error.getMessage());
+              }
+            }
+    );
+
+    MainActivity.volleyQueue.add(request);
+
   }
 
 }
