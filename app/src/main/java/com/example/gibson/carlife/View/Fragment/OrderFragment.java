@@ -90,13 +90,13 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
               );
     }
 
-    if(isPay)
-      listView.setAdapter(paidAdapter);
-    else
-      listView.setAdapter(unpayAdapter);
-
-    if(listView != null)
+    if(listView != null) {
+      if(isPay)
+        listView.setAdapter(paidAdapter);
+      else
+        listView.setAdapter(unpayAdapter);
       listView.invalidateViews();
+    }
   }
 
 

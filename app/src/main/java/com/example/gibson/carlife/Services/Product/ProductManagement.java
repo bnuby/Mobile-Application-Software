@@ -85,12 +85,11 @@ public class ProductManagement extends RequestManager {
                 Log.i(TAG, "img");
                 DataManagement.getProducts().get(i).setImg(response);
                 MainShopFragment.reloadProductGV();
-                OrderFragment.reloadAdapterAndListView();
                 CartFragment.reloadListView();
               }
             },
-            64,
-            64,
+            width,
+            height,
             ImageView.ScaleType.FIT_CENTER,
             Bitmap.Config.RGB_565,
             new Response.ErrorListener() {

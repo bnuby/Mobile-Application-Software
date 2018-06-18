@@ -8,10 +8,10 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:background="#9c1016"
         android:id="@+id/acc_info"
         android:layout_width="0dp"
         android:layout_height="150dp"
+        android:background="@color/dark_red"
         android:gravity="center"
         android:orientation="horizontal"
         android:weightSum="1"
@@ -46,7 +46,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
-        android:background="#C4C4C4"
+        android:background="@color/light_gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -64,7 +64,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#9c1016"
+                android:background="@color/bright_red"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -90,13 +90,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
                 android:layout_weight="1"
-                android:background="#C4C4C4" />
+                android:background="@color/light_gray" />
 
             <Button
                 android:id="@+id/clrCache_Btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#9c1016"
+                android:background="@color/bright_red"
                 android:paddingBottom="5dp"
                 android:paddingTop="5dp"
                 android:text="Clear Cache" />
@@ -104,13 +104,13 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
-                android:background="#C4C4C4" />
+                android:background="@color/light_gray" />
 
             <Button
                 android:id="@+id/accMng_Btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#9c1016"
+                android:background="@color/bright_red"
                 android:paddingBottom="5dp"
                 android:paddingTop="5dp"
                 android:text="Account Management" />
@@ -118,13 +118,13 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
-                android:background="#C4C4C4" />
+                android:background="@color/light_gray" />
 
             <Button
                 android:id="@+id/logOut_Btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#9c1016"
+                android:background="@color/bright_red"
                 android:paddingBottom="3dp"
                 android:paddingTop="5dp"
                 android:text="Logout" />

@@ -10,8 +10,8 @@
     <color name="gray">#828282</color>
 
     <color name="background">#9C1016</color>
-    <color name="brightred">#9C1016</color>
-    <color name="darkred">#780F0F</color>
+    <color name="bright_red">#9C1016</color>
+    <color name="dark_red">#780F0F</color>
 
     <color name="fade_white">#9bffffff</color>
     <color name="white">#FFFFFF</color>
