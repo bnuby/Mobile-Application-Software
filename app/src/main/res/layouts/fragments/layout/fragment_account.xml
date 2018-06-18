@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#C4C4C4"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -43,31 +44,34 @@
 
     <ScrollView
         android:layout_width="0dp"
-        android:layout_height="398dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:background="#C4C4C4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="#C4C4C4"
-        app:layout_constraintTop_toBottomOf="@+id/acc_info"
 
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/acc_info"
         app:layout_constraintVertical_bias="0.478">
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:background="#9c1016">
+                android:background="#9c1016"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/imageView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/history" />
 
@@ -75,9 +79,9 @@
                     android:id="@+id/favoriteIMG"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_margin="10dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/heart_full" />
-
 
 
             </LinearLayout>
@@ -99,8 +103,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:background="#C4C4C4"
-                android:layout_height="5dp" />
+                android:layout_height="5dp"
+                android:background="#C4C4C4" />
 
             <Button
                 android:id="@+id/accMng_Btn"
@@ -113,8 +117,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:background="#C4C4C4"
-                android:layout_height="5dp" />
+                android:layout_height="5dp"
+                android:background="#C4C4C4" />
 
             <Button
                 android:id="@+id/logOut_Btn"
