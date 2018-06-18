@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#C0C0C0"
-    tools:context=".View.SignupActivity">
+    tools:context=".View.SignupActivity"
+    tools:layout_editor_absoluteY="25dp"
+    >
 
     <ImageView
         android:id="@+id/imageView7"
@@ -43,9 +45,14 @@
             android:ems="10"
             android:hint="帳號"
             android:inputType="textPersonName"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/rounded_form"
+            android:textColor="@color/dark_black"
+            android:textColorHint="@color/gray"
+            />
 
         <EditText
             android:id="@+id/password"
@@ -56,8 +63,13 @@
             android:ems="10"
             android:hint="密碼"
             android:inputType="textPersonName"
+            android:textAlignment="center"
             app:layout_constraintStart_toStartOf="@+id/username"
-            app:layout_constraintTop_toBottomOf="@+id/username" />
+            app:layout_constraintTop_toBottomOf="@+id/username"
+            android:background="@drawable/rounded_form"
+            android:textColor="@color/dark_black"
+            android:textColorHint="@color/gray"
+            />
 
         <EditText
             android:id="@+id/password2"
@@ -68,8 +80,13 @@
             android:ems="10"
             android:hint="確認密碼"
             android:inputType="textPersonName"
+            android:textAlignment="center"
             app:layout_constraintStart_toStartOf="@+id/username"
-            app:layout_constraintTop_toBottomOf="@+id/username" />
+            app:layout_constraintTop_toBottomOf="@+id/username"
+            android:background="@drawable/rounded_form"
+            android:textColor="@color/dark_black"
+            android:textColorHint="@color/gray"
+            />
 
         <EditText
             android:id="@+id/name"
@@ -80,9 +97,14 @@
             android:ems="10"
             android:hint="姓名"
             android:inputType="textPersonName"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/rounded_form"
+            android:textColor="@color/dark_black"
+            android:textColorHint="@color/gray"
+            />
 
         <EditText
             android:id="@+id/email"
@@ -93,8 +115,13 @@
             android:ems="10"
             android:hint="email"
             android:inputType="textPersonName"
+            android:textAlignment="center"
             app:layout_constraintStart_toStartOf="@+id/password"
-            app:layout_constraintTop_toBottomOf="@+id/password" />
+            app:layout_constraintTop_toBottomOf="@+id/password"
+            android:background="@drawable/rounded_form"
+            android:textColor="@color/dark_black"
+            android:textColorHint="@color/gray"
+            />
 
         <EditText
             android:id="@+id/phone"
@@ -105,8 +132,13 @@
             android:ems="10"
             android:hint="phone"
             android:inputType="textPersonName"
+            android:textAlignment="center"
             app:layout_constraintStart_toStartOf="@+id/email"
-            app:layout_constraintTop_toBottomOf="@+id/email" />
+            app:layout_constraintTop_toBottomOf="@+id/email"
+            android:background="@drawable/rounded_form"
+            android:textColor="@color/dark_black"
+            android:textColorHint="@color/gray"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
