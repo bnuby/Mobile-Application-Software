@@ -9,7 +9,6 @@
     <string name="logout">Log Out</string>
     <string name="error">Please Check Your Network Connection.\nTry Again</string>
     <string name="total_price">Total: </string>
-    <string name="pay">Pay</string>
     <string name="items">items</string>
     <string name="your_address">Your Address</string>
 
@@ -17,6 +16,7 @@
     <string name="type">Type: </string>
     <string name="quantity">Quantity: </string>
     <string name="description">Description: </string>
+    <string name="put_in_cart">Product is put in cart already!</string>
     <string name="done">Done</string>
     <string name="cancel">Cancel</string>
     <!--Product Detail-->
@@ -28,6 +28,7 @@
     <!--Main Page-->
     <string name="car_brand">Car Brand</string>
     <string name="most_popular">Most Popular</string>
+    <string name="more">more</string>
     <!--Main Page-->
 
     <!--Login Page-->
@@ -53,13 +54,19 @@
 
     <!--Order Page-->
     <string name="order_title">Order</string>
+    <string name="unpay">unpay</string>
+    <string name="pay">pay</string>
+    <string name="pending_refund">pending_refund</string>
+    <string name="qty">qty:</string>
+    <string name="status">status: </string>
+    <string name="order_number">Order Number:</string>
+    <string name="address2">Address:</string>
     <!--Order Page-->
 
-    <string name="more">more</string>
     <dimen name="a">20dp</dimen>
 
     <!--Unit Price-->
-    <string name="taiwan">NTD</string>
+    <string name="taiwan">NT </string>
     <!--Unit Price-->
 
 

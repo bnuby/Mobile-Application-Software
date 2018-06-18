@@ -16,6 +16,7 @@ import com.example.gibson.carlife.Model.Product.Product;
 import com.example.gibson.carlife.R;
 import com.example.gibson.carlife.Services.Order.OrderManagement;
 import com.example.gibson.carlife.Services.Product.ProductPicturesManagement;
+import com.example.gibson.carlife.Services.UserManagement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +26,8 @@ public class ProductDetailActivity extends CustomActivity {
   public static ArrayList<Bitmap> images;
   private static ImagePagerAdapter imagePagerAdapter;
   private ViewPager viewPager;
-  public TextView typeTV, quantityTV, titleTV, introTV, priceTV;
-  public Button cartBtn;
+  public TextView typeTV, quantityTV, titleTV, introTV, priceTV, qtyTV, totalTV;
+  public Button cartBtn, minusBtn, plusBtn;
   public boolean isFavorite;
 
   public static void addImage(Bitmap bitmap) {
@@ -50,7 +51,12 @@ public class ProductDetailActivity extends CustomActivity {
     titleTV = findViewById(R.id.titleTV);
     introTV = findViewById(R.id.introTV);
     priceTV = findViewById(R.id.priceTV);
+    totalTV = findViewById(R.id.totalTV);
+    qtyTV = findViewById(R.id.qtyTV);
+
     cartBtn = findViewById(R.id.cart);
+    minusBtn = findViewById(R.id.minusBtn);
+    plusBtn = findViewById(R.id.plusBtn);
 
     images = new ArrayList<>();
     if(item.product_type!=null)
@@ -59,7 +65,8 @@ public class ProductDetailActivity extends CustomActivity {
       typeTV.setText("Null");
     quantityTV.setText(""+item.quantity);
     titleTV.setText(item.name);
-    priceTV.setText("NT:" + item.cost_price);
+    priceTV.setText(getResources().getString(R.string.taiwan) + " " + item.sale_price);
+    totalTV.setText(getResources().getString(R.string.taiwan) + " " + item.sale_price);
     introTV.setText(item.description);
 
     if(item.imgs.size() == 0)
@@ -69,18 +76,27 @@ public class ProductDetailActivity extends CustomActivity {
       imagePagerAdapter.notifyDataSetChanged();
     }
 
+
     cartBtn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        //少了Volley
-        ProductDetailActivity.longTost( "已放入購物車");
-        OrderManagement.addProductToCart(item.id, 1);
+        if(!UserManagement.isLogin) {
+          ProductDetailActivity.longTost(getResources().getString(R.string.you_are_not_login));
+          return;
+        }
+        int quantity = Integer.valueOf(qtyTV.getText().toString());
+        ProductDetailActivity.shortTost( getResources().getString(R.string.put_in_cart));
+        OrderManagement.addProductToCart(item.id, quantity);
       }
     });
 
     heart.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
+        if(!UserManagement.isLogin) {
+          ProductDetailActivity.shortTost(getResources().getString(R.string.you_are_not_login));
+          return;
+        }
         if(isFavorite){
           heart.setImageResource(R.drawable.white_heart);
           isFavorite=false;
@@ -89,7 +105,30 @@ public class ProductDetailActivity extends CustomActivity {
           heart.setImageResource(R.drawable.white_heart_fill);
           isFavorite=true;
         }
+      }
+    });
 
+    minusBtn.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        int quantity = Integer.valueOf(qtyTV.getText().toString());
+        if(quantity > 1) {
+          quantity -= 1;
+          qtyTV.setText(String.valueOf(quantity));
+          totalTV.setText(getResources().getString(R.string.taiwan) + " " + item.sale_price * quantity);
+        }
+      }
+    });
+
+    plusBtn.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        int quantity = Integer.valueOf(qtyTV.getText().toString());
+        if(quantity < item.quantity) {
+          quantity += 1;
+          qtyTV.setText(String.valueOf(quantity));
+          totalTV.setText(getResources().getString(R.string.taiwan) + " " + item.sale_price * quantity);
+        }
       }
     });
 

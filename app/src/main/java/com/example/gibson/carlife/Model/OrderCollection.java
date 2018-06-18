@@ -4,6 +4,7 @@ import com.example.gibson.carlife.Model.Order.Order;
 import com.example.gibson.carlife.Model.Order.OrderItem;
 import com.example.gibson.carlife.Model.Order.OrderStatus;
 import com.example.gibson.carlife.View.Fragment.CartFragment;
+import com.example.gibson.carlife.View.Fragment.OrderFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -72,7 +73,6 @@ public class OrderCollection {
         e.printStackTrace();
       }
     }
-
     fillOrderListOrderItem();
   }
 
@@ -86,7 +86,6 @@ public class OrderCollection {
     putOrderItemIntoOrder(paids);
     putOrderItemIntoOrder(pending_refunds);
     putOrderItemIntoOrder(cancels);
-
   }
 
   void putOrderItemIntoOrder(ArrayList<OrderItem> orderItems) {
@@ -112,6 +111,68 @@ public class OrderCollection {
       return null;
     }
     return orderItem;
+  }
+
+  public ArrayList<Order> getUnPayOrders() {
+    ArrayList<Order> unpays = new ArrayList<>();
+
+    for(Order order: orders)
+      if(order.status == OrderStatus.unpay)
+        unpays.add(order);
+    return unpays;
+  }
+
+  public ArrayList<Order> getPaidOrders() {
+    ArrayList<Order> paids = new ArrayList<>();
+    for(Order order: orders)
+      if(order.status == OrderStatus.paid)
+        paids.add(order);
+    return paids;
+  }
+
+  public ArrayList<Order> getPedingRefundOrders() {
+    ArrayList<Order> pendingRefunds = new ArrayList<>();
+    for(Order order: orders)
+      if(order.status == OrderStatus.pending_refund)
+        pendingRefunds.add(order);
+    return pendingRefunds;
+  }
+
+  public ArrayList<Order> getCancelOrders() {
+    ArrayList<Order> cancels = new ArrayList<>();
+    for(Order order: orders)
+      if(order.status == OrderStatus.cancel)
+        cancels.add(order);
+    return cancels;
+  }
+
+  public ArrayList<OrderItem> getOrderItemsByOrderID(OrderStatus status, Order order) {
+    ArrayList<OrderItem> orderItems = new ArrayList<>();
+
+    switch (status) {
+      case unpay:
+        for(OrderItem orderItem: unpays)
+          if(orderItem.order_id == order.id)
+            orderItems.add(orderItem);
+        break;
+      case paid:
+        for(OrderItem orderItem: paids)
+          if(orderItem.order_id == order.id)
+            orderItems.add(orderItem);
+        break;
+      case cancel:
+        for(OrderItem orderItem: cancels)
+          if(orderItem.order_id == order.id)
+            orderItems.add(orderItem);
+        break;
+      case pending_refund:
+        for(OrderItem orderItem: pending_refunds)
+          if(orderItem.order_id == order.id)
+            orderItems.add(orderItem);
+        break;
+    }
+
+    return orderItems;
   }
 
   public Order findOrderByID(int id) {
