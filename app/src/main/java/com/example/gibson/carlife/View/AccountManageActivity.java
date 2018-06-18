@@ -69,7 +69,7 @@ public class AccountManageActivity extends CustomActivity implements View.OnClic
             UserManagement.updateAddress(newaddress);
           }
           else {
-
+            UserManagement.addAddress(newaddress);
           }
         }
 
