@@ -26,8 +26,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     View view = inflater.inflate(R.layout.fragment_main, container, false);
 
     mainShopFragment = new MainShopFragment();
-    getFragmentManager().beginTransaction().add(R.id.linearLayout, mainShopFragment).addToBackStack(null).commit();
-
+    getFragmentManager().beginTransaction().add(R.id.linearLayout, mainShopFragment).commit();
 
     clearBtn = view.findViewById(R.id.clearBtn);
     searchBar = view.findViewById(R.id.searchBar);

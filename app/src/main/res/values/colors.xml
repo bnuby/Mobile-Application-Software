@@ -14,4 +14,7 @@
 
     <color name="white">#FFFFFF</color>
     <color name="dark_green">#14663a</color>
+    <color name="colorBackground">#d03737</color>
+    <color name="foreground_material_light">#fff4f4</color>
+    <color name="light_red">#c9484d</color>
 </resources>

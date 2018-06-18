@@ -9,4 +9,15 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="CarLife" parent="Theme.AppCompat.NoActionBar" >
+        <item name="colorPrimaryDark">@color/brightred</item>
+        <item name="android:colorBackground">@color/gray</item>
+        <item name="colorPrimary">@color/darkred</item>
+        <item name="android:statusBarColor">@color/brightred</item>
+        <item name="android:textColorSecondary">@color/white</item>
+        <item name="colorAccent">@color/brightred</item>
+        <item name="android:navigationBarColor">@color/light_red</item>
+        <item name="android:colorForeground">@color/black</item>
+    </style>
+
 </resources>

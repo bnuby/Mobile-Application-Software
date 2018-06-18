@@ -34,7 +34,7 @@ public class ShopCartFragment extends Fragment {
 
     ProductListViewAdapter adapter =
             new ProductListViewAdapter(getContext(), albumlist, R.layout.listview1);
-    listView = view.findViewById(R.id.carlist);
+    listView = view.findViewById(R.id.cartlist);
     listView.setAdapter(adapter);
 
 

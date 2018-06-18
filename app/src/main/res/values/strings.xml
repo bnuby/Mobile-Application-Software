@@ -8,7 +8,9 @@
     <string name="keep_buying">Keep buying</string>
     <string name="logout">Log Out</string>
     <string name="error">Please Check Your Network Connection.\nTry Again</string>
-    <string name="total_price">Total Price : </string>
+    <string name="total_price">Total: </string>
+    <string name="pay">Pay</string>
+    <string name="items">items</string>
 
     <!--Main Page-->
     <string name="car_brand">Car Brand</string>
@@ -27,6 +29,10 @@
     <string name="product_type">Product Type</string>
     <string name="product_brand">Product Brand</string>
     <!--Category Page-->
+
+    <!--Cart Page-->
+    <string name="cart_title">Cart</string>
+    <!--Cart Page-->
 
     <string name="more">more</string>
     <dimen name="a">20dp</dimen>
