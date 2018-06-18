@@ -15,7 +15,5 @@ public class FavoriteyActivity extends CustomActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favoritey);
-        listView.findViewById(R.id.favoriteListview);
-
     }
 }
