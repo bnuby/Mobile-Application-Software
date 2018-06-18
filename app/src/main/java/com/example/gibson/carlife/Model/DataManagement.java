@@ -87,12 +87,4 @@ public class DataManagement {
     }
     return arrayList;
   }
-  public static ArrayList<Favorite> getFavorite(String brandName) {
-    ArrayList<Favorite> arrayList = new ArrayList();
-    for (Favorite favorite : favorites) {
-      if (favorite.product_brand.equalsIgnoreCase(brandName))
-        arrayList.add(favorite);
-    }
-    return arrayList;
-  }
 }
