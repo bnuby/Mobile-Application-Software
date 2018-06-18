@@ -62,6 +62,7 @@ public class CartFragment extends Fragment {
     listView.setAdapter(adapter);
 
     payBtn = view.findViewById(R.id.payBtn);
+    payBtn.setEnabled(false);
     payBtn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -104,6 +105,16 @@ public class CartFragment extends Fragment {
             }
           });
         }
+      }
+    });
+
+    checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+      @Override
+      public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if(isChecked)
+          payBtn.setEnabled(true);
+        else
+          payBtn.setEnabled(false);
       }
     });
 
