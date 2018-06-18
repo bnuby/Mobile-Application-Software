@@ -4,10 +4,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 
+import com.example.gibson.carlife.Abstract.CustomActivity;
 import com.example.gibson.carlife.Adapters.ProductListViewAdapter;
 import com.example.gibson.carlife.R;
 
-public class FavoriteyActivity extends AppCompatActivity {
+public class FavoriteyActivity extends CustomActivity {
     public ListView listView;
 
     @Override
