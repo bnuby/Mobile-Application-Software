@@ -38,7 +38,8 @@ public class ProductGVFragment extends Fragment implements AdapterView.OnItemCli
   @Override
   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
     Intent intent = new Intent(getContext(), ProductDetailActivity.class);
-    intent.putExtra("position", position);
+    int product_id = ((Product)parent.getAdapter().getItem(position)).id;
+    intent.putExtra("position", product_id);
     startActivity(intent);
   }
 }

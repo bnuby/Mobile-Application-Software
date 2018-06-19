@@ -52,7 +52,8 @@ public class SearchResultActivity extends AppCompatActivity {
       @Override
       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent1 = new Intent(getBaseContext(), ProductDetailActivity.class);
-        intent1.putExtra("position", position);
+        int product_id = ((Product)parent.getAdapter().getItem(position)).id;
+        intent1.putExtra("position", product_id);
         startActivity(intent1);
       }
     });

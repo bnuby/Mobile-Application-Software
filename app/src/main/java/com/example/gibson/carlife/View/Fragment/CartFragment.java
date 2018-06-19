@@ -27,6 +27,7 @@ import com.example.gibson.carlife.Model.Order.OrderStatus;
 import com.example.gibson.carlife.Model.Product.Product;
 import com.example.gibson.carlife.R;
 import com.example.gibson.carlife.Services.Order.OrderManagement;
+import com.example.gibson.carlife.Services.UserManagement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +44,11 @@ public class CartFragment extends Fragment {
   @Nullable
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+//    if(!UserManagement.isLogin){
+//      View view = inflater.inflate(R.layout.fragment_not_log_in, container, false);
+//      return view;
+//    }
+
     View view = inflater.inflate(R.layout.fragment_cart, container, false);
 
     checkBox = view.findViewById(R.id.allCheckBox);

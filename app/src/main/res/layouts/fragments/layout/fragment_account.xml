@@ -99,7 +99,7 @@
                 android:background="@color/bright_red"
                 android:paddingBottom="5dp"
                 android:paddingTop="5dp"
-                android:text="Clear Cache" />
+                android:text="@string/clear_cache" />
 
             <View
                 android:layout_width="match_parent"
@@ -113,7 +113,7 @@
                 android:background="@color/bright_red"
                 android:paddingBottom="5dp"
                 android:paddingTop="5dp"
-                android:text="Account Management" />
+                android:text="@string/account_management" />
 
             <View
                 android:layout_width="match_parent"
@@ -127,7 +127,7 @@
                 android:background="@color/bright_red"
                 android:paddingBottom="3dp"
                 android:paddingTop="5dp"
-                android:text="Logout" />
+                android:text="@string/logout" />
         </LinearLayout>
 
     </ScrollView>

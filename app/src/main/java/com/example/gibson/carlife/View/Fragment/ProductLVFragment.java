@@ -12,6 +12,7 @@ import android.widget.ListView;
 
 import com.example.gibson.carlife.Adapters.ProductListViewAdapter;
 import com.example.gibson.carlife.Model.DataManagement;
+import com.example.gibson.carlife.Model.Product.Product;
 import com.example.gibson.carlife.R;
 import com.example.gibson.carlife.View.ProductDetailActivity;
 
@@ -38,7 +39,8 @@ public class ProductLVFragment extends Fragment implements AdapterView.OnItemCli
   @Override
   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
     Intent intent = new Intent(getContext(), ProductDetailActivity.class);
-    intent.putExtra("position", position);
+    int product_id = ((Product)parent.getAdapter().getItem(position)).id;
+    intent.putExtra("position", product_id);
     startActivity(intent);
   }
 }

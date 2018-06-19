@@ -48,7 +48,7 @@ public class ProductDetailActivity extends CustomActivity {
     isFavorite=false;
 
     int position = getIntent().getIntExtra("position", -1);
-    item = DataManagement.getProducts().get(position);
+    item = DataManagement.getProductsById(position);
 
     viewPager = (ViewPager) findViewById(R.id.productImgs_viewPager);
     typeTV = findViewById(R.id.typeTV);

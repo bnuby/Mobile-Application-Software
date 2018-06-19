@@ -43,7 +43,7 @@
                     android:id="@+id/username_TV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Username"
+                    android:text="@string/username"
                     android:textSize="18sp" />
 
                 <EditText
@@ -88,7 +88,7 @@
                     android:id="@+id/phone_TV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Handphone"
+                    android:text="@string/handphone"
                     android:textSize="18sp" />
 
                 <EditText
@@ -110,7 +110,7 @@
                     android:id="@+id/address_TV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Address"
+                    android:text="@string/address"
                     android:textSize="18sp" />
 
                 <EditText
@@ -128,7 +128,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/buttondark"
-                android:text="Confirm" />
+                android:text="@string/confirm" />
 
         </LinearLayout>
     </ScrollView>

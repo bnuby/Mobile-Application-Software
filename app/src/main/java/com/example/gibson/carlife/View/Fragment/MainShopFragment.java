@@ -117,10 +117,10 @@ public class MainShopFragment extends Fragment {
     productGridView.setAdapter(adapter3);
     productGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
       @Override
-      public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+      public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
         Intent intent = new Intent(getContext(), ProductDetailActivity.class);
-//                intent.putExtra("productGridView", (Serializable)MainActivity.products.get(i));
-        intent.putExtra("position", i);
+        int product_id = ((Product)parent.getAdapter().getItem(position)).id;
+        intent.putExtra("position", product_id);
         startActivity(intent);
       }
     });

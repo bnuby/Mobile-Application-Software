@@ -65,7 +65,7 @@ public class SignUpActivity extends CustomActivity {
           if (username.isEmpty() || password.isEmpty() ||
                   confirm_password.isEmpty() || name.isEmpty() ||
                   email.isEmpty() || phone.isEmpty()) {
-            Toast.makeText(SignUpActivity.this, "All Must Not be Empty!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUpActivity.this, R.string.AllMustNotbeEmpty, Toast.LENGTH_SHORT).show();
           } else if (!password.equals(confirm_password)) {
             Toast.makeText(SignUpActivity.this, "Password Not Same!", Toast.LENGTH_SHORT).show();
           } else {
