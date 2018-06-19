@@ -34,11 +34,11 @@ public class UserManagement extends RequestManager {
 
   public static void requestLogin(final String username, final String password, final boolean show) {
     final String url = host + "/user/login/";
-    if (show)
-      LoginActivity.showLoading("Login");
+//    if (show)
+//      LoginActivity.showLoading("Login");
     if (username.equals("") || password.equals("")) {
       LoginActivity.longTost("Please input username and password.");
-      LoginActivity.dismissLoading();
+//      LoginActivity.dismissLoading();
       return;
     }
     JSONObject jsonObject = new JSONObject();
@@ -66,7 +66,6 @@ public class UserManagement extends RequestManager {
                     requestAddress();
                     OrderManagement.requestOrder(MainActivity.userObj.userId);
                     FavoriteManagerment.getFavorites();
-                    HistoryManagerment.getHistory();
                     // save user to preferences
                     SharedPreferences.Editor editor = MainActivity.mPreferences.edit();
                     editor.putString("username", username);
@@ -83,8 +82,8 @@ public class UserManagement extends RequestManager {
                 } catch (JSONException e) {
                   e.printStackTrace();
                 }
-                if (show)
-                  LoginActivity.dismissLoading();
+//                if (show)
+//                  LoginActivity.dismissLoading();
               }
             },
             new Response.ErrorListener() {
@@ -92,7 +91,7 @@ public class UserManagement extends RequestManager {
               public void onErrorResponse(VolleyError error) {
                 LoginActivity.longTost("Login Fail.");
                 Log.v("login", error.getMessage());
-                LoginActivity.dismissLoading();
+//                LoginActivity.dismissLoading();
               }
             }
     ) {
