@@ -11,29 +11,51 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/CarLife">
-        <activity android:name=".MainActivity"
-            android:windowSoftInputMode="adjustNothing"
-            android:theme="@style/CarLife">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CarLife"
+            android:windowSoftInputMode="adjustNothing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".View.SignUpActivity" />
-        <activity android:name=".View.LoginActivity" />
-        <activity android:name=".View.AccountManageActivity" />
-        <activity android:name=".View.ProductDetailActivity" />
-        <activity android:name=".View.OrderDetailActivity" />
-        <activity android:name=".View.CategoryActivity" />
-        <activity android:name=".View.ProductCategoryActivity" />
+        <activity
+            android:name=".View.SignUpActivity"
+            android:screenOrientation="portrait"
+
+            />
+        <activity
+            android:name=".View.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".View.AccountManageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".View.ProductDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".View.OrderDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".View.CategoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".View.ProductCategoryActivity"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".View.FavoriteActivity" />
-        <activity android:name=".View.HistoryActivity"></activity>
+        <activity
+            android:name=".View.FavoriteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".View.HistoryActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

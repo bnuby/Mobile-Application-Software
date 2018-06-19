@@ -12,6 +12,7 @@ public class DataManagement {
   private static ArrayList<ProductBrand> productBrands;
   private static ArrayList<ProductType> productTypes;
   private static ArrayList<Favorite> favorites;
+  private static ArrayList<History> histories;
 
   public static OrderCollection getOrderCollection() {
     if (orderCollection == null)
@@ -116,7 +117,21 @@ public class DataManagement {
     orderCollection.paids.clear();
     orderCollection.orders.clear();
     orderCollection = null;
-    favorites.removeAll(favorites);
+    favorites.clear();
+    favorites = null;
   }
 
+  public static ArrayList<History> getHistories() {
+    if (histories == null)
+      histories = new ArrayList<>();
+    return histories;
+  }
+
+  // use to check is request one time or not
+  public static boolean checkRequest() {
+    if(products != null && productBrands != null && productTypes != null) {
+      return true;
+    }
+    return false;
+  }
 }

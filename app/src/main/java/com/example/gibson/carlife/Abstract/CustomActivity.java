@@ -18,20 +18,20 @@ public abstract class CustomActivity extends AppCompatActivity {
   protected static Context mContext;
   static AlertDialog dialog;
 
-  public static void showLoading(String message) {
-
-    AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-    //    View view
-    View view = ((Activity) mContext).getLayoutInflater().inflate(R.layout.dialog_loading, null);
-
-    TextView textView = view.findViewById(R.id.messageTV);
-    textView.setText(message);
-
-    builder.setView(view);
-    builder.setCancelable(false);
-    dialog = builder.create();
-    dialog.show();
-  }
+//  public static void showLoading(String message) {
+//
+//    AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+//    //    View view
+//    View view = ((Activity) mContext).getLayoutInflater().inflate(R.layout.dialog_loading, null);
+//
+//    TextView textView = view.findViewById(R.id.messageTV);
+//    textView.setText(message);
+//
+//    builder.setView(view);
+//    builder.setCancelable(false);
+//    dialog = builder.create();
+//    dialog.show();
+//  }
 
   public static void longTost(String toastSring) {
     Toast.makeText(mContext, toastSring, Toast.LENGTH_LONG).show();
@@ -41,9 +41,9 @@ public abstract class CustomActivity extends AppCompatActivity {
     Toast.makeText(mContext, toastSring, Toast.LENGTH_SHORT).show();
   }
 
-  public static void dismissLoading() {
-    dialog.dismiss();
-  }
+//  public static void dismissLoading() {
+//    dialog.dismiss();
+//  }
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {

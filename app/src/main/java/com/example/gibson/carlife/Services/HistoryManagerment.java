@@ -1,11 +1,15 @@
 package com.example.gibson.carlife.Services;
 
+import android.util.Log;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.gibson.carlife.MainActivity;
+import com.example.gibson.carlife.Model.DataManagement;
+import com.example.gibson.carlife.Model.History;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -15,6 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class HistoryManagerment extends RequestManager {
+    private static final String TAG = "HistoryManagerment";
     public static void getHistory() {
         final String url = host + "/history/user/ "+ MainActivity.userObj.userId;
         StringRequest request = new StringRequest(
@@ -24,18 +29,21 @@ public class HistoryManagerment extends RequestManager {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            JSONArray res = new JSONArray(response);
-                            for (int i=0;i<res.length();i++) {
-                                JSONObject object =res.getJSONObject(i);
-//                                MainActivity.History.add(
-//                                        object.get("id"),
-//                                        object.get("user_id"),
-//                                        object.get("product_id"),
-//                                        object.get("created_at"),
-//                                        object.get("updated_at"));
+                            JSONObject res = new JSONObject(response);
+                            if (res.getBoolean("status")){
+                                JSONArray historyObjects = res.getJSONArray("msg");
+                                for (int i=0;i < historyObjects.length();i++){
+                                    DataManagement.getHistories().add(
+                                            new History(historyObjects.getJSONObject(i).getInt("id"),
+                                                    historyObjects.getJSONObject(i).getInt("user_id"),
+                                                    historyObjects.getJSONObject(i).getInt("product_id"),
+                                                    historyObjects.getJSONObject(i).getString("created_at"),
+                                                    historyObjects.getJSONObject(i).getString("updated_at")));
+                                }
+                            }
+                            else{
                             }
                         } catch (JSONException e) {
-                            e.printStackTrace();
                         }
                     }
                 },
@@ -51,7 +59,7 @@ public class HistoryManagerment extends RequestManager {
     }
 
 
-    public static void addHistory(final int productId){
+    public static void addHistory(final int product_id,final int user_id){
         final String url = host + "/history";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
@@ -60,9 +68,20 @@ public class HistoryManagerment extends RequestManager {
                     @Override
                     public void onResponse(String response) {
                         try {
+                            Log.i(TAG, response);
                             JSONObject object1 = new JSONObject(response);
                             if(object1.getBoolean("status")){
-                                MainActivity.longTost(object1.getString("msg"));
+                                JSONObject object = object1.getJSONObject("msg");
+                                MainActivity.longTost("Done");
+                                int curr_id = object.getInt("id");
+//                                History history = new History(
+//                                        curr_id,
+//                                        user_id,
+//                                        product_id
+//                                );
+//                                DataManagement.getHistories().add(history);
+                                DataManagement.getHistories().clear();
+                                getHistory();
                             }
                         }catch (JSONException e){
                         }
@@ -77,8 +96,8 @@ public class HistoryManagerment extends RequestManager {
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> object = new HashMap<>();
-                object.put("address",""+MainActivity.userObj.userId);
-                object.put("user_id",""+""+productId);
+                object.put("product_id",""+product_id);
+                object.put("user_id",""+user_id);
                 return object;
             }
         };

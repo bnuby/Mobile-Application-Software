@@ -48,7 +48,7 @@ public class ProductManagement extends RequestManager {
                                     object.getDouble("sale_price"),
                                     object.getInt("product_brand_id"),
                                     object.getInt("product_type_id"),
-                                    object.getString("tag"),
+                                    object.getJSONArray("tag"),
                                     object.getString("created_at"),
                                     object.getString("updated_at"),
                                     object.getString("description"),

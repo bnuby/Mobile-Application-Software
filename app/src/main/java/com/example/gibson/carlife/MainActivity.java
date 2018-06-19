@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 
 import com.android.volley.Cache;
 import com.android.volley.Network;
@@ -77,9 +78,9 @@ public class MainActivity extends CustomActivity {
     userObj.password = mPreferences.getString("password", "");
 
     if (!MainActivity.userObj.username.equals("") && !MainActivity.userObj.password.equals("")) {
-      UserManagement.requestLogin(userObj.username, userObj.password, false);
+      if(!UserManagement.isLogin)
+        UserManagement.requestLogin(userObj.username, userObj.password, false);
     }
-
     initializeDataManagement();
   }
 
@@ -95,9 +96,11 @@ public class MainActivity extends CustomActivity {
   }
 
   public void initializeDataManagement() {
-    ProductTypeManagement.requestProductType(this);
-    ProductBrandManagement.requestProductBrand(this);
-    ProductManagement.requestProduct();
+    if(!DataManagement.checkRequest()) {
+      ProductTypeManagement.requestProductType(this);
+      ProductBrandManagement.requestProductBrand(this);
+      ProductManagement.requestProduct();
+    }
   }
 
   @Override

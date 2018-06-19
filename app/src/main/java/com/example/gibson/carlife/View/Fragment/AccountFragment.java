@@ -21,6 +21,7 @@ import com.example.gibson.carlife.Services.Order.DataCleanManager;
 import com.example.gibson.carlife.Services.UserManagement;
 import com.example.gibson.carlife.View.AccountManageActivity;
 import com.example.gibson.carlife.View.FavoriteActivity;
+import com.example.gibson.carlife.View.HistoryActivity;
 import com.example.gibson.carlife.View.LoginActivity;
 
 public class AccountFragment extends Fragment {
@@ -28,8 +29,10 @@ public class AccountFragment extends Fragment {
   static Button logOut_Btn, accMng_Btn;
   LinearLayout accountInfoLayout;
   static TextView usernameTV;
+
   Button clrCache_Btn;
-  ImageView favorite;
+  ImageView favorite,history;
+
   String cacheSize;
   //private static final int REQUEST_CODE = 8;
 
@@ -97,6 +100,19 @@ public class AccountFragment extends Fragment {
       public void onClick(View view) {
         if(UserManagement.isLogin){
           Intent intent =new Intent(getContext(), FavoriteActivity.class);
+          startActivity(intent);
+        }
+        else {
+          AccountManageActivity.longTost("Please Login.");
+        }
+      }
+    });
+    history =view.findViewById(R.id.historyIV);
+    history.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        if(UserManagement.isLogin){
+          Intent intent =new Intent(getContext(), HistoryActivity.class);
           startActivity(intent);
         }
         else {

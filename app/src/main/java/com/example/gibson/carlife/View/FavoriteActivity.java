@@ -17,8 +17,6 @@ public class FavoriteActivity extends CustomActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite);
         listView =findViewById(R.id.favoriteListview);
-        Log.i("ggggggg", "onCreate: "+DataManagement.getFavorite());
-
         FavoriteAdapter adapter = new FavoriteAdapter(this, DataManagement.getFavorite());
         listView.setAdapter(adapter);
     }
