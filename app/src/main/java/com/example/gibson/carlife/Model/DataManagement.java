@@ -5,6 +5,8 @@ import com.example.gibson.carlife.Model.Product.ProductBrand;
 import com.example.gibson.carlife.Model.Product.ProductType;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DataManagement {
   private static OrderCollection orderCollection;
@@ -13,6 +15,7 @@ public class DataManagement {
   private static ArrayList<ProductType> productTypes;
   private static ArrayList<Favorite> favorites;
   private static ArrayList<History> histories;
+  private static HashMap<String, ArrayList<Product>> map;
 
   public static OrderCollection getOrderCollection() {
     if (orderCollection == null)
@@ -125,6 +128,25 @@ public class DataManagement {
     if (histories == null)
       histories = new ArrayList<>();
     return histories;
+  }
+
+  public static void addSearchTable(String key, Product value) {
+    if(map == null)
+      map = new HashMap<>();
+
+    if(map.get(key) == null)
+      map.put(key, new ArrayList<Product>());
+    map.get(key).add(value);
+  }
+
+  public static ArrayList<Product> getMapByKey(String key) {
+    if(map == null)
+      map = new HashMap<>();
+
+    if(map.get(key) == null)
+      map.put(key, new ArrayList<Product>());
+
+    return map.get(key);
   }
 
   // use to check is request one time or not

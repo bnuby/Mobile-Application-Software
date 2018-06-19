@@ -3,10 +3,13 @@ package com.example.gibson.carlife.Model.Product;
 import android.graphics.Bitmap;
 import android.util.Log;
 
+import com.example.gibson.carlife.Model.DataManagement;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class Product {
@@ -51,8 +54,10 @@ public class Product {
   ArrayList<String> JSONArrayToArrayList(JSONArray array) {
     ArrayList<String> tags = new ArrayList<>();
     try{
-      for(int i = 0; i < array.length(); i++)
+      for(int i = 0; i < array.length(); i++) {
         tags.add(array.getString(i));
+        DataManagement.addSearchTable(array.getString(i), this);
+      }
     } catch (JSONException ex) {
       Log.e("Product", ex.getMessage());
     }

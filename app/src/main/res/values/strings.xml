@@ -26,9 +26,11 @@
     <!--Account Detail-->
 
     <!--Main Page-->
+    <string name="search_hint">Search Product...</string>
     <string name="car_brand">Car Brand</string>
     <string name="most_popular">Most Popular</string>
     <string name="more">more</string>
+    <string name="home">Home</string>
     <!--Main Page-->
 
     <!--Login Page-->
