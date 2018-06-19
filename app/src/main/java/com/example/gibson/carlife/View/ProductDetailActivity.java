@@ -170,7 +170,7 @@ public class ProductDetailActivity extends CustomActivity {
       return;
     }
     if(b) {
-      favoriteIV.setImageResource(R.drawable.heart_full);
+      favoriteIV.setImageResource(R.drawable.white_heart_fill);
 
       isFavorite = b;
     } else {
