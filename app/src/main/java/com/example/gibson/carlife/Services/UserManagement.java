@@ -66,6 +66,7 @@ public class UserManagement extends RequestManager {
                     requestAddress();
                     OrderManagement.requestOrder(MainActivity.userObj.userId);
                     FavoriteManagerment.getFavorites();
+                    HistoryManagerment.getHistory();
                     // save user to preferences
                     SharedPreferences.Editor editor = MainActivity.mPreferences.edit();
                     editor.putString("username", username);

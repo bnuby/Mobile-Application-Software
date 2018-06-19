@@ -16,6 +16,7 @@ import com.example.gibson.carlife.Model.Favorite;
 import com.example.gibson.carlife.Model.Product.Product;
 import com.example.gibson.carlife.R;
 import com.example.gibson.carlife.Services.FavoriteManagerment;
+import com.example.gibson.carlife.Services.HistoryManagerment;
 import com.example.gibson.carlife.Services.Order.OrderManagement;
 import com.example.gibson.carlife.Services.Product.ProductPicturesManagement;
 import com.example.gibson.carlife.Services.UserManagement;
@@ -63,7 +64,7 @@ public class ProductDetailActivity extends CustomActivity {
     plusBtn = findViewById(R.id.plusBtn);
 
     favoriteIV = findViewById(R.id.favoriteIV);
-
+    HistoryManagerment.addHistory(item.id,MainActivity.userObj.userId);
     images = new ArrayList<>();
     if(item.product_type!=null)
       typeTV.setText(item.product_type);
