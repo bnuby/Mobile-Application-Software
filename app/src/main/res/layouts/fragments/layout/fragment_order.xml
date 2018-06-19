@@ -8,7 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/darkred"
+        android:background="@color/dark_red"
         android:orientation="horizontal">
 
         <TextView
@@ -23,8 +23,38 @@
             android:textSize="26sp" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/dark_red"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/unPayBtn"
+            android:layout_width="65dp"
+            android:layout_height="30dp"
+            android:background="@drawable/unpay_disable"
+            android:text="@string/unpay"
+            android:textColor="@color/dark_black"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/payBtn"
+            android:layout_width="65dp"
+            android:layout_height="30dp"
+            android:background="@drawable/pay_enable"
+            android:text="@string/pay"
+            android:textColor="@color/dark_black"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
     <ListView
         android:id="@+id/orderlist"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:dividerHeight="10dp"
+        android:padding="5dp" />
 </LinearLayout>

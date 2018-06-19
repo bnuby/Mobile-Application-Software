@@ -14,6 +14,7 @@ import com.example.gibson.carlife.Model.Product.Product;
 import com.example.gibson.carlife.Services.RequestManager;
 import com.example.gibson.carlife.View.Fragment.CartFragment;
 import com.example.gibson.carlife.View.Fragment.MainShopFragment;
+import com.example.gibson.carlife.View.Fragment.OrderFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -55,7 +56,6 @@ public class ProductManagement extends RequestManager {
                                     object.getString("product_type")
                             ));
                     getImage(id, i);
-
                   }
                 } catch (JSONException e) {
                   e.printStackTrace();
@@ -88,8 +88,8 @@ public class ProductManagement extends RequestManager {
                 CartFragment.reloadListView();
               }
             },
-            64,
-            64,
+            width,
+            height,
             ImageView.ScaleType.FIT_CENTER,
             Bitmap.Config.RGB_565,
             new Response.ErrorListener() {

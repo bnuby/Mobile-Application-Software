@@ -32,7 +32,7 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".View.FavoriteyActivity" />
+        <activity android:name=".View.FavoriteActivity" />
         <activity android:name=".View.HistoryActivity"></activity>
     </application>
 

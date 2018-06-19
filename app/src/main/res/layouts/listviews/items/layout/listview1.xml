@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/brightred">
+    android:background="@color/bright_red">
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/img"

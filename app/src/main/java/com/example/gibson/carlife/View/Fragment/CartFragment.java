@@ -61,6 +61,8 @@ public class CartFragment extends Fragment {
     listView = view.findViewById(R.id.cartLV);
     listView.setAdapter(adapter);
 
+    priceTV.setText(String.format("%s 0", getString(R.string.taiwan)));
+
     payBtn = view.findViewById(R.id.payBtn);
     payBtn.setEnabled(false);
     payBtn.setOnClickListener(new View.OnClickListener() {
@@ -211,7 +213,7 @@ public class CartFragment extends Fragment {
       Product product = DataManagement.getProductsById(getItem(position).product_id);
       productTV.setText(product.name);
       qtyTV.setText(String.valueOf(getItem(position).quantity));
-      priceTV.setText(String.valueOf((int)DataManagement.getProductsById(getItem(position).product_id).sale_price) + " " + getResources().getString(R.string.taiwan));
+      priceTV.setText(getResources().getString(R.string.taiwan) + " " + String.valueOf((int)DataManagement.getProductsById(getItem(position).product_id).sale_price));
 
       productIV.setImageBitmap(product.img);
       initCheckBox(checkBox, position);
@@ -260,7 +262,7 @@ public class CartFragment extends Fragment {
         price = product.sale_price * orderItem.quantity;
       }
 
-      CartFragment.setPrice(String.format("%.0f", price));
+      CartFragment.setPrice(String.format("%s %.0f", getString(R.string.taiwan), price));
     }
 
     void removeOrder() {

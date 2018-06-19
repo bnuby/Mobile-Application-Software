@@ -8,7 +8,7 @@
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/darkred"
+        android:background="@color/dark_red"
         android:text="@string/address"
         android:textAlignment="center"
         android:textSize="24sp" />
@@ -22,7 +22,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:background="@color/brightred"
+        android:background="@color/bright_red"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -51,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/darkred"
+            android:background="@color/dark_red"
             android:text="@string/cancel" />
 
         <Button

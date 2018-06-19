@@ -20,7 +20,7 @@ import com.example.gibson.carlife.R;
 import com.example.gibson.carlife.Services.Order.DataCleanManager;
 import com.example.gibson.carlife.Services.UserManagement;
 import com.example.gibson.carlife.View.AccountManageActivity;
-import com.example.gibson.carlife.View.FavoriteyActivity;
+import com.example.gibson.carlife.View.FavoriteActivity;
 import com.example.gibson.carlife.View.LoginActivity;
 
 public class AccountFragment extends Fragment {
@@ -92,8 +92,13 @@ public class AccountFragment extends Fragment {
     favorite.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Intent intent =new Intent(getContext(), FavoriteyActivity.class);
-        startActivity(intent);
+        if(UserManagement.isLogin){
+          Intent intent =new Intent(getContext(), FavoriteActivity.class);
+          startActivity(intent);
+        }
+        else {
+          AccountManageActivity.longTost("Please Login.");
+        }
       }
     });
 

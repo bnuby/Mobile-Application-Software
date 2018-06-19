@@ -80,8 +80,8 @@ public class ProductBrandManagement extends RequestManager {
                 MainShopFragment.reloadBrandGV();
               }
             },
-            64,
-            64,
+            width,
+            height,
             ImageView.ScaleType.FIT_CENTER,
             Bitmap.Config.RGB_565,
             new Response.ErrorListener() {

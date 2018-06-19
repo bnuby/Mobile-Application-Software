@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/darkred"
+        android:background="@color/dark_red"
         android:orientation="horizontal">
 
         <TextView
@@ -37,7 +37,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@color/brightred"
+        android:background="@color/bright_red"
         android:orientation="horizontal"
         android:weightSum="1">
 
@@ -63,21 +63,11 @@
             android:id="@+id/priceTV"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.25"
+            android:layout_weight="0.45"
             android:gravity="center_vertical"
             android:text="0"
             android:textAlignment="textEnd"
             android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/unitTV"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.2"
-            android:gravity="center"
-            android:text="NTD"
-            android:textAlignment="center"
-            android:textSize="10sp" />
 
         <Button
             android:id="@+id/payBtn"

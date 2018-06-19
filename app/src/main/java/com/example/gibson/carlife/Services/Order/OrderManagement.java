@@ -12,6 +12,7 @@ import com.example.gibson.carlife.Model.DataManagement;
 import com.example.gibson.carlife.Model.Order.Order;
 import com.example.gibson.carlife.Model.Order.OrderItem;
 import com.example.gibson.carlife.Services.RequestManager;
+import com.example.gibson.carlife.View.Fragment.OrderFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -67,6 +68,7 @@ public class OrderManagement extends RequestManager {
                 } catch (JSONException e) {
                   e.printStackTrace();
                 }
+                OrderFragment.reloadAdapterAndListView();
               }
             },
             new Response.ErrorListener() {
@@ -125,7 +127,7 @@ public class OrderManagement extends RequestManager {
         Map<String, String> hashMap = new HashMap<>();
         hashMap.put("product_id", String.valueOf(product_id));
         hashMap.put("quantity", String.valueOf(quantity));
-        hashMap.put("status", "cartBtn");
+        hashMap.put("status", "cart");
         hashMap.put("user_id", String.valueOf(MainActivity.userObj.userId));
         return hashMap;
       }

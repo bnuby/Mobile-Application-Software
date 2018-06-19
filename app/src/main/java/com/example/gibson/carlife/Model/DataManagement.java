@@ -11,6 +11,7 @@ public class DataManagement {
   private static ArrayList<Product> products;
   private static ArrayList<ProductBrand> productBrands;
   private static ArrayList<ProductType> productTypes;
+  private static ArrayList<Favorite> favorites;
 
   public static OrderCollection getOrderCollection() {
     if (orderCollection == null)
@@ -86,5 +87,15 @@ public class DataManagement {
         arrayList.add(product);
     }
     return arrayList;
+  }
+//  public static ArrayList<Favorite> getFavorite(){
+//    if (favorites == null)
+//      favorites = new ArrayList<>();
+//    return favorites;
+//  }
+  public static ArrayList<Favorite> getFavorite() {
+    if (favorites == null)
+      favorites = new ArrayList<>();
+    return favorites;
   }
 }
