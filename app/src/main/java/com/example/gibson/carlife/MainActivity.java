@@ -52,11 +52,12 @@ public class MainActivity extends CustomActivity {
     SharedPreferences.Editor preferencesEditor = mPreferences.edit();
     preferencesEditor.clear();
     preferencesEditor.commit();
-
     UserManagement.isLogin = false;
-    MainActivity.userObj = null;
+    MainActivity.userObj.clear();
     DataManagement.clear();
     AccountFragment.toggleLogoutBtn();
+    CartFragment.reloadListView();
+    OrderFragment.reloadAdapterAndListView();
   }
 
   @Override

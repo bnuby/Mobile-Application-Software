@@ -75,7 +75,7 @@ public class CartFragment extends Fragment {
     payBtn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        if(adapter.orderItems.size() != 0) {
+        if(adapter.orderItems != null && adapter.getCount() != 0) {
           AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
           View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_address, null);
           Button cancelBtn = view.findViewById(R.id.cancelBtn);
@@ -101,6 +101,9 @@ public class CartFragment extends Fragment {
                 orderItem.status = OrderStatus.unpay;
               }
               DataManagement.getOrderCollection().unpays.addAll(adapter.orderItems);
+              reloadListView();
+              checkBox.setText(0 + " " + getResources().getString(R.string.items));
+              setCheckBox(false);
               dialog.cancel();
               dialog.dismiss();
             }
@@ -143,6 +146,7 @@ public class CartFragment extends Fragment {
 
   public static void setCheckBox(Boolean b) {
     Log.i(TAG, checkBox + "check");
+
     if(checkBox != null)
       checkBox.setChecked(b);
   }

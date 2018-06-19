@@ -32,9 +32,12 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     homeTV = view.findViewById(R.id.homeTV);
     mainShopFragment = new MainShopFragment();
     getFragmentManager().beginTransaction().add(R.id.linearLayout, mainShopFragment).commit();
+
     SearchManager searchManager = (SearchManager) getContext().getSystemService(Context.SEARCH_SERVICE);
     searchView = view.findViewById(R.id.searchView);
+
     searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+
     searchView.setOnSearchClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -42,6 +45,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         searchView.setBackground(getResources().getDrawable(R.drawable.search_bar, null));
       }
     });
+
     searchView.setOnCloseListener(new SearchView.OnCloseListener() {
       @Override
       public boolean onClose() {

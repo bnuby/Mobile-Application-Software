@@ -19,7 +19,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class HistoryManagerment extends RequestManager {
+
     private static final String TAG = "HistoryManagerment";
+
     public static void getHistory() {
         final String url = host + "/history/user/ "+ MainActivity.userObj.userId;
         StringRequest request = new StringRequest(

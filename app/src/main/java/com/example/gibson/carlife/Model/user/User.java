@@ -74,4 +74,14 @@ public class User {
         return;
       }
   }
+
+  public void clear() {
+    this.userId = -1;
+    this.username = "";
+    this.password = "";
+    this.addresses.clear();
+    this.email = "";
+    this.phone = "";
+    this.image = null;
+  }
 }

@@ -150,10 +150,12 @@ public class AccountFragment extends Fragment {
   @Override
   public void onStart() {
     super.onStart();
-
     String username = MainActivity.userObj.username;
     if(!username.equalsIgnoreCase(""))
-      usernameTV.setText(MainActivity.userObj.username);
+        usernameTV.setText(MainActivity.userObj.username);
+    else
+      usernameTV.setText(getString(R.string.you_are_not_login));
+
   }
 
   @Override

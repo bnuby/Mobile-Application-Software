@@ -176,6 +176,7 @@ public class OrderManagement extends RequestManager {
                     );
                     DataManagement.getOrderCollection().orders.add(order);
                     for (OrderItem orderItem : orderItems) {
+                      orderItem.order_id = order.id;
                       updateStatus(order.id, String.valueOf(order.status), orderItem);
                     }
                   }
@@ -212,6 +213,7 @@ public class OrderManagement extends RequestManager {
               @Override
               public void onResponse(String response) {
                 Log.i(TAG, response);
+                OrderFragment.reloadAdapterAndListView();
               }
             },
             new Response.ErrorListener() {

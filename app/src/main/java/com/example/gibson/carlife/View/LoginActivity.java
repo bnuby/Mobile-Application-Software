@@ -38,7 +38,6 @@ public class LoginActivity extends CustomActivity implements View.OnClickListene
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_login);
     init();
-
   }
 
   public void init() {
@@ -56,6 +55,7 @@ public class LoginActivity extends CustomActivity implements View.OnClickListene
   public void onClick(View view) {
     switch (view.getId()) {
       case R.id.loginBtn:
+        mContext = this;
         UserManagement.requestLogin(usernameET.getText().toString(), passwordET.getText().toString(), true);
         break;
       case R.id.signup:

@@ -12,6 +12,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.gibson.carlife.MainActivity;
 import com.example.gibson.carlife.Model.DataManagement;
 import com.example.gibson.carlife.Model.Favorite;
+import com.example.gibson.carlife.Model.History;
 import com.example.gibson.carlife.Model.user.User;
 import com.example.gibson.carlife.R;
 import com.example.gibson.carlife.Services.Order.OrderManagement;
@@ -70,6 +71,8 @@ public class UserManagement extends RequestManager {
                     requestAddress();
                     OrderManagement.requestOrder(MainActivity.userObj.userId);
                     FavoriteManagerment.getFavorites();
+                    HistoryManagerment.getHistory();
+
                     // save user to preferences
                     SharedPreferences.Editor editor = MainActivity.mPreferences.edit();
                     editor.putString("username", username);

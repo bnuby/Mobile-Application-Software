@@ -36,6 +36,7 @@ public class SearchResultActivity extends AppCompatActivity {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
     setContentView(R.layout.activity_search_result);
     final Intent intent = getIntent();
     String query = intent.getStringExtra(SearchManager.QUERY);
@@ -44,6 +45,7 @@ public class SearchResultActivity extends AppCompatActivity {
 
     ProductListViewAdapter adapter =
             new ProductListViewAdapter(this, products, R.layout.listview1);
+
 
     listView = findViewById(R.id.searchlist);
     listView.setAdapter(adapter);
@@ -93,5 +95,7 @@ public class SearchResultActivity extends AppCompatActivity {
         return false;
       }
     });
+
+
   }
 }
