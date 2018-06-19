@@ -18,7 +18,7 @@
             android:layout_gravity="center_vertical"
             android:background="@android:color/transparent"
             android:fontFamily="@font/source_sans_pro_bold"
-            android:text="Back"
+            android:text="@string/back"
             android:textColor="@color/white"
             android:textSize="18sp" />
 
