@@ -106,7 +106,6 @@ public class FavoriteManagerment extends RequestManager {
             }
         };
         MainActivity.volleyQueue.add(request);
-        UserManagement.requestAddress();
     }
     public static void delFavorite(final int favoriteId){
         final String url = host + "/favorite/"+favoriteId;
@@ -132,7 +131,6 @@ public class FavoriteManagerment extends RequestManager {
                 }
         );
         MainActivity.volleyQueue.add(request);
-        UserManagement.requestAddress();
     }
 
 }

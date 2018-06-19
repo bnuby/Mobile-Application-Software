@@ -108,4 +108,15 @@ public class DataManagement {
 
     return null;
   }
+
+  public static void clear() {
+    orderCollection.carts.clear();
+    orderCollection.pending_refunds.clear();
+    orderCollection.cancels.clear();
+    orderCollection.paids.clear();
+    orderCollection.orders.clear();
+    orderCollection = null;
+    favorites.removeAll(favorites);
+  }
+
 }

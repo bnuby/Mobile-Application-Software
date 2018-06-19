@@ -7,6 +7,9 @@ public class Favorite {
     public String created_at;
     public String updated_at;
 
+    public Favorite() {
+    }
+
     public Favorite(int id, int user_id, int product_id) {
         this.id = id;
         this.user_id = user_id;

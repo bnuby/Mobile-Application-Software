@@ -3,7 +3,6 @@ package com.example.gibson.carlife.View;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.gibson.carlife.Abstract.CustomActivity;
 import com.example.gibson.carlife.MainActivity;
+import com.example.gibson.carlife.Model.user.User;
 import com.example.gibson.carlife.R;
 import com.example.gibson.carlife.Services.UserManagement;
 
@@ -38,11 +38,11 @@ public class AccountManageActivity extends CustomActivity implements View.OnClic
     email_ET = findViewById(R.id.email_ET);
 
     //get user input
-    if(UserManagement.isLogin){
+    if (UserManagement.isLogin) {
       username_ET.setText(MainActivity.userObj.username);
       email_ET.setText(MainActivity.userObj.email);
       phone_ET.setText(MainActivity.userObj.phone);
-      address_ET.setText(MainActivity.userObj.address);
+      address_ET.setText(MainActivity.userObj.addresses.get(0).address);
     }
 
 
@@ -60,19 +60,17 @@ public class AccountManageActivity extends CustomActivity implements View.OnClic
         //  need to update the information of user in server
         //  haven do
         //  back to Account Fragment.java
-        finish();
         //startActivity(intent);
-        String newaddress =address_ET.getText().toString();
-        String oriAddress = MainActivity.userObj.address;
-        if(!oriAddress.equals(newaddress)){
-          if(!MainActivity.userObj.address.equals("")){
-            UserManagement.updateAddress(newaddress);
-          }
-          else {
-            UserManagement.addAddress(newaddress);
+        String newAddress = address_ET.getText().toString();
+        User.Address address = MainActivity.userObj.addresses.get(0);
+        if (!newAddress.equals("")) {
+          if (!address.address.equals("")) {
+            UserManagement.updateAddress(address.id, newAddress);
+          } else {
+            UserManagement.addAddress(newAddress);
           }
         }
-
+        finish();
         break;
       default:
         Toast.makeText(this, "default run", Toast.LENGTH_SHORT).show();

@@ -1,17 +1,17 @@
 package com.example.gibson.carlife.View.Fragment;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderFragment extends Fragment implements View.OnClickListener {
+  public static String TAG = "OrderFragment";
   static OrderDetailAdapter unpayAdapter, paidAdapter;
   static ListView listView;
   static Context mContext;
@@ -201,12 +202,17 @@ class OrderDetailAdapter extends ArrayAdapter<Order> {
         break;
     }
 
+    ViewGroup.LayoutParams params = orderItemLV.getLayoutParams();
+    Log.i(OrderFragment.TAG, getCount()+"");
+
     orderItemAdapter =
             new OrderItemAdapter(
                     getContext(),
                     R.layout.order_item_list_view_item,
                     orderItems
             );
+
+    params.height = (int)(100 * Resources.getSystem().getDisplayMetrics().density * orderItems.size());
     orderItemLV.setAdapter(orderItemAdapter);
     return convertView;
   }

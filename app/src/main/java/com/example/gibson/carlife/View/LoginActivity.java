@@ -31,7 +31,6 @@ public class LoginActivity extends CustomActivity implements View.OnClickListene
     if (mContext == null)
       return;
     ((Activity) mContext).finish();
-
   }
 
   @Override
@@ -60,8 +59,7 @@ public class LoginActivity extends CustomActivity implements View.OnClickListene
         UserManagement.requestLogin(usernameET.getText().toString(), passwordET.getText().toString(), true);
         break;
       case R.id.signup:
-        Intent intent = new Intent();
-        intent.setClass(getApplicationContext(), SignupActivity.class);
+        Intent intent = new Intent(this, SignUpActivity.class);
         startActivityForResult(intent, 200);
         break;
     }
@@ -69,28 +67,6 @@ public class LoginActivity extends CustomActivity implements View.OnClickListene
 
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-  }
-
-  class CustomAdapter extends BaseAdapter {
-    @Override
-    public int getCount() {
-      return a.length;
-    }
-
-    @Override
-    public Object getItem(int i) {
-      return a[i];
-    }
-
-    @Override
-    public long getItemId(int i) {
-      return 0;
-    }
-
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-      return null;
-    }
   }
 
 }

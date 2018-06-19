@@ -83,7 +83,6 @@ public class HistoryManagerment extends RequestManager {
             }
         };
         MainActivity.volleyQueue.add(request);
-        UserManagement.requestAddress();
     }
     public static void delHistory(final int historyId){
         final String url = host + "/history/"+historyId;
@@ -109,6 +108,5 @@ public class HistoryManagerment extends RequestManager {
                 }
         );
         MainActivity.volleyQueue.add(request);
-        UserManagement.requestAddress();
     }
 }

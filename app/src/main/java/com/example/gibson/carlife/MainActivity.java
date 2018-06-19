@@ -16,6 +16,9 @@ import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.example.gibson.carlife.Abstract.CustomActivity;
+import com.example.gibson.carlife.Model.DataManagement;
+import com.example.gibson.carlife.Model.Favorite;
+import com.example.gibson.carlife.Model.OrderCollection;
 import com.example.gibson.carlife.Model.user.User;
 import com.example.gibson.carlife.Services.Product.ProductBrandManagement;
 import com.example.gibson.carlife.Services.Product.ProductManagement;
@@ -50,6 +53,8 @@ public class MainActivity extends CustomActivity {
     preferencesEditor.commit();
 
     UserManagement.isLogin = false;
+    MainActivity.userObj = null;
+    DataManagement.clear();
     AccountFragment.toggleLogoutBtn();
   }
 
@@ -100,7 +105,6 @@ public class MainActivity extends CustomActivity {
     super.onResume();
     mContext = getContext();
   }
-
 
   @Override
   protected void onStart() {

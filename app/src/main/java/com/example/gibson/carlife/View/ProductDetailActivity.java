@@ -82,10 +82,11 @@ public class ProductDetailActivity extends CustomActivity {
       images = item.imgs;
       imagePagerAdapter.notifyDataSetChanged();
     }
-
-    favorite = DataManagement.getFavoriteByProductID(item.id);
-    if(favorite != null)
-      setFavorite(true);
+    if(UserManagement.isLogin) {
+      favorite = DataManagement.getFavoriteByProductID(item.id);
+      if(favorite != null)
+        setFavorite(true);
+    }
 
     cartBtn.setOnClickListener(new View.OnClickListener() {
       @Override

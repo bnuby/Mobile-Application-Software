@@ -25,20 +25,23 @@ import com.example.gibson.carlife.View.LoginActivity;
 
 public class AccountFragment extends Fragment {
 
-  static Button logOut_Btn;
+  static Button logOut_Btn, accMng_Btn;
   LinearLayout accountInfoLayout;
   static TextView usernameTV;
-  Button clrCache_Btn, accMng_Btn;
+  Button clrCache_Btn;
   ImageView favorite;
   String cacheSize;
   //private static final int REQUEST_CODE = 8;
 
   public static void toggleLogoutBtn() {
     if (logOut_Btn != null)
-      if (UserManagement.isLogin)
+      if (UserManagement.isLogin) {
         logOut_Btn.setVisibility(View.VISIBLE);
+        accMng_Btn.setVisibility(View.VISIBLE);
+      }
       else {
         logOut_Btn.setVisibility(View.INVISIBLE);
+        accMng_Btn.setVisibility(View.INVISIBLE);
         usernameTV.setText(R.string.you_are_not_login);
       }
   }

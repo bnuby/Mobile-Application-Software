@@ -10,12 +10,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.gibson.carlife.MainActivity;
+import com.example.gibson.carlife.Model.DataManagement;
 import com.example.gibson.carlife.Model.Favorite;
+import com.example.gibson.carlife.Model.user.User;
 import com.example.gibson.carlife.R;
 import com.example.gibson.carlife.Services.Order.OrderManagement;
 import com.example.gibson.carlife.View.AccountManageActivity;
 import com.example.gibson.carlife.View.Fragment.AccountFragment;
 import com.example.gibson.carlife.View.LoginActivity;
+import com.example.gibson.carlife.View.SignUpActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,6 +51,7 @@ public class UserManagement extends RequestManager {
     } catch (JSONException e) {
       e.printStackTrace();
     }
+
     StringRequest request = new StringRequest(
             Request.Method.POST,
             url,
@@ -162,6 +166,22 @@ public class UserManagement extends RequestManager {
             new Response.Listener<JSONObject>() {
               @Override
               public void onResponse(JSONObject response) {
+                try {
+                  if(!response.getBoolean("status")) {
+                    JSONObject msg = response.getJSONObject("msg");
+
+                    if(msg.has("username"))
+                      SignUpActivity.shortTost(msg.getJSONArray("username").getString(0));
+                    else if(msg.has("phone"))
+                      SignUpActivity.shortTost(msg.getJSONArray("phone").getString(0));
+                    else if(msg.has("email"))
+                      SignUpActivity.shortTost(msg.getJSONArray("email").getString(0));
+                  } else {
+                    SignUpActivity.finishActivity();
+                  }
+                } catch (JSONException e) {
+                  e.printStackTrace();
+                }
                 Log.v("register", response.toString());
               }
             },
@@ -183,7 +203,6 @@ public class UserManagement extends RequestManager {
             new Response.Listener<String>() {
               @Override
               public void onResponse(String response) {
-                Log.v("logout", response.toString());
                 try {
                   JSONObject res = new JSONObject(response);
                   JSONArray array = new JSONArray(res.getString("msg"));
@@ -197,8 +216,8 @@ public class UserManagement extends RequestManager {
                     address ="";
                     addressId=0;
                   }
-                  MainActivity.userObj.address = address;
-                  MainActivity.userObj.addressId=addressId;
+                  MainActivity.userObj.addAddress(addressId, address);
+
                 } catch (JSONException e) {
                   e.printStackTrace();
                 }
@@ -215,15 +234,10 @@ public class UserManagement extends RequestManager {
     );
     MainActivity.volleyQueue.add(request);
   }
-  public static void updateAddress(String newAddress){
-    final JSONObject object = new JSONObject();
-    try{
-    object.put("address",newAddress);
-    }catch (JSONException e){
+  public static void updateAddress(final int addressId, final String newAddress){
 
-    }
-    final String url = host + "/address/"+MainActivity.userObj.addressId;
-    StringRequest request = new StringRequest(
+    final String url = host + "/address/"+addressId;
+    final StringRequest request = new StringRequest(
             Request.Method.PUT,
             url,
             new Response.Listener<String>() {
@@ -231,6 +245,9 @@ public class UserManagement extends RequestManager {
               public void onResponse(String response) {
                 try {
                   JSONObject object1 = new JSONObject(response);
+                  if(object1.getBoolean("status")) {
+                    MainActivity.userObj.updateAddress(addressId, newAddress);
+                  }
                   AccountManageActivity.longTost(object1.getString("msg"));
                 }catch (JSONException e){
                 }
@@ -241,9 +258,15 @@ public class UserManagement extends RequestManager {
                 public void onErrorResponse(VolleyError error) {
                 }
             }
-     );
+     ) {
+      @Override
+      protected Map<String, String> getParams() throws AuthFailureError {
+        Map<String, String> map = new HashMap<>();
+        map.put("address",newAddress);
+        return map;
+      }
+    };
     MainActivity.volleyQueue.add(request);
-    requestAddress();
   }
 
   public static void addAddress(final String newAddress){
@@ -265,7 +288,14 @@ public class UserManagement extends RequestManager {
               public void onResponse(String response) {
                 try {
                   JSONObject object1 = new JSONObject(response);
-                  AccountManageActivity.longTost(object1.getString("msg"));
+                  if(object1.getBoolean("status")) {
+                    JSONObject address = object1.getJSONObject("msg");
+                    MainActivity.userObj.addAddress(
+                            address.getInt("id"),
+                            address.getString("address")
+                    );
+                  }
+
                 }catch (JSONException e){
                 }
               }
@@ -288,8 +318,6 @@ public class UserManagement extends RequestManager {
       }
     };
     MainActivity.volleyQueue.add(request);
-    UserManagement.requestAddress();
-
   }
 
 }
