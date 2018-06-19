@@ -6,6 +6,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.gibson.carlife.MainActivity;
+import com.example.gibson.carlife.Model.DataManagement;
+import com.example.gibson.carlife.Model.History;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,18 +26,21 @@ public class HistoryManagerment extends RequestManager {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            JSONArray res = new JSONArray(response);
-                            for (int i=0;i<res.length();i++) {
-                                JSONObject object =res.getJSONObject(i);
-//                                MainActivity.History.add(
-//                                        object.get("id"),
-//                                        object.get("user_id"),
-//                                        object.get("product_id"),
-//                                        object.get("created_at"),
-//                                        object.get("updated_at"));
+                            JSONObject res = new JSONObject(response);
+                            if (res.getBoolean("status")){
+                                JSONArray historyObjects = res.getJSONArray("msg");
+                                for (int i=0;i < historyObjects.length();i++){
+                                    DataManagement.getHistorys().add(
+                                            new History(historyObjects.getJSONObject(i).getInt("id"),
+                                                    historyObjects.getJSONObject(i).getInt("user_id"),
+                                                    historyObjects.getJSONObject(i).getInt("product_id"),
+                                                    historyObjects.getJSONObject(i).getString("created_at"),
+                                                    historyObjects.getJSONObject(i).getString("updated_at")));
+                                }
+                            }
+                            else{
                             }
                         } catch (JSONException e) {
-                            e.printStackTrace();
                         }
                     }
                 },

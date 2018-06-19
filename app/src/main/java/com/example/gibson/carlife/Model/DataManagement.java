@@ -12,6 +12,7 @@ public class DataManagement {
   private static ArrayList<ProductBrand> productBrands;
   private static ArrayList<ProductType> productTypes;
   private static ArrayList<Favorite> favorites;
+  private static ArrayList<History> hisitorys;
 
   public static OrderCollection getOrderCollection() {
     if (orderCollection == null)
@@ -107,5 +108,10 @@ public class DataManagement {
         return favorite;
 
     return null;
+  }
+  public static ArrayList<History> getHistorys() {
+    if (hisitorys == null)
+      hisitorys = new ArrayList<>();
+    return hisitorys;
   }
 }
