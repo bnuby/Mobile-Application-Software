@@ -58,7 +58,7 @@ public class AccountFragment extends Fragment {
         if(!UserManagement.isLogin){
           Intent intent = new Intent(getContext(), LoginActivity.class);
           getActivity().startActivityForResult(intent, 200);
-          Toast.makeText(getContext(), "asd", Toast.LENGTH_SHORT).show();
+//          Toast.makeText(getContext(), "asd", Toast.LENGTH_SHORT).show();
         }
       }
     });
