@@ -49,6 +49,7 @@ public class CartFragment extends Fragment {
 //      return view;
 //    }
 
+
     View view = inflater.inflate(R.layout.fragment_cart, container, false);
 
     checkBox = view.findViewById(R.id.allCheckBox);
@@ -81,7 +82,7 @@ public class CartFragment extends Fragment {
           Button cancelBtn = view.findViewById(R.id.cancelBtn);
           Button doneBtn = view.findViewById(R.id.doneBtn);
           final EditText addressET = view.findViewById(R.id.addressET);
-
+          addressET.setText(MainActivity.userObj.addresses.get(0).address);
           builder.setView(view);
           final AlertDialog dialog = builder.create();
           dialog.show();
@@ -293,10 +294,11 @@ public class CartFragment extends Fragment {
         default:
           switch (v.getId()) {
             case R.id.minusBtn:
-              if (getItem(position).quantity > 0) {
+              if (getItem(position).quantity > 1) {
                 getItem(position).quantity -= 1;
                 OrderManagement.updateCartQty(getItem(position).id, getItem(position).quantity);
                 notifyDataSetInvalidated();
+                calPrice();
               }
               break;
             case R.id.plusBtn:
@@ -304,6 +306,7 @@ public class CartFragment extends Fragment {
                 getItem(position).quantity += 1;
                 OrderManagement.updateCartQty(getItem(position).id, getItem(position).quantity);
                 notifyDataSetInvalidated();
+                calPrice();
               }
               break;
           }

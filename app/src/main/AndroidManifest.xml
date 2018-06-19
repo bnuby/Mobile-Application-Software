@@ -16,7 +16,9 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".View.SearchResultActivity">
+        <activity android:name=".View.SearchResultActivity"
+            android:launchMode="singleTask"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -40,7 +42,6 @@
         <activity
             android:name=".View.SignUpActivity"
             android:screenOrientation="portrait"
-
             />
         <activity
             android:name=".View.LoginActivity"

@@ -31,7 +31,7 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
   static OrderDetailAdapter unpayAdapter, paidAdapter;
   static ListView listView;
   static Context mContext;
-  static boolean isPay = true;
+  static boolean isPay = false;
   Button payBtn, unPayBtn;
 
   @Nullable

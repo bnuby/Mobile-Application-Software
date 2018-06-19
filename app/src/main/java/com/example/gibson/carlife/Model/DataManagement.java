@@ -119,9 +119,11 @@ public class DataManagement {
     orderCollection.cancels.clear();
     orderCollection.paids.clear();
     orderCollection.orders.clear();
-    orderCollection = null;
+    histories.clear();
     favorites.clear();
+    orderCollection = null;
     favorites = null;
+    histories = null;
   }
 
   public static ArrayList<History> getHistories() {
