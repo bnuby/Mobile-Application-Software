@@ -40,6 +40,14 @@
     <string name="sign_up">Press Here!</string>
     <!--Login Page-->
 
+    <!--Sign Up Page-->
+    <string name="name">Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="register">Register</string>
+    <!--Sign Up Page-->
+
     <!--Search Bar-->
     <string name="searchbar_text">Search Products</string>
     <!--Search Bar-->
@@ -78,7 +86,6 @@
     <string name="login">Login</string>
     <string name="AllMustNotbeEmpty">All Must Not be Empty!</string>
     <string name="PasswordCanNotBeSame">Password and UserName are same!</string>
-
     <!--Unit Price-->
 
 
