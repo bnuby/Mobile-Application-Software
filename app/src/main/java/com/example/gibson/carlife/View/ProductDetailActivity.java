@@ -1,6 +1,5 @@
 package com.example.gibson.carlife.View;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -11,9 +10,12 @@ import android.widget.TextView;
 
 import com.example.gibson.carlife.Abstract.CustomActivity;
 import com.example.gibson.carlife.Adapters.ImagePagerAdapter;
+import com.example.gibson.carlife.MainActivity;
 import com.example.gibson.carlife.Model.DataManagement;
+import com.example.gibson.carlife.Model.Favorite;
 import com.example.gibson.carlife.Model.Product.Product;
 import com.example.gibson.carlife.R;
+import com.example.gibson.carlife.Services.FavoriteManagerment;
 import com.example.gibson.carlife.Services.Order.OrderManagement;
 import com.example.gibson.carlife.Services.Product.ProductPicturesManagement;
 import com.example.gibson.carlife.Services.UserManagement;
@@ -28,7 +30,10 @@ public class ProductDetailActivity extends CustomActivity {
   private ViewPager viewPager;
   public TextView typeTV, quantityTV, titleTV, introTV, priceTV, qtyTV, totalTV;
   public Button cartBtn, minusBtn, plusBtn;
+  public ImageView favoriteIV;
+  public Favorite favorite;
   public boolean isFavorite;
+  Product item;
 
   public static void addImage(Bitmap bitmap) {
     images.add(bitmap);
@@ -42,10 +47,9 @@ public class ProductDetailActivity extends CustomActivity {
     isFavorite=false;
 
     int position = getIntent().getIntExtra("position", -1);
-    final Product item = DataManagement.getProducts().get(position);
+    item = DataManagement.getProducts().get(position);
 
     viewPager = (ViewPager) findViewById(R.id.productImgs_viewPager);
-    final ImageView heart = findViewById(R.id.heartIMG);
     typeTV = findViewById(R.id.typeTV);
     quantityTV = findViewById(R.id.quanitltyTV);
     titleTV = findViewById(R.id.titleTV);
@@ -58,11 +62,14 @@ public class ProductDetailActivity extends CustomActivity {
     minusBtn = findViewById(R.id.minusBtn);
     plusBtn = findViewById(R.id.plusBtn);
 
+    favoriteIV = findViewById(R.id.favoriteIV);
+
     images = new ArrayList<>();
     if(item.product_type!=null)
       typeTV.setText(item.product_type);
     else
       typeTV.setText("Null");
+
     quantityTV.setText(""+item.quantity);
     titleTV.setText(item.name);
     priceTV.setText(getResources().getString(R.string.taiwan) + " " + item.sale_price);
@@ -76,6 +83,9 @@ public class ProductDetailActivity extends CustomActivity {
       imagePagerAdapter.notifyDataSetChanged();
     }
 
+    favorite = DataManagement.getFavoriteByProductID(item.id);
+    if(favorite != null)
+      setFavorite(true);
 
     cartBtn.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -86,11 +96,12 @@ public class ProductDetailActivity extends CustomActivity {
         }
         int quantity = Integer.valueOf(qtyTV.getText().toString());
         ProductDetailActivity.shortTost( getResources().getString(R.string.put_in_cart));
+
         OrderManagement.addProductToCart(item.id, quantity);
       }
     });
 
-    heart.setOnClickListener(new View.OnClickListener() {
+    favoriteIV.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
         if(!UserManagement.isLogin) {
@@ -98,12 +109,12 @@ public class ProductDetailActivity extends CustomActivity {
           return;
         }
         if(isFavorite){
-          heart.setImageResource(R.drawable.white_heart);
-          isFavorite=false;
+          setFavorite(false);
+          updateFavorite(false);
         }
         else {
-          heart.setImageResource(R.drawable.white_heart_fill);
-          isFavorite=true;
+          setFavorite(true);
+          updateFavorite(true);
         }
       }
     });
@@ -135,6 +146,37 @@ public class ProductDetailActivity extends CustomActivity {
     List<Integer> list = new ArrayList<Integer>();
     imagePagerAdapter = new ImagePagerAdapter(this, images);
     viewPager.setAdapter(imagePagerAdapter);
+  }
+
+  void updateFavorite(boolean b) {
+    if(!UserManagement.isLogin) {
+      ProductDetailActivity.shortTost("You Are Not Login");
+      return;
+    }
+
+    favorite = DataManagement.getFavoriteByProductID(item.id);
+    if(b) {
+      FavoriteManagerment.addFavorite(item.id, MainActivity.userObj.userId);
+    } else {
+      FavoriteManagerment.delFavorite(favorite.id);
+      DataManagement.getFavorite().remove(favorite);
+    }
+
+  }
+
+  void setFavorite(boolean b) {
+    if(!UserManagement.isLogin) {
+      ProductDetailActivity.shortTost("You Are Not Login");
+      return;
+    }
+    if(b) {
+      favoriteIV.setImageResource(R.drawable.heart_full);
+
+      isFavorite = b;
+    } else {
+      favoriteIV.setImageResource(R.drawable.white_heart);
+      isFavorite = b;
+    }
   }
 
 }

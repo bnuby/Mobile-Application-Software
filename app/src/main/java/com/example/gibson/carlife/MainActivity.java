@@ -17,15 +17,14 @@ import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.example.gibson.carlife.Abstract.CustomActivity;
 import com.example.gibson.carlife.Model.user.User;
-import com.example.gibson.carlife.Services.Order.OrderManagement;
 import com.example.gibson.carlife.Services.Product.ProductBrandManagement;
 import com.example.gibson.carlife.Services.Product.ProductManagement;
 import com.example.gibson.carlife.Services.Product.ProductTypeManagement;
 import com.example.gibson.carlife.Services.UserManagement;
 import com.example.gibson.carlife.View.Fragment.AccountFragment;
+import com.example.gibson.carlife.View.Fragment.CartFragment;
 import com.example.gibson.carlife.View.Fragment.MainFragment;
 import com.example.gibson.carlife.View.Fragment.OrderFragment;
-import com.example.gibson.carlife.View.Fragment.CartFragment;
 
 
 public class MainActivity extends CustomActivity {
@@ -35,11 +34,10 @@ public class MainActivity extends CustomActivity {
   public static SharedPreferences mPreferences;
   public static User userObj = new User();
   public static Fragment[] fragments = {new MainFragment(), new CartFragment(), new OrderFragment(), new AccountFragment()};
-  private int[] IconResID = {R.drawable.home, R.drawable.shoppingcart, R.drawable.order, R.drawable.account};
-
   ViewPager pager;
   CustomAdapter adapter;
   TabLayout tabLayout;
+  private int[] IconResID = {R.drawable.home, R.drawable.shoppingcart, R.drawable.order, R.drawable.account};
 
   public static Context getContext() {
     return mContext;
@@ -95,8 +93,6 @@ public class MainActivity extends CustomActivity {
     ProductTypeManagement.requestProductType(this);
     ProductBrandManagement.requestProductBrand(this);
     ProductManagement.requestProduct();
-//    if(MainActivity.userObj)
-//    OrderManagement.requestOrderItem();
   }
 
   @Override

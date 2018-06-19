@@ -88,7 +88,7 @@ public class AccountFragment extends Fragment {
                 .show();
       }
     });
-    favorite= view.findViewById(R.id.favoriteIMG);
+    favorite= view.findViewById(R.id.favoriteIV);
     favorite.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {

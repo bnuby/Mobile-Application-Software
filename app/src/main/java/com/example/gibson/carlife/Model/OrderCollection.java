@@ -44,7 +44,16 @@ public class OrderCollection {
         e.printStackTrace();
       }
     }
+  }
 
+  public boolean updateCartQuantity(int product_id, int quantity) {
+    for(OrderItem cart : carts)
+      if(cart.product_id == product_id) {
+        cart.quantity += quantity;
+        CartFragment.reloadListView();
+        return true;
+      }
+    return false;
   }
 
   public void fillArrayList(JSONArray array) {

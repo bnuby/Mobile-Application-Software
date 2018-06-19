@@ -2,6 +2,7 @@ package com.example.gibson.carlife.Adapters;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.view.Gravity;
 import android.view.View;
@@ -68,11 +69,12 @@ public class BrandGridViewAdapter extends ArrayAdapter<ProductBrand> {
     tv.setMaxHeight((int)(80 * dp));
     tv.setMinimumHeight((int)(80 * dp));
     tv.setWidth((int)(40 * dp));
-//    tv.setMinimumWidth((int)(20 * dp));
     ProductBrand item = getItem(position);
     tv.setTextSize(20);
-    tv.setTextColor(mCtx.getColor(R.color.white));
-//    tv.setBackgroundColor(mCtx.getColor(R.color.dark_green));
+    if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP_MR1)
+      tv.setTextColor(mCtx.getResources().getColor(R.color.white));
+    else
+      tv.setTextColor(mCtx.getColor(R.color.white));
     tv.setBackground(mCtx.getDrawable(R.drawable.rounded_square));
     tv.setGravity(Gravity.CENTER);
     tv.setText(R.string.more);

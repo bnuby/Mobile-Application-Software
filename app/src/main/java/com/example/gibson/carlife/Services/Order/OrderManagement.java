@@ -11,7 +11,9 @@ import com.example.gibson.carlife.MainActivity;
 import com.example.gibson.carlife.Model.DataManagement;
 import com.example.gibson.carlife.Model.Order.Order;
 import com.example.gibson.carlife.Model.Order.OrderItem;
+import com.example.gibson.carlife.Model.Order.OrderStatus;
 import com.example.gibson.carlife.Services.RequestManager;
+import com.example.gibson.carlife.View.Fragment.CartFragment;
 import com.example.gibson.carlife.View.Fragment.OrderFragment;
 
 import org.json.JSONArray;
@@ -104,15 +106,34 @@ public class OrderManagement extends RequestManager {
 
   public static void addProductToCart(final int product_id, final int quantity) {
     final String url = host + "/orderitems";
-
+    Log.i(TAG, "" + product_id);
     StringRequest request = new StringRequest(
             Request.Method.POST,
             url,
             new Response.Listener<String>() {
               @Override
               public void onResponse(String response) {
-
                 Log.i(TAG, response);
+                if (!DataManagement.getOrderCollection()
+                        .updateCartQuantity(product_id, quantity)) {
+                  try {
+                    JSONObject object = new JSONObject(response);
+                    JSONObject order = object.getJSONObject("msg");
+                    int curr_id = order.getInt("id");
+                    OrderItem orderItem = new OrderItem();
+                    orderItem.id = curr_id;
+                    orderItem.status = OrderStatus.cart;
+                    orderItem.quantity = quantity;
+                    orderItem.product_id = product_id;
+                    orderItem.user_id = MainActivity.userObj.userId;
+                    DataManagement.getOrderCollection().carts.add(
+                            orderItem
+                    );
+                    CartFragment.reloadListView();
+                  } catch (JSONException e) {
+                    e.printStackTrace();
+                  }
+                }
               }
             },
             new Response.ErrorListener() {
@@ -184,7 +205,6 @@ public class OrderManagement extends RequestManager {
 
   public static void updateStatus(int order_id, String status, OrderItem orderItem) {
     final String url = host + "/orderitems_status/" + orderItem.id + "?status=" + status + "&quantity=" + orderItem.quantity + "&order_id=" + order_id;
-
     StringRequest request = new StringRequest(
             Request.Method.PUT,
             url,
@@ -201,7 +221,6 @@ public class OrderManagement extends RequestManager {
               }
             }
     );
-
     MainActivity.volleyQueue.add(request);
   }
 

@@ -23,7 +23,11 @@ import java.util.Map;
 
 public class FavoriteManagerment extends RequestManager {
 
+  public static final String TAG = "FavoriteManagement";
+
+
     public static void getFavorites() {
+      DataManagement.getFavorite();
             final String url = host + "/favorite/user/"+MainActivity.userObj.userId;
             StringRequest request = new StringRequest(
                     Request.Method.GET,
@@ -59,9 +63,9 @@ public class FavoriteManagerment extends RequestManager {
                     }
             );
             MainActivity.volleyQueue.add(request);
-
     }
-    public static void addFavorite(final int productId){
+
+    public static void addFavorite(final int product_id, final int user_id){
         final String url = host + "/favorite";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
@@ -70,9 +74,18 @@ public class FavoriteManagerment extends RequestManager {
                     @Override
                     public void onResponse(String response) {
                         try {
+                          Log.i(TAG, response);
                             JSONObject object1 = new JSONObject(response);
                             if(object1.getBoolean("status")){
-                                MainActivity.longTost(object1.getString("msg"));
+                              JSONObject object = object1.getJSONObject("msg");
+                                MainActivity.longTost("Done");
+                                int curr_id = object.getInt("id");
+                                Favorite favorite = new Favorite(
+                                        curr_id,
+                                        user_id,
+                                        product_id
+                                );
+                                DataManagement.getFavorite().add(favorite);
                            }
                         }catch (JSONException e){
                         }
@@ -87,8 +100,8 @@ public class FavoriteManagerment extends RequestManager {
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> object = new HashMap<>();
-                object.put("address",""+MainActivity.userObj.userId);
-                object.put("user_id",""+""+productId);
+              object.put("product_id",""+product_id);
+              object.put("user_id",""+user_id);
                 return object;
             }
         };
@@ -96,7 +109,7 @@ public class FavoriteManagerment extends RequestManager {
         UserManagement.requestAddress();
     }
     public static void delFavorite(final int favoriteId){
-        final String url = host + "/favorite"+favoriteId;
+        final String url = host + "/favorite/"+favoriteId;
         StringRequest request = new StringRequest(
                 Request.Method.DELETE,
                 url,

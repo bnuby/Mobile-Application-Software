@@ -1,7 +1,9 @@
 package com.example.gibson.carlife.Adapters;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.res.Resources;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -72,7 +74,12 @@ public class TypeGridViewAdapter extends ArrayAdapter<ProductType> {
 //    tv.setMinimumWidth((int)(20 * dp));
     ProductType item = getItem(position);
     tv.setTextSize(20);
-    tv.setTextColor(mCtx.getColor(R.color.white));
+
+    if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP_MR1)
+      tv.setTextColor(mCtx.getResources().getColor(R.color.white));
+    else
+      tv.setTextColor(mCtx.getColor(R.color.white));
+
 //    tv.setBackgroundColor(mCtx.getColor(R.color.dark_green));
     tv.setBackground(mCtx.getDrawable(R.drawable.rounded_square));
     tv.setGravity(Gravity.CENTER);

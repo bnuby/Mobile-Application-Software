@@ -88,14 +88,24 @@ public class DataManagement {
     }
     return arrayList;
   }
+
 //  public static ArrayList<Favorite> getFavorite(){
 //    if (favorites == null)
 //      favorites = new ArrayList<>();
 //    return favorites;
 //  }
+
   public static ArrayList<Favorite> getFavorite() {
     if (favorites == null)
       favorites = new ArrayList<>();
     return favorites;
+  }
+
+  public static Favorite getFavoriteByProductID(int product_id) {
+    for(Favorite favorite : favorites)
+      if(favorite.product_id == product_id)
+        return favorite;
+
+    return null;
   }
 }
