@@ -4,9 +4,10 @@
     android:layout_height="match_parent">
 
     <ImageView
+        android:background="#FFFFFF"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/product_img"
-        android:scaleType="fitXY"
+        android:scaleType="fitCenter"
         android:layout_gravity="right" />
 </LinearLayout>
