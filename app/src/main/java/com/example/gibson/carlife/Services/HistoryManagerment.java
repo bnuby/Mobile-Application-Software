@@ -74,12 +74,14 @@ public class HistoryManagerment extends RequestManager {
                                 JSONObject object = object1.getJSONObject("msg");
                                 MainActivity.longTost("Done");
                                 int curr_id = object.getInt("id");
-                                History history = new History(
-                                        curr_id,
-                                        user_id,
-                                        product_id
-                                );
-                                DataManagement.getHistorys().add(history);
+//                                History history = new History(
+//                                        curr_id,
+//                                        user_id,
+//                                        product_id
+//                                );
+//                                DataManagement.getHistorys().add(history);
+                                DataManagement.getHistorys().clear();
+                                getHistory();
                             }
                         }catch (JSONException e){
                         }
