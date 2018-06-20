@@ -10,14 +10,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.gibson.carlife.MainActivity;
-import com.example.gibson.carlife.Model.DataManagement;
-import com.example.gibson.carlife.Model.Favorite;
-import com.example.gibson.carlife.Model.History;
-import com.example.gibson.carlife.Model.user.User;
 import com.example.gibson.carlife.R;
 import com.example.gibson.carlife.Services.Order.OrderManagement;
 import com.example.gibson.carlife.View.AccountManageActivity;
 import com.example.gibson.carlife.View.Fragment.AccountFragment;
+import com.example.gibson.carlife.View.Fragment.CartFragment;
+import com.example.gibson.carlife.View.Fragment.OrderFragment;
 import com.example.gibson.carlife.View.LoginActivity;
 import com.example.gibson.carlife.View.SignUpActivity;
 
@@ -80,6 +78,8 @@ public class UserManagement extends RequestManager {
                     editor.commit();
                     isLogin = true;
                     AccountFragment.toggleLogoutBtn();
+                    CartFragment.checkNoLogin();
+                    OrderFragment.checkNoLogin();
                     if (show)
                       LoginActivity.activityFinish();
                   } else {
@@ -129,6 +129,8 @@ public class UserManagement extends RequestManager {
                     AccountFragment.toggleLogoutBtn();
                     isLogin = false;
                     MainActivity.logout();
+                    CartFragment.checkNoLogin();
+                    OrderFragment.checkNoLogin();
                   }
                 } catch (JSONException e) {
                   e.printStackTrace();

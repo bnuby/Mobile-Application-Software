@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -23,6 +25,7 @@ import com.example.gibson.carlife.Model.Order.OrderItem;
 import com.example.gibson.carlife.Model.Order.OrderStatus;
 import com.example.gibson.carlife.Model.Product.Product;
 import com.example.gibson.carlife.R;
+import com.example.gibson.carlife.Services.UserManagement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,9 +33,11 @@ import java.util.List;
 public class OrderFragment extends Fragment implements View.OnClickListener {
   public static String TAG = "OrderFragment";
   static OrderDetailAdapter unpayAdapter, paidAdapter;
+  static CheckBox checkAllItem;
   LinearLayout payDetailLL;
   static ListView listView;
   static Context mContext;
+  static LinearLayout notLoginLL;
   static boolean isPay = false;
   Button payBtn, unPayBtn;
 
@@ -45,12 +50,23 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
     unPayBtn = view.findViewById(R.id.unPayBtn);
     listView = view.findViewById(R.id.orderlist);
     payDetailLL = view.findViewById(R.id.payDetailLL);
-
+    notLoginLL = view.findViewById(R.id.notLoginLL);
+    checkAllItem = view.findViewById(R.id.checkItem);
     mContext = getContext();
+
+    checkAllItem.setChecked(false);
+    checkAllItem.setText(String.format("0 %s", getString(R.string.items)));
+
+
+    checkAllItem.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        unpayAdapter.toggleCheckAllItem(checkAllItem.isChecked());
+      }
+    });
 
     payBtn.setOnClickListener(this);
     unPayBtn.setOnClickListener(this);
-
 
     unpayAdapter =
             new OrderDetailAdapter(getContext(),
@@ -76,8 +92,15 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
     return view;
   }
 
-  public static void reloadAdapterAndListView() {
+  @Override
+  public void onStart() {
+    super.onStart();
+    checkNoLogin();
+    checkAllItem.setChecked(false);
 
+  }
+
+  public static void reloadAdapterAndListView() {
     if(mContext != null) {
       unpayAdapter =
               new OrderDetailAdapter(mContext,
@@ -102,6 +125,15 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
       else
         listView.setAdapter(unpayAdapter);
       listView.invalidateViews();
+    }
+  }
+
+  public static void checkNoLogin() {
+    if(notLoginLL != null)
+    if(UserManagement.isLogin) {
+      notLoginLL.setVisibility(View.GONE);
+    } else {
+      notLoginLL.setVisibility(View.VISIBLE);
     }
   }
 
@@ -165,16 +197,21 @@ class OrderDetailAdapter extends ArrayAdapter<Order> {
   OrderStatus status;
   TextView orderNumberTV, orderAddressTV, statusTV;
   Button deleteBtn;
-
+  ArrayList<Boolean> booleans;
+  ArrayList <Order> orders;
 
   public OrderDetailAdapter(@NonNull Context context, int resource, @NonNull List<Order> objects, OrderStatus status) {
     super(context, resource, objects);
     this.status = status;
+    booleans = new ArrayList<>();
+    orders = new ArrayList<>();
+    for(int i = 0; i < objects.size(); i++)
+      booleans.add(false);
   }
 
   @NonNull
   @Override
-  public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+  public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
     if (convertView == null)
       convertView = LayoutInflater.from(getContext()).inflate(R.layout.order_detail_list_view_item, null);
 
@@ -183,6 +220,24 @@ class OrderDetailAdapter extends ArrayAdapter<Order> {
     orderItemLV = convertView.findViewById(R.id.orderItemLV);
     statusTV = convertView.findViewById(R.id.statusTV);
     deleteBtn = convertView.findViewById(R.id.deleteBtn);
+    final CheckBox checkBox = convertView.findViewById(R.id.checkBox);
+    if(booleans.get(position))
+      checkBox.setChecked(true);
+    else
+      checkBox.setChecked(false);
+
+    checkBox.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        if(checkBox.isChecked())
+          orders.add(getItem(position));
+        else
+          orders.remove(getItem(position));
+        OrderFragment.checkAllItem.setText(orders.size() + " " + getContext().getString(R.string.items));
+        booleans.set(position, checkBox.isChecked());
+        checkCheckItems();
+      }
+    });
 
     orderNumberTV.setText(String.valueOf(getItem(position).id));
     orderAddressTV.setText(getItem(position).address);
@@ -225,6 +280,19 @@ class OrderDetailAdapter extends ArrayAdapter<Order> {
     return convertView;
   }
 
+  public void toggleCheckAllItem(boolean b) {
+
+    for(int i = 0; i < booleans.size(); i ++) {
+      booleans.set(i, b);
+      if(b)
+        orders.add(getItem(i));
+      else
+        orders.clear();
+    }
+    OrderFragment.checkAllItem.setText(orders.size() + " " + getContext().getString(R.string.items));
+    notifyDataSetChanged();
+  }
+
   public void reloadListView() {
     if(orderItemAdapter != null)
       orderItemAdapter.notifyDataSetInvalidated();
@@ -232,7 +300,19 @@ class OrderDetailAdapter extends ArrayAdapter<Order> {
     if(orderItemLV != null)
       orderItemLV.invalidateViews();
   }
+
+
+  void checkCheckItems() {
+    for(Boolean b : booleans)
+      if(b) {
+        OrderFragment.checkAllItem.setChecked(true);
+        return;
+      }
+    OrderFragment.checkAllItem.setChecked(false);
+  }
+
 }
+
 
 class OrderItemAdapter extends ArrayAdapter<OrderItem> {
 
@@ -260,7 +340,6 @@ class OrderItemAdapter extends ArrayAdapter<OrderItem> {
     productIV.setImageBitmap(product.img);
     qtyTV.setText(getContext().getString(R.string.qty) + " " + String.valueOf(getItem(position).quantity));
     priceTV.setText(String.format("%s %.0f", getContext().getString(R.string.taiwan), price));
-
     return convertView;
   }
 }

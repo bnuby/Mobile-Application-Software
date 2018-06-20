@@ -39,6 +39,7 @@ public class CartFragment extends Fragment {
   private static ListView listView;
   static CheckBox checkBox;
   static TextView priceTV;
+  static LinearLayout notLoginLL;
   Button payBtn;
 
   @Nullable
@@ -67,6 +68,7 @@ public class CartFragment extends Fragment {
     priceTV = view.findViewById(R.id.priceTV);
     adapter = new CartListViewAdapter(getContext(), DataManagement.getOrderCollection().carts);
     listView = view.findViewById(R.id.cartLV);
+    notLoginLL = view.findViewById(R.id.notLoginLL);
     listView.setAdapter(adapter);
 
     priceTV.setText(String.format("%s 0", getString(R.string.taiwan)));
@@ -134,6 +136,12 @@ public class CartFragment extends Fragment {
     return view;
   }
 
+  @Override
+  public void onStart() {
+    super.onStart();
+    checkNoLogin();
+  }
+
   static void setPrice(String price) {
     priceTV.setText(price);
   }
@@ -150,6 +158,15 @@ public class CartFragment extends Fragment {
 
     if(checkBox != null)
       checkBox.setChecked(b);
+  }
+
+  public static void checkNoLogin() {
+    if(notLoginLL != null)
+    if(UserManagement.isLogin) {
+      notLoginLL.setVisibility(View.GONE);
+    } else {
+      notLoginLL.setVisibility(View.VISIBLE);
+    }
   }
 
   class CartListViewAdapter extends ArrayAdapter<OrderItem> implements View.OnClickListener {
@@ -225,7 +242,12 @@ public class CartFragment extends Fragment {
       Product product = DataManagement.getProductsById(getItem(position).product_id);
       productTV.setText(product.name);
       qtyTV.setText(String.valueOf(getItem(position).quantity));
-      priceTV.setText(getResources().getString(R.string.taiwan) + " " + String.valueOf((int)DataManagement.getProductsById(getItem(position).product_id).sale_price));
+      if (AccountFragment.change==0){
+        priceTV.setText(getResources().getString(R.string.taiwan) + " " + String.valueOf((int)DataManagement.getProductsById(getItem(position).product_id).sale_price));
+      }else {
+        priceTV.setText(getResources().getString(R.string.usa) + " " + String.valueOf((int)DataManagement.getProductsById(getItem(position).product_id).sale_price*0.3));
+      }
+
 
       productIV.setImageBitmap(product.img);
       initCheckBox(checkBox, position);
@@ -273,8 +295,12 @@ public class CartFragment extends Fragment {
         Product product = DataManagement.getProductsById(orderItem.product_id);
         price = product.sale_price * orderItem.quantity;
       }
+     if(AccountFragment.change==0){
+       CartFragment.setPrice(String.format("%s %.0f", getString(R.string.taiwan), price));
+     }else {
+       CartFragment.setPrice(String.format("%s %.0f", getString(R.string.usa), price*0.3));
+     }
 
-      CartFragment.setPrice(String.format("%s %.0f", getString(R.string.taiwan), price));
     }
 
     void removeOrder() {

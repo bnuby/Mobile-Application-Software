@@ -71,6 +71,7 @@
     <string name="status">status: </string>
     <string name="order_number">Order Number:</string>
     <string name="address2">Address:</string>
+    <string name="no_item">No Item</string>
     <!--Order Page-->
 
     <dimen name="a">20dp</dimen>

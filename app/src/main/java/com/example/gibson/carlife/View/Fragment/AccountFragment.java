@@ -26,9 +26,10 @@ import com.example.gibson.carlife.View.LoginActivity;
 
 public class AccountFragment extends Fragment {
 
-  static Button logOut_Btn, accMng_Btn;
+  static Button logOut_Btn, accMng_Btn,currency;
   LinearLayout accountInfoLayout;
   static TextView usernameTV;
+  public static int change=0;
 
   Button clrCache_Btn;
   ImageView favorite,history;
@@ -55,7 +56,18 @@ public class AccountFragment extends Fragment {
     View view = inflater.inflate(R.layout.fragment_account, container, false);
 
     usernameTV = view.findViewById(R.id.usernameTV);
-
+    currency=view.findViewById(R.id.currency);
+    currency.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+          Toast.makeText(getContext(),"currency change",Toast.LENGTH_LONG).show();
+        if(change!=0){
+          change=0;
+        }else {
+          change++;
+        }
+      }
+    });
     accountInfoLayout = view.findViewById(R.id.acc_info);
     accountInfoLayout.setOnClickListener(new View.OnClickListener() {
       @Override

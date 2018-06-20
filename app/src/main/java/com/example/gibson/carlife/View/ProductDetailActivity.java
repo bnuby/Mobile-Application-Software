@@ -20,6 +20,7 @@ import com.example.gibson.carlife.Services.HistoryManagerment;
 import com.example.gibson.carlife.Services.Order.OrderManagement;
 import com.example.gibson.carlife.Services.Product.ProductPicturesManagement;
 import com.example.gibson.carlife.Services.UserManagement;
+import com.example.gibson.carlife.View.Fragment.AccountFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,8 +74,13 @@ public class ProductDetailActivity extends CustomActivity {
 
     quantityTV.setText(""+item.quantity);
     titleTV.setText(item.name);
+    if(AccountFragment.change==0){
     priceTV.setText(getResources().getString(R.string.taiwan) + " " + item.sale_price);
-    totalTV.setText(getResources().getString(R.string.taiwan) + " " + item.sale_price);
+    totalTV.setText(getResources().getString(R.string.taiwan) + " " + item.sale_price);}
+    else {
+      priceTV.setText(getResources().getString(R.string.usa) + " " + item.sale_price*0.3);
+      totalTV.setText(getResources().getString(R.string.usa) + " " + item.sale_price*0.3);
+    }
     introTV.setText(item.description);
 
     if(item.imgs.size() == 0)
@@ -128,7 +134,11 @@ public class ProductDetailActivity extends CustomActivity {
         if(quantity > 1) {
           quantity -= 1;
           qtyTV.setText(String.valueOf(quantity));
-          totalTV.setText(getResources().getString(R.string.taiwan) + " " + item.sale_price * quantity);
+          if(AccountFragment.change==0){
+            totalTV.setText(getResources().getString(R.string.taiwan) + " " + item.sale_price * quantity);}
+          else {
+            totalTV.setText(getResources().getString(R.string.usa) + " " + item.sale_price *0.3* quantity);
+          }
         }
       }
     });
@@ -140,7 +150,11 @@ public class ProductDetailActivity extends CustomActivity {
         if(quantity < item.quantity) {
           quantity += 1;
           qtyTV.setText(String.valueOf(quantity));
-          totalTV.setText(getResources().getString(R.string.taiwan) + " " + item.sale_price * quantity);
+          if(AccountFragment.change==0){
+          totalTV.setText(getResources().getString(R.string.taiwan) + " " + item.sale_price * quantity);}
+          else {
+            totalTV.setText(getResources().getString(R.string.usa) + " " + item.sale_price *0.3* quantity);
+          }
         }
       }
     });
