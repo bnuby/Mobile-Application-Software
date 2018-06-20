@@ -93,9 +93,13 @@
             android:id="@+id/orderItemLV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:divider="@color/dark_black"
             android:dividerHeight="2dp"
-            android:scrollbars="none" />
+            android:scrollbars="none">
+
+        </ListView>
+
     </LinearLayout>
 
 </LinearLayout>

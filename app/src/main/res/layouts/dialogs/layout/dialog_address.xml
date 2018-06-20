@@ -38,6 +38,7 @@
             android:hint="@string/your_address"
             android:inputType="textPersonName"
             android:padding="10dp"
+            android:textColor="@color/dark_black"
             android:textColorHint="@color/gray" />
     </LinearLayout>
 

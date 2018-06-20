@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -29,6 +30,7 @@ import java.util.List;
 public class OrderFragment extends Fragment implements View.OnClickListener {
   public static String TAG = "OrderFragment";
   static OrderDetailAdapter unpayAdapter, paidAdapter;
+  LinearLayout payDetailLL;
   static ListView listView;
   static Context mContext;
   static boolean isPay = false;
@@ -42,6 +44,7 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
     payBtn = view.findViewById(R.id.payBtn);
     unPayBtn = view.findViewById(R.id.unPayBtn);
     listView = view.findViewById(R.id.orderlist);
+    payDetailLL = view.findViewById(R.id.payDetailLL);
 
     mContext = getContext();
 
@@ -64,8 +67,10 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
             );
 
     if(isPay) {
+      payDetailLL.setVisibility(View.GONE);
       listView.setAdapter(paidAdapter);
     } else {
+      payDetailLL.setVisibility(View.VISIBLE);
       listView.setAdapter(unpayAdapter);
     }
     return view;
@@ -110,6 +115,7 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
           unPayBtn.setBackground(getActivity().getDrawable(R.drawable.unpay_disable));
           payBtn.setBackground(getActivity().getDrawable(R.drawable.pay_enable));
           listView.setAdapter(paidAdapter);
+          payDetailLL.setVisibility(View.GONE);
           isPay = true;
         }
         break;
@@ -119,6 +125,7 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
           unPayBtn.setBackground(getActivity().getDrawable(R.drawable.unpay_enable));
           payBtn.setBackground(getActivity().getDrawable(R.drawable.pay_disable));
           listView.setAdapter(unpayAdapter);
+          payDetailLL.setVisibility(View.VISIBLE);
           isPay = false;
         }
         break;
@@ -141,6 +148,7 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
     } else {
       unPayBtn.setBackground(getActivity().getDrawable(R.drawable.unpay_enable));
       payBtn.setBackground(getActivity().getDrawable(R.drawable.pay_disable));
+      payDetailLL.setVisibility(View.VISIBLE);
       listView.setAdapter(unpayAdapter);
     }
 

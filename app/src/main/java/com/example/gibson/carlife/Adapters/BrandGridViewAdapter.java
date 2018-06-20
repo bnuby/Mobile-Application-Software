@@ -65,16 +65,19 @@ public class BrandGridViewAdapter extends ArrayAdapter<ProductBrand> {
       return iv;
     }
     TextView tv = new TextView(mCtx);
+
     float dp = Resources.getSystem().getDisplayMetrics().density;
     tv.setMaxHeight((int)(80 * dp));
     tv.setMinimumHeight((int)(80 * dp));
     tv.setWidth((int)(40 * dp));
     ProductBrand item = getItem(position);
     tv.setTextSize(20);
+
     if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP_MR1)
       tv.setTextColor(mCtx.getResources().getColor(R.color.white));
     else
       tv.setTextColor(mCtx.getColor(R.color.white));
+
     tv.setBackground(mCtx.getDrawable(R.drawable.rounded_square));
     tv.setGravity(Gravity.CENTER);
     tv.setText(R.string.more);
