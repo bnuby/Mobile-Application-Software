@@ -128,6 +128,14 @@
                 android:paddingBottom="3dp"
                 android:paddingTop="5dp"
                 android:text="@string/logout" />
+
+            <Button
+                android:id="@+id/currency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@color/bright_red"
+                android:text="currency" />
         </LinearLayout>
 
     </ScrollView>

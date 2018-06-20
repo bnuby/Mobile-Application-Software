@@ -252,7 +252,6 @@ class OrderItemAdapter extends ArrayAdapter<OrderItem> {
     productIV.setImageBitmap(product.img);
     qtyTV.setText(getContext().getString(R.string.qty) + " " + String.valueOf(getItem(position).quantity));
     priceTV.setText(String.format("%s %.0f", getContext().getString(R.string.taiwan), price));
-
     return convertView;
   }
 }
