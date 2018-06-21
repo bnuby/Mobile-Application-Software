@@ -53,10 +53,12 @@ public class ProductManagement extends RequestManager {
                                     object.getString("updated_at"),
                                     object.getString("description"),
                                     object.getString("product_brand"),
-                                    object.getString("product_type")
+                                    object.getString("product_type"),
+                                    object.getInt("visit_count")
                             ));
                     getImage(id, i);
                   }
+//                  DataManagement.getPopular();
                 } catch (JSONException e) {
                   e.printStackTrace();
                 }

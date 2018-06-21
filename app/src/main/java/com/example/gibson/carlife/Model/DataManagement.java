@@ -1,18 +1,15 @@
 package com.example.gibson.carlife.Model;
 
-import android.util.Log;
-
 import com.example.gibson.carlife.Model.Product.Product;
 import com.example.gibson.carlife.Model.Product.ProductBrand;
 import com.example.gibson.carlife.Model.Product.ProductType;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class DataManagement {
   private static OrderCollection orderCollection;
   private static ArrayList<Product> products;
+  private static ArrayList<Product> populars;
   private static ArrayList<ProductBrand> productBrands;
   private static ArrayList<ProductType> productTypes;
   private static ArrayList<Favorite> favorites;
@@ -29,6 +26,11 @@ public class DataManagement {
     if (products == null)
       products = new ArrayList<>();
     return products;
+  }
+
+  public static ArrayList<Product> getPopular() {
+    populars = getMostPopular(2);
+    return populars;
   }
 
   public static ArrayList<Product> getProducts(int numberOfItem) {
@@ -159,5 +161,32 @@ public class DataManagement {
       return true;
     }
     return false;
+  }
+
+  public static ArrayList<Product> getMostPopular(int count) {
+    boolean flag;
+    ArrayList<Product> sort;
+    if(products == null) {
+      sort = new ArrayList<>();
+    } else {
+      sort = (ArrayList<Product>) products.clone();
+      do {
+        flag = false;
+        for(int i = 0; i < sort.size() - 1; i++) {
+          if(sort.get(i).visitCount < sort.get(i + 1).visitCount ) {
+            Product temp = sort.get(i);
+            sort.set(i, sort.get(i + 1));
+            sort.set(i + 1, temp);
+            flag = true;
+          }
+        }
+      }while (flag);
+
+      for(int i = sort.size() - 1; i >= count; i --)
+        sort.remove(i);
+    }
+
+
+    return sort;
   }
 }

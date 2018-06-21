@@ -19,6 +19,7 @@ public class Product {
   public ArrayList<Bitmap> imgs;
   public int quantity;
   public int grade;
+  public int visitCount;
   public double tax_rate;
   public double cost_price;
   public double sale_price;
@@ -32,7 +33,12 @@ public class Product {
   public String product_type;
 
 
-  public Product(int id, String name, int quantity, int grade, double tax_rate, double cost_price, double sale_price, int product_brand_id, int product_type_id, JSONArray tags, String created_at, String updated_at, String description, String product_brand, String product_type) {
+  public Product(int id, String name, int quantity,
+                 int grade, double tax_rate, double cost_price,
+                 double sale_price, int product_brand_id, int product_type_id,
+                 JSONArray tags, String created_at, String updated_at,
+                 String description, String product_brand, String product_type,
+                 int visitCount) {
     this.id = id;
     this.name = name;
     this.quantity = quantity;
@@ -49,6 +55,7 @@ public class Product {
     this.product_brand = product_brand;
     this.product_type = product_type;
     this.imgs = new ArrayList<>();
+    this.visitCount = visitCount;
   }
 
   ArrayList<String> JSONArrayToArrayList(JSONArray array) {

@@ -1,5 +1,6 @@
 package com.example.gibson.carlife.View.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ public class MainShopFragment extends Fragment {
   public static GridView typeGridView;
   public static GridView brandGridView;
   public static GridView productGridView;
+  static Context mContext;
 
 
   public static void reloadTypeGV() {
@@ -47,14 +49,19 @@ public class MainShopFragment extends Fragment {
   }
 
   public static void reloadProductGV() {
-    if (productGridView != null)
+    if (productGridView != null) {
+      ProductListViewAdapter adapter3 =
+              new ProductListViewAdapter(mContext, DataManagement.getPopular(), R.layout.gridview_item);
+      productGridView.setAdapter(adapter3);
       productGridView.invalidateViews();
+      setGridHeight();
+    }
   }
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-
+    mContext = getContext();
   }
 
   @Nullable
@@ -109,11 +116,11 @@ public class MainShopFragment extends Fragment {
     });
 
     // Define Hottest Product Grid View
-    final ArrayList<Product> products = DataManagement.getProducts();
-    ProductListViewAdapter adapter3 =
-            new ProductListViewAdapter(getContext(), products, R.layout.gridview_item);
     productGridView = (GridView) view.findViewById(R.id.gvProductGV);
+    ProductListViewAdapter adapter3 =
+            new ProductListViewAdapter(getContext(), DataManagement.getPopular(), R.layout.gridview_item);
     productGridView.setAdapter(adapter3);
+    setGridHeight();
     productGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
       @Override
       public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
@@ -125,6 +132,23 @@ public class MainShopFragment extends Fragment {
     });
 
     return view;
+  }
+
+  @Override
+  public void onStart() {
+    super.onStart();
+    Log.i("row", String.valueOf(DataManagement.getPopular().size()));
+  }
+
+  public static void setGridHeight() {
+    ViewGroup.LayoutParams params1 = productGridView.getLayoutParams();
+    params1.height = (int) calcGridHeight(DataManagement.getPopular(), 220 * Resources.getSystem().getDisplayMetrics().density);
+  }
+
+  public static double calcGridHeight(ArrayList arrayList, double heightPerItem) {
+    double itemPerRow = 2.0;
+    int totalRow = (int) Math.ceil(arrayList.size() / itemPerRow);
+    return heightPerItem * totalRow;
   }
 
 }
