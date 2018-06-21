@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -25,6 +24,7 @@ import com.example.gibson.carlife.Model.Order.OrderItem;
 import com.example.gibson.carlife.Model.Order.OrderStatus;
 import com.example.gibson.carlife.Model.Product.Product;
 import com.example.gibson.carlife.R;
+import com.example.gibson.carlife.Services.Order.OrderManagement;
 import com.example.gibson.carlife.Services.UserManagement;
 
 import java.util.ArrayList;
@@ -38,8 +38,10 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
   static ListView listView;
   static Context mContext;
   static LinearLayout notLoginLL;
+  static TextView priceTV;
   static boolean isPay = false;
-  Button payBtn, unPayBtn;
+  Button payBtn, unPayBtn, paidBtn;
+  ImageView deleteIV;
 
   @Nullable
   @Override
@@ -48,10 +50,13 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
 
     payBtn = view.findViewById(R.id.payBtn);
     unPayBtn = view.findViewById(R.id.unPayBtn);
+    paidBtn = view.findViewById(R.id.paidBtn);
+    deleteIV = view.findViewById(R.id.cancelIV);
     listView = view.findViewById(R.id.orderlist);
     payDetailLL = view.findViewById(R.id.payDetailLL);
     notLoginLL = view.findViewById(R.id.notLoginLL);
     checkAllItem = view.findViewById(R.id.checkItem);
+    priceTV = view.findViewById(R.id.priceTV);
     mContext = getContext();
 
     checkAllItem.setChecked(false);
@@ -67,6 +72,10 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
 
     payBtn.setOnClickListener(this);
     unPayBtn.setOnClickListener(this);
+    paidBtn.setOnClickListener(this);
+    deleteIV.setOnClickListener(this);
+
+
 
     unpayAdapter =
             new OrderDetailAdapter(getContext(),
@@ -97,7 +106,6 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
     super.onStart();
     checkNoLogin();
     checkAllItem.setChecked(false);
-
   }
 
   public static void reloadAdapterAndListView() {
@@ -137,6 +145,13 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
     }
   }
 
+  public static void updateCheckItemStatus() {
+    int size = unpayAdapter.orders.size();
+    OrderFragment.checkAllItem.setText(size + " " + mContext.getString(R.string.items));
+    if(size == 0)
+      OrderFragment.checkAllItem.setChecked(false);
+  }
+
 
 
   @Override
@@ -160,6 +175,16 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
           payDetailLL.setVisibility(View.VISIBLE);
           isPay = false;
         }
+        break;
+
+      case R.id.paidBtn:
+        unpayAdapter.payAllOrder();
+        updateCheckItemStatus();
+        break;
+
+      case R.id.cancelIV:
+        unpayAdapter.cancelAllOrder();
+        updateCheckItemStatus();
         break;
     }
     listView.invalidateViews();
@@ -221,6 +246,8 @@ class OrderDetailAdapter extends ArrayAdapter<Order> {
     statusTV = convertView.findViewById(R.id.statusTV);
     deleteBtn = convertView.findViewById(R.id.deleteBtn);
     final CheckBox checkBox = convertView.findViewById(R.id.checkBox);
+
+
     if(booleans.get(position))
       checkBox.setChecked(true);
     else
@@ -233,7 +260,15 @@ class OrderDetailAdapter extends ArrayAdapter<Order> {
           orders.add(getItem(position));
         else
           orders.remove(getItem(position));
-        OrderFragment.checkAllItem.setText(orders.size() + " " + getContext().getString(R.string.items));
+
+        if(orders.size() == 0) {
+          OrderFragment.priceTV.setText(getContext().getResources().getString(R.string.taiwan) + " 0");
+        } else {
+          OrderFragment.priceTV.setText(getContext().getResources().getString(R.string.taiwan) + " " + sumOrderPrice(orders));
+        }
+
+        OrderFragment.updateCheckItemStatus();
+//        OrderFragment.checkAllItem.setText(orders.size() + " " + getContext().getString(R.string.items));
         booleans.set(position, checkBox.isChecked());
         checkCheckItems();
       }
@@ -256,6 +291,7 @@ class OrderDetailAdapter extends ArrayAdapter<Order> {
         break;
 
       case paid:
+        checkBox.setVisibility(View.GONE);
         orderItems = DataManagement
                 .getOrderCollection()
                 .getOrderItemsByOrderID(
@@ -280,15 +316,33 @@ class OrderDetailAdapter extends ArrayAdapter<Order> {
     return convertView;
   }
 
+  public double sumOrderPrice(ArrayList<Order> orders) {
+    double price = 0;
+    for(Order order: orders) {
+      for(OrderItem orderItem: order.orderItems) {
+        Product product = DataManagement.getProductsById(orderItem.product_id);
+        price += product.sale_price * orderItem.quantity;
+      }
+    }
+    return price;
+  }
+
   public void toggleCheckAllItem(boolean b) {
 
     for(int i = 0; i < booleans.size(); i ++) {
       booleans.set(i, b);
       if(b)
         orders.add(getItem(i));
-      else
+      else {
         orders.clear();
+      }
     }
+
+    if(b)
+      OrderFragment.priceTV.setText(getContext().getResources().getString(R.string.taiwan) + " " + sumOrderPrice(orders));
+    else
+      OrderFragment.priceTV.setText(getContext().getResources().getString(R.string.taiwan) + " 0");
+
     OrderFragment.checkAllItem.setText(orders.size() + " " + getContext().getString(R.string.items));
     notifyDataSetChanged();
   }
@@ -311,6 +365,35 @@ class OrderDetailAdapter extends ArrayAdapter<Order> {
     OrderFragment.checkAllItem.setChecked(false);
   }
 
+  void payAllOrder() {
+    for(Order order: orders) {
+      ArrayList<OrderItem> orderItems = DataManagement.getOrderCollection().getOrderItemsByOrderID(OrderStatus.unpay, order);
+      order.status = OrderStatus.paid;
+      OrderManagement.paidOrder(order);
+      for(OrderItem orderItem : orderItems) {
+        orderItem.status = OrderStatus.paid;
+        DataManagement.getOrderCollection().unpays.remove(orderItem);
+        DataManagement.getOrderCollection().paids.add(orderItem);
+      }
+    }
+    orders.clear();
+    OrderFragment.reloadAdapterAndListView();
+  }
+
+  void cancelAllOrder() {
+    for(Order order: orders) {
+      ArrayList<OrderItem> orderItems = DataManagement.getOrderCollection().getOrderItemsByOrderID(OrderStatus.unpay, order);
+      order.status = OrderStatus.cancel;
+      OrderManagement.cancelOrder(order);
+      for(OrderItem orderItem : orderItems) {
+        orderItem.status = OrderStatus.cancel;
+        DataManagement.getOrderCollection().unpays.remove(orderItem);
+        DataManagement.getOrderCollection().cancels.add(orderItem);
+      }
+    }
+    orders.clear();
+    OrderFragment.reloadAdapterAndListView();
+  }
 }
 
 

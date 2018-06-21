@@ -247,7 +247,80 @@ public class OrderManagement extends RequestManager {
     );
 
     MainActivity.volleyQueue.add(request);
+  }
 
+  public static void cancelOrder(final Order order) {
+    final String url = host + String.format("/order/%d?status=cancel&user_id=%d", order.id, MainActivity.userObj.userId);
+    StringRequest request = new StringRequest(
+            Request.Method.PUT,
+            url,
+            new Response.Listener<String>() {
+              @Override
+              public void onResponse(String response) {
+                try {
+                  Log.i(TAG, response);
+                  JSONObject object = new JSONObject(response);
+                  if (object.getBoolean("status")) {
+                    ArrayList<OrderItem> orderItems =
+                            DataManagement.getOrderCollection().getOrderItemsByOrderID(OrderStatus.unpay, order);
+                    for (OrderItem orderItem : orderItems) {
+                      orderItem.status = OrderStatus.cancel;
+                    }
+                    DataManagement.getOrderCollection().unpays.removeAll(orderItems);
+                    DataManagement.getOrderCollection().cancels.addAll(orderItems);
+                    OrderFragment.reloadAdapterAndListView();
+                  }
+                } catch (JSONException e) {
+                  e.printStackTrace();
+                }
+
+              }
+            },
+            new Response.ErrorListener() {
+              @Override
+              public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, error.getMessage());
+              }
+            }
+    );
+    MainActivity.volleyQueue.add(request);
+  }
+
+  public static void paidOrder(final Order order) {
+    final String url = host + String.format("/order/%d?status=paid&user_id=%d", order.id, MainActivity.userObj.userId);
+    StringRequest request = new StringRequest(
+            Request.Method.PUT,
+            url,
+            new Response.Listener<String>() {
+              @Override
+              public void onResponse(String response) {
+                Log.i(TAG, response);
+                try {
+                  JSONObject object = new JSONObject(response);
+                  if (object.getBoolean("status")) {
+                    ArrayList<OrderItem> orderItems =
+                            DataManagement.getOrderCollection().getOrderItemsByOrderID(OrderStatus.unpay, order);
+                    for (OrderItem orderItem : orderItems) {
+                      orderItem.status = OrderStatus.paid;
+                    }
+                    DataManagement.getOrderCollection().unpays.removeAll(orderItems);
+                    DataManagement.getOrderCollection().paids.addAll(orderItems);
+                    OrderFragment.reloadAdapterAndListView();
+                  }
+                } catch (JSONException e) {
+                  e.printStackTrace();
+                }
+
+              }
+            },
+            new Response.ErrorListener() {
+              @Override
+              public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, error.getMessage());
+              }
+            }
+    );
+    MainActivity.volleyQueue.add(request);
   }
 
 }

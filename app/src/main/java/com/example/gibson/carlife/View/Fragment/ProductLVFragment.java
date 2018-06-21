@@ -1,5 +1,6 @@
 package com.example.gibson.carlife.View.Fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,9 +17,16 @@ import com.example.gibson.carlife.Model.Product.Product;
 import com.example.gibson.carlife.R;
 import com.example.gibson.carlife.View.ProductDetailActivity;
 
+@SuppressLint("ValidFragment")
 public class ProductLVFragment extends Fragment implements AdapterView.OnItemClickListener {
 
   ListView productListView;
+  String type, name;
+
+  public ProductLVFragment(String type, String name) {
+    this.type = type;
+    this.name = name;
+  }
 
   @Nullable
   @Override
@@ -27,7 +35,16 @@ public class ProductLVFragment extends Fragment implements AdapterView.OnItemCli
 
     productListView = view.findViewById(R.id.productLV);
 
-    ProductListViewAdapter adapter = new ProductListViewAdapter(getContext(), DataManagement.getProducts(), R.layout.listview1);
+    ProductListViewAdapter adapter;
+
+    if(type == "brand")
+      adapter = new ProductListViewAdapter(getContext(),
+              DataManagement.getBrandOfProduct(name),
+              R.layout.listview1);
+    else
+      adapter = new ProductListViewAdapter(getContext(),
+              DataManagement.getTypeOfProduct(name),
+              R.layout.listview1);
 
     productListView.setAdapter(adapter);
 

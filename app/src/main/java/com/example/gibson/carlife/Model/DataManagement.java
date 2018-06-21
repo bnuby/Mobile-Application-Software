@@ -1,5 +1,7 @@
 package com.example.gibson.carlife.Model;
 
+import android.util.Log;
+
 import com.example.gibson.carlife.Model.Product.Product;
 import com.example.gibson.carlife.Model.Product.ProductBrand;
 import com.example.gibson.carlife.Model.Product.ProductType;

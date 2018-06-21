@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -33,7 +34,7 @@ public class CategoryActivity extends AppCompatActivity implements AdapterView.O
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_category);
 
-    type = getIntent().getStringExtra("typeTV");
+    type = getIntent().getStringExtra("type");
     CategoryAdapter adapter;
 
     categoryLV = findViewById(R.id.categoryLV);
@@ -61,17 +62,14 @@ public class CategoryActivity extends AppCompatActivity implements AdapterView.O
 
   @Override
   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-    String type = getIntent().getStringExtra("typeTV");
+    String type = getIntent().getStringExtra("type");
     String name;
     Intent intent = new Intent(this, ProductCategoryActivity.class);
-    intent.putExtra("typeTV", type);
+    intent.putExtra("type", type);
     if(type.equalsIgnoreCase("brand")) {
-      Toast.makeText(this, ((ProductBrand)parent.getAdapter().getItem(position)).name, Toast.LENGTH_SHORT).show();
       ProductBrand brand = (ProductBrand) parent.getAdapter().getItem(position);
       name = brand.name;
-    }
-    else {
-      Toast.makeText(this, ((ProductType)parent.getAdapter().getItem(position)).name, Toast.LENGTH_SHORT).show();
+    } else {
       ProductType productType = (ProductType) parent.getAdapter().getItem(position);
       name = productType.name;
     }

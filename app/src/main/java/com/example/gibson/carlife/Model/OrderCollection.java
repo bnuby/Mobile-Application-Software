@@ -180,7 +180,6 @@ public class OrderCollection {
             orderItems.add(orderItem);
         break;
     }
-
     return orderItems;
   }
 

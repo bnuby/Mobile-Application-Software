@@ -87,6 +87,7 @@
     <string name="login">Login</string>
     <string name="AllMustNotbeEmpty">All Must Not be Empty!</string>
     <string name="PasswordCanNotBeSame">Password and UserName are same!</string>
+    <string name="usa">$</string>
     <!--Unit Price-->
 
 

@@ -1,9 +1,11 @@
 package com.example.gibson.carlife.View.Fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +16,23 @@ import com.example.gibson.carlife.Adapters.ItemGridViewAdapter;
 import com.example.gibson.carlife.MainActivity;
 import com.example.gibson.carlife.Model.DataManagement;
 import com.example.gibson.carlife.Model.Product.Product;
+import com.example.gibson.carlife.Model.Product.ProductBrand;
 import com.example.gibson.carlife.R;
 import com.example.gibson.carlife.View.ProductDetailActivity;
 
+import java.util.ArrayList;
+
+@SuppressLint("ValidFragment")
 public class ProductGVFragment extends Fragment implements AdapterView.OnItemClickListener {
 
   GridView productGV;
+  String type;
+  String name;
+
+  public ProductGVFragment(String type, String name) {
+    this.type = type;
+    this.name = name;
+  }
 
   @Nullable
   @Override
@@ -28,7 +41,15 @@ public class ProductGVFragment extends Fragment implements AdapterView.OnItemCli
     View view = inflater.inflate(R.layout.grid_view_product, container, false);
 
     productGV = view.findViewById(R.id.productGV);
-    ItemGridViewAdapter adapter = new ItemGridViewAdapter(getContext(), DataManagement.getProducts());
+    ItemGridViewAdapter adapter;
+    if(type.equalsIgnoreCase("brand")) {
+      adapter = new ItemGridViewAdapter(getContext(),
+              DataManagement.getBrandOfProduct(name));
+    }
+    else {
+      adapter = new ItemGridViewAdapter(getContext(),
+              DataManagement.getTypeOfProduct(name));
+    }
     productGV.setAdapter(adapter);
     productGV.setOnItemClickListener(this);
 

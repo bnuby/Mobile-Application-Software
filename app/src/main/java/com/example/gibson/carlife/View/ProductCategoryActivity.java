@@ -8,14 +8,20 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.gibson.carlife.Model.DataManagement;
+import com.example.gibson.carlife.Model.Product.ProductBrand;
+import com.example.gibson.carlife.Model.Product.ProductType;
 import com.example.gibson.carlife.R;
 import com.example.gibson.carlife.View.Fragment.MainShopFragment;
 import com.example.gibson.carlife.View.Fragment.ProductGVFragment;
 import com.example.gibson.carlife.View.Fragment.ProductLVFragment;
+
+import java.util.ArrayList;
 
 public class ProductCategoryActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -24,7 +30,7 @@ public class ProductCategoryActivity extends AppCompatActivity implements View.O
   Button listViewBtn;
   Button backBtn;
   TextView titleTV;
-  Fragment[] fragments = {new ProductGVFragment(), new ProductLVFragment()};
+  Fragment[] fragments;
 
 
   @Override
@@ -37,7 +43,6 @@ public class ProductCategoryActivity extends AppCompatActivity implements View.O
 
   void init() {
     String name = getIntent().getStringExtra("name");
-
     gridViewBtn = findViewById(R.id.gridViewBtn);
     listViewBtn = findViewById(R.id.listViewBtn);
     backBtn = findViewById(R.id.backBtn);
@@ -47,6 +52,11 @@ public class ProductCategoryActivity extends AppCompatActivity implements View.O
 
     titleTV = findViewById(R.id.titleTV);
     titleTV.setText(name);
+
+    Intent intent = getIntent();
+    String type = intent.getStringExtra("type");
+    String item = intent.getStringExtra("name");
+    fragments = new Fragment[]{new ProductGVFragment(type, item), new ProductLVFragment(type, item)};
 
     getSupportFragmentManager().beginTransaction().add(R.id.frameLayout, fragments[0])
     .add(R.id.frameLayout, fragments[1])
@@ -105,8 +115,10 @@ public class ProductCategoryActivity extends AppCompatActivity implements View.O
 
   public static void changeActivity(Context context, String type, String name) {
     Intent intent = new Intent(context, ProductCategoryActivity.class);
-    intent.putExtra("typeTV", type);
+    intent.putExtra("type", type);
     intent.putExtra("name", name);
+    Log.i("product", type);
+    Log.i("product", name);
     ((Activity)context).startActivityForResult(intent, 0);
   }
 }

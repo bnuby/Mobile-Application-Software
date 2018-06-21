@@ -77,8 +77,6 @@
     <string name="login">登入</string>
     <string name="AllMustNotbeEmpty">有項目沒有填寫到喔！!</string>
     <string name="PasswordCanNotBeSame">密碼不能和使用者相同！</string>
-    <string name="usa">$</string>
-
     <!--Unit Price-->
 
 

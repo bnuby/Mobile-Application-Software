@@ -62,7 +62,6 @@ public class MainShopFragment extends Fragment {
   public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_main_shop, container, false);
 
-
     // Define typeTV Grid View
     typeGridView = view.findViewById(R.id.TypeGV);
     ViewGroup.LayoutParams params = typeGridView.getLayoutParams();
@@ -75,11 +74,11 @@ public class MainShopFragment extends Fragment {
     typeGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
       @Override
       public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        MainActivity.shortTost("To search : " + productTypes.get(i).name);
-        String type = "typeTV";
+//        MainActivity.shortTost("To search : " + productTypes.get(i).name);
+        String type = "type";
         if(i == adapter.getCount() - 1) {
           Intent intent = new Intent(getContext(), CategoryActivity.class);
-          intent.putExtra("typeTV", type);
+          intent.putExtra("type", type);
           startActivity(intent);
         } else {
           ProductCategoryActivity.changeActivity(getContext(), type, productTypes.get(i).name);
@@ -101,7 +100,7 @@ public class MainShopFragment extends Fragment {
         String type = "brand";
         if(i == adapter2.getCount()-1) {
           Intent intent = new Intent(getContext(), CategoryActivity.class);
-          intent.putExtra("typeTV", type);
+          intent.putExtra("type", type);
           startActivity(intent);
         } else {
           ProductCategoryActivity.changeActivity(getContext(), type, productBrands.get(i).name);
@@ -124,7 +123,6 @@ public class MainShopFragment extends Fragment {
         startActivity(intent);
       }
     });
-
 
     return view;
   }
