@@ -44,8 +44,8 @@ public class AccountFragment extends Fragment {
         accMng_Btn.setVisibility(View.VISIBLE);
       }
       else {
-        logOut_Btn.setVisibility(View.INVISIBLE);
-        accMng_Btn.setVisibility(View.INVISIBLE);
+        logOut_Btn.setVisibility(View.GONE);
+        accMng_Btn.setVisibility(View.GONE);
         usernameTV.setText(R.string.you_are_not_login);
       }
   }
@@ -60,7 +60,7 @@ public class AccountFragment extends Fragment {
     currency.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-          Toast.makeText(getContext(),"currency change",Toast.LENGTH_LONG).show();
+          Toast.makeText(getContext(),getString(R.string.change_currency),Toast.LENGTH_LONG).show();
         if(change!=0){
           change=0;
         }else {

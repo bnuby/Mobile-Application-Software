@@ -81,13 +81,15 @@
     <string name="back">Back</string>
     <string name="clear_cache">Clear Cache</string>
     <string name="account_management">Account Management</string>
-    <string name="payed">payed</string>
+    <string name="paid">paid</string>
     <string name="handphone">Handphone</string>
     <string name="confirm">Confirm</string>
     <string name="login">Login</string>
     <string name="AllMustNotbeEmpty">All Must Not be Empty!</string>
     <string name="PasswordCanNotBeSame">Password and UserName are same!</string>
+    <string name="currency">Currency</string>
     <string name="usa">$</string>
+    <string name="change_currency">Currency Change!</string>
     <!--Unit Price-->
 
 

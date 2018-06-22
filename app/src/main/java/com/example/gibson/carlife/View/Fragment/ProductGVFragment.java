@@ -26,8 +26,7 @@ import java.util.ArrayList;
 public class ProductGVFragment extends Fragment implements AdapterView.OnItemClickListener {
 
   GridView productGV;
-  String type;
-  String name;
+  String type, name;
 
   public ProductGVFragment(String type, String name) {
     this.type = type;

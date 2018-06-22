@@ -37,7 +37,7 @@ public class ProductLVFragment extends Fragment implements AdapterView.OnItemCli
 
     ProductListViewAdapter adapter;
 
-    if(type == "brand")
+    if(type.equalsIgnoreCase("brand"))
       adapter = new ProductListViewAdapter(getContext(),
               DataManagement.getBrandOfProduct(name),
               R.layout.listview1);

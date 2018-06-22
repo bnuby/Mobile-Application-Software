@@ -29,7 +29,7 @@ public class DataManagement {
   }
 
   public static ArrayList<Product> getPopular() {
-    populars = getMostPopular(2);
+    populars = getMostPopular(4);
     return populars;
   }
 

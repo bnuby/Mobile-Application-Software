@@ -59,13 +59,14 @@ public class ProductDetailActivity extends CustomActivity {
     priceTV = findViewById(R.id.priceTV);
     totalTV = findViewById(R.id.totalTV);
     qtyTV = findViewById(R.id.qtyTV);
-
     cartBtn = findViewById(R.id.cart);
     minusBtn = findViewById(R.id.minusBtn);
     plusBtn = findViewById(R.id.plusBtn);
 
     favoriteIV = findViewById(R.id.favoriteIV);
-    HistoryManagerment.addHistory(item.id,MainActivity.userObj.userId);
+    if(UserManagement.isLogin)
+      HistoryManagerment.addHistory(item.id,MainActivity.userObj.userId);
+
     images = new ArrayList<>();
     if(item.product_type!=null)
       typeTV.setText(item.product_type);
@@ -166,7 +167,7 @@ public class ProductDetailActivity extends CustomActivity {
 
   void updateFavorite(boolean b) {
     if(!UserManagement.isLogin) {
-      ProductDetailActivity.shortTost("You Are Not Login");
+      ProductDetailActivity.shortTost(getString(R.string.you_are_not_login));
       return;
     }
 
@@ -182,7 +183,7 @@ public class ProductDetailActivity extends CustomActivity {
 
   void setFavorite(boolean b) {
     if(!UserManagement.isLogin) {
-      ProductDetailActivity.shortTost("You Are Not Login");
+      ProductDetailActivity.shortTost(getString(R.string.you_are_not_login));
       return;
     }
     if(b) {

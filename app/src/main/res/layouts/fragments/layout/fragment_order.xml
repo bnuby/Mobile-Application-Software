@@ -62,7 +62,7 @@
             android:layout_width="65dp"
             android:layout_height="30dp"
             android:background="@drawable/pay_enable"
-            android:text="@string/payed"
+            android:text="@string/paid"
             android:textColor="@color/dark_black"
             android:textSize="14sp"
             android:textStyle="bold" />

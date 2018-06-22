@@ -39,6 +39,14 @@
     <string name="sign_up">按這裡！</string>
     <!--Login Page-->
 
+    <!--Sign Up Page-->
+    <string name="name">名字</string>
+    <string name="confirm_password">確認密碼</string>
+    <string name="email">Email</string>
+    <string name="phone">手機號碼</string>
+    <string name="register">註冊</string>
+    <!--Sign Up Page-->
+
     <!--Search Bar-->
     <string name="searchbar_text">找尋產品</string>
     <!--Search Bar-->
@@ -71,12 +79,14 @@
     <string name="back">返回</string>
     <string name="clear_cache">清理快取</string>
     <string name="account_management">帳戶管理</string>
-    <string name="payed">已付款</string>
+    <string name="paid">已付款</string>
     <string name="handphone">手機</string>
     <string name="confirm">確認</string>
     <string name="login">登入</string>
     <string name="AllMustNotbeEmpty">有項目沒有填寫到喔！!</string>
+    <string name="currency">匯率</string>
     <string name="PasswordCanNotBeSame">密碼不能和使用者相同！</string>
+    <string name="change_currency">匯率更換成功!</string>
     <!--Unit Price-->
 
 

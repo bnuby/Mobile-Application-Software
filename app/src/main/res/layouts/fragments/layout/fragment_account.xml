@@ -101,41 +101,34 @@
                 android:paddingTop="5dp"
                 android:text="@string/clear_cache" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:background="@color/light_gray" />
-
-            <Button
-                android:id="@+id/accMng_Btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/bright_red"
-                android:paddingBottom="5dp"
-                android:paddingTop="5dp"
-                android:text="@string/account_management" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:background="@color/light_gray" />
-
-            <Button
-                android:id="@+id/logOut_Btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/bright_red"
-                android:paddingBottom="3dp"
-                android:paddingTop="5dp"
-                android:text="@string/logout" />
-
             <Button
                 android:id="@+id/currency"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:background="@color/bright_red"
-                android:text="currency" />
+                android:text="@string/currency" />
+
+            <Button
+                android:id="@+id/accMng_Btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@color/bright_red"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="@string/account_management" />
+
+            <Button
+                android:id="@+id/logOut_Btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@color/bright_red"
+                android:paddingBottom="3dp"
+                android:paddingTop="5dp"
+                android:text="@string/logout" />
+
         </LinearLayout>
 
     </ScrollView>
